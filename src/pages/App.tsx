@@ -1,6 +1,20 @@
 import React from 'react';
-import { styled, keyframes } from './lib/styles/stitches.config';
+import Link, { LinkProps } from '../_common/components/Link';
+import { styled, keyframes } from '../lib/styles/stitches.config';
 
+
+const ColorLink = ({
+                     ...rest
+                   }: LinkProps & {
+  lightColor: string;
+  darkColor: string;
+}) => {
+  return (
+      <Link
+          { ...rest }
+      />
+  )
+}
 
 const App = () => {
   return (
@@ -8,9 +22,12 @@ const App = () => {
         <Heading1>
           Hi there! I'm Coco <Wave>👋</Wave>
         </Heading1>
-        <h2>
-          I'm a frontend web developer based in Paris, France
-        </h2>
+        <Heading2>
+          I'm a frontend web developer based in the Paris area.
+        </Heading2>
+{/*        <ColorLink
+            text='salut'
+        />*/}
       </>
   );
 }
@@ -24,6 +41,17 @@ const Heading1 = styled("h1", {
   "@medium": {
     fontSize: "1.25em"
   }
+});
+
+const Heading2 = styled('h2', {
+  margin: "0.5em 0 0.5em -1px",
+  fontSize: "1.35em",
+  fontWeight: 400,
+  lineHeight: 1.4,
+  color: "$text",
+  "@medium": {
+    fontSize: "1.25em",
+  },
 });
 
 const Wave = styled("span", {
