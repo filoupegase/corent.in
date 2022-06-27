@@ -1,12 +1,18 @@
 import { createStitches } from '@stitches/react';
-
+import { Inter, RobotoMono } from './fonts'
 
 export const { styled, theme, createTheme, keyframes } = createStitches({
   theme: {
+    fonts: {
+      sans: `"${ Inter.name.regular }", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif`,
+      sansVar: `"${ Inter.name.variable }", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif`,
+      mono: `"${ RobotoMono.name.regular }", ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, Courier`,
+      monoVar: `"${ RobotoMono.name.variable }", ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, Courier`,
+    },
     colors: {
       backgroundInner: "#ffffff",
       backgroundOuter: "#fcfcfc",
-     // backgroundHeader: hexToRgba("#fcfcfc", 0.7),
+      // backgroundHeader: hexToRgba("#fcfcfc", 0.7),
       text: "#202020",
       mediumDark: "#515151",
       medium: "#5e5e5e",
@@ -16,7 +22,7 @@ export const { styled, theme, createTheme, keyframes } = createStitches({
       superLight: "#f4f4f4",
       superDuperLight: "#fbfbfb",
       link: "#0e6dc2",
-     // linkUnderline: hexToRgba("#0e6dc2", 0.4),
+      // linkUnderline: hexToRgba("#0e6dc2", 0.4),
       success: "#44a248",
       error: "#ff1b1b",
       warning: "#f78200",
