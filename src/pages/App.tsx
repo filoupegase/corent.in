@@ -3,7 +3,7 @@ import Link, { LinkProps } from '../_common/components/Link';
 import { styled, keyframes } from '../lib/styles/stitches.config';
 
 
-const ColorLink = ({
+/*const ColorLink = ({
                      ...rest
                    }: LinkProps & {
   lightColor: string;
@@ -14,7 +14,7 @@ const ColorLink = ({
           { ...rest }
       />
   )
-}
+}*/
 
 const App = () => {
   return (
