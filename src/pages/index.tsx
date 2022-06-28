@@ -23,7 +23,7 @@ const Index = () => {
           Hi there! I'm Coco <Wave>👋</Wave>
         </Heading1>
         <Heading2>
-          I'm a frontend web developer based in the Paris area.
+          I'm a frontend web developer based in the Paris.
         </Heading2>
       </>
   );
