@@ -1,33 +1,32 @@
 import React from 'react';
 import Link, { LinkProps } from '../_common/components/Link';
-import { styled, keyframes } from '../lib/styles/stitches.config';
+import { styled, keyframes, darkTheme } from '../lib/styles/stitches.config';
 
 
-/*const ColorLink = ({
-                     ...rest
-                   }: LinkProps & {
+const ColorfulLink = ({
+                        lightColor,
+                        darkColor,
+                        css,
+                        ...rest
+                      }: LinkProps & {
   lightColor: string;
   darkColor: string;
 }) => {
   return (
       <Link
+          css={ {
+            color: lightColor,
+            setUnderlineVars: { color: lightColor },
+            [`.${ darkTheme } &`]: {
+              color: darkColor,
+              setUnderlineVars: { color: darkColor },
+            },
+            ...css
+          } }
           { ...rest }
       />
-  )
-}*/
-
-const Index = () => {
-  return (
-      <>
-        <Heading1>
-          Hi there! I'm Coco <Wave>👋</Wave>
-        </Heading1>
-        <Heading2>
-          I'm a frontend web developer based in Paris.
-        </Heading2>
-      </>
   );
-}
+};
 
 const Heading1 = styled("h1", {
   margin: '0 0 0.5em -1px',
@@ -36,7 +35,7 @@ const Heading1 = styled("h1", {
   lineHeight: 1.1,
   color: '$text',
   "@medium": {
-    fontSize: "1.25em"
+    fontSize: "1.6em"
   }
 });
 
@@ -50,6 +49,19 @@ const Heading2 = styled('h2', {
     fontSize: "1.25em",
   },
 });
+
+const Paragraph = styled("p", {
+  margin: "0.85em 0",
+  lineHeight: 1.7,
+  color: "$text",
+  "&:last-of-type": {
+    marginBottom: 0,
+  },
+  "@medium": {
+    fontSize: "0.95em",
+    lineHeight: 1.825,
+  },
+})
 
 const Wave = styled("span", {
   display: "inline-block",
@@ -70,5 +82,26 @@ const Wave = styled("span", {
     willChange: "transform",
   }
 });
+
+const Index = () => {
+  return (
+      <>
+        <Heading1>
+          Hi there! I'm Coco <Wave>👋</Wave>
+        </Heading1>
+        <Heading2>
+          I'm a frontend web developer based in{ " " }
+          <ColorfulLink
+              href='https://youtu.be/6J6eppvIIgI?t=1'
+              title='Les Danceuses Du Moulin Rouge - French Cancan on YouTube'
+              lightColor="#fb4d42"
+              darkColor="#ff5146"
+          >
+            Paris
+          </ColorfulLink>{ "" }.
+        </Heading2>
+      </>
+  );
+}
 
 export default Index;
