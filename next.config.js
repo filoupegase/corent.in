@@ -82,7 +82,7 @@ module.exports = (phase, { defaultConfig }) => {
       return config;
     },
     headers: async () => [
-      {
+/*      {
         source: '/:path(.*)',
         headers: [
           config.onionDomain && {
@@ -96,7 +96,7 @@ module.exports = (phase, { defaultConfig }) => {
             value: '2%'
           }
         ]
-      },
+      },*/
       {
         source: '/pubkey.asc',
         headers: [
