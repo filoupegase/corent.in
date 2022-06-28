@@ -1,5 +1,7 @@
-import { createStitches } from '@stitches/react';
+import { createStitches, globalCss } from '@stitches/react';
+// web fonts
 import { Inter, RobotoMono } from './fonts'
+
 
 export const { styled, theme, createTheme, keyframes } = createStitches({
   theme: {
@@ -77,3 +79,18 @@ export const darkTheme = createTheme({
     codeDeletion: "#ff5151",
   },
 });
+
+export const globalStyles = globalCss(
+    // @ts-ignore
+    //normalizeStyle,
+    {
+      "@font-face": [...Inter.family, ...RobotoMono.family],
+
+      body: {
+        backgroundColor: "$backgroundInner",
+        fontFamily: "$sans",
+        transition: "background 0.25s ease"
+      },
+
+    }
+)

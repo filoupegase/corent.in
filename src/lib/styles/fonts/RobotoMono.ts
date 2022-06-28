@@ -1,24 +1,35 @@
 import type { AtRule } from "@stitches/react/types/css";
 
-// Legacy
+// @ts-ignore
 import robotoMonoLatin400NormalWoff from "@fontsource/roboto-mono/files/roboto-mono-latin-400-normal.woff";
+// @ts-ignore
 import robotoMonoLatin400NormalWoff2 from "@fontsource/roboto-mono/files/roboto-mono-latin-400-normal.woff2";
+// @ts-ignore
 import robotoMonoLatin500NormalWoff from "@fontsource/roboto-mono/files/roboto-mono-latin-500-normal.woff";
+// @ts-ignore
 import robotoMonoLatin500NormalWoff2 from "@fontsource/roboto-mono/files/roboto-mono-latin-500-normal.woff2";
+// @ts-ignore
 import robotoMonoLatin700NormalWoff from "@fontsource/roboto-mono/files/roboto-mono-latin-700-normal.woff";
+// @ts-ignore
 import robotoMonoLatin700NormalWoff2 from "@fontsource/roboto-mono/files/roboto-mono-latin-700-normal.woff2";
+// @ts-ignore
 import robotoMonoLatin400ItalicWoff from "@fontsource/roboto-mono/files/roboto-mono-latin-400-italic.woff";
+// @ts-ignore
 import robotoMonoLatin400ItalicWoff2 from "@fontsource/roboto-mono/files/roboto-mono-latin-400-italic.woff2";
+// @ts-ignore
 import robotoMonoLatin500ItalicWoff from "@fontsource/roboto-mono/files/roboto-mono-latin-500-italic.woff";
+// @ts-ignore
 import robotoMonoLatin500ItalicWoff2 from "@fontsource/roboto-mono/files/roboto-mono-latin-500-italic.woff2";
+// @ts-ignore
 import robotoMonoLatin700ItalicWoff from "@fontsource/roboto-mono/files/roboto-mono-latin-700-italic.woff";
+// @ts-ignore
 import robotoMonoLatin700ItalicWoff2 from "@fontsource/roboto-mono/files/roboto-mono-latin-700-italic.woff2";
 
 // Variable
-import robotoMonoLatinVarWghtOnlyNormalWoff2
-  from "@fontsource/roboto-mono/files/roboto-mono-latin-variable-wghtOnly-normal.woff2";
-import robotoMonoLatinVarWghtOnlyItalicWoff2
-  from "@fontsource/roboto-mono/files/roboto-mono-latin-variable-wghtOnly-italic.woff2";
+// @ts-ignore
+import robotoMonoLatinVarWghtOnlyNormalWoff2 from "@fontsource/roboto-mono/files/roboto-mono-latin-variable-wghtOnly-normal.woff2";
+// @ts-ignore
+import robotoMonoLatinVarWghtOnlyItalicWoff2 from "@fontsource/roboto-mono/files/roboto-mono-latin-variable-wghtOnly-italic.woff2";
 
 
 export const name = {

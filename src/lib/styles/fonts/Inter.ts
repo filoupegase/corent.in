@@ -1,14 +1,20 @@
 import type { AtRule } from "@stitches/react/types/css";
 
-// Legacy
+// @ts-ignore
 import interLatin400NormalWoff from "@fontsource/inter/files/inter-latin-400-normal.woff";
+// @ts-ignore
 import interLatin400NormalWoff2 from "@fontsource/inter/files/inter-latin-400-normal.woff2";
+// @ts-ignore
 import interLatin500NormalWoff from "@fontsource/inter/files/inter-latin-500-normal.woff";
+// @ts-ignore
 import interLatin500NormalWoff2 from "@fontsource/inter/files/inter-latin-500-normal.woff2";
+// @ts-ignore
 import interLatin700NormalWoff from "@fontsource/inter/files/inter-latin-700-normal.woff";
+// @ts-ignore
 import interLatin700NormalWoff2 from "@fontsource/inter/files/inter-latin-700-normal.woff2";
 
 // Variable
+// @ts-ignore
 import interLatinVarFullNormalWoff2 from "@fontsource/inter/files/inter-latin-variable-full-normal.woff2";
 
 

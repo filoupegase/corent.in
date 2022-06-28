@@ -1,13 +1,20 @@
 import type { AtRule } from "@stitches/react/types/css";
 
-// Legacy
-import comicNeueLatin400NormalWoff from '@fontsource/comic-neue/files/comic-neue-latin-400-normal.woff';
+// @ts-ignore
+import comicNeueLatin400NormalWoff from "@fontsource/comic-neue/files/comic-neue-latin-400-normal.woff";
+// @ts-ignore
 import comicNeueLatin400NormalWoff2 from "@fontsource/comic-neue/files/comic-neue-latin-400-normal.woff2";
+// @ts-ignore
 import comicNeueLatin700NormalWoff from "@fontsource/comic-neue/files/comic-neue-latin-700-normal.woff";
+// @ts-ignore
 import comicNeueLatin700NormalWoff2 from "@fontsource/comic-neue/files/comic-neue-latin-700-normal.woff2";
+// @ts-ignore
 import comicNeueLatin400ItalicWoff from "@fontsource/comic-neue/files/comic-neue-latin-400-italic.woff";
+// @ts-ignore
 import comicNeueLatin400ItalicWoff2 from "@fontsource/comic-neue/files/comic-neue-latin-400-italic.woff2";
+// @ts-ignore
 import comicNeueLatin700ItalicWoff from "@fontsource/comic-neue/files/comic-neue-latin-700-italic.woff";
+// @ts-ignore
 import comicNeueLatin700ItalicWoff2 from "@fontsource/comic-neue/files/comic-neue-latin-700-italic.woff2";
 
 
