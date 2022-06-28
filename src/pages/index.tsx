@@ -16,7 +16,7 @@ import { styled, keyframes } from '../lib/styles/stitches.config';
   )
 }*/
 
-const App = () => {
+const Index = () => {
   return (
       <>
         <Heading1>
@@ -25,9 +25,6 @@ const App = () => {
         <Heading2>
           I'm a frontend web developer based in the Paris area.
         </Heading2>
-{/*        <ColorLink
-            text='salut'
-        />*/}
       </>
   );
 }
@@ -74,4 +71,4 @@ const Wave = styled("span", {
   }
 });
 
-export default App;
+export default Index;
