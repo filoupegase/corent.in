@@ -13,18 +13,18 @@ const ColorfulLink = ({
   darkColor: string;
 }) => {
   return (
-      <Link
-          css={ {
-            color: lightColor,
-            setUnderlineVars: { color: lightColor },
-            [`.${ darkTheme } &`]: {
-              color: darkColor,
-              setUnderlineVars: { color: darkColor },
-            },
-            ...css
-          } }
-          { ...rest }
-      />
+    <Link
+      css={ {
+        color: lightColor,
+        setUnderlineVars: { color: lightColor },
+        [`.${ darkTheme } &`]: {
+          color: darkColor,
+          setUnderlineVars: { color: darkColor },
+        },
+        ...css
+      } }
+      { ...rest }
+    />
   );
 };
 
@@ -85,22 +85,22 @@ const Wave = styled("span", {
 
 const Index = () => {
   return (
-      <>
-        <Heading1>
-          Hi there! I'm Coco <Wave>👋</Wave>
-        </Heading1>
-        <Heading2>
-          I'm a frontend web developer based in{ " " }
-          <ColorfulLink
-              href='https://youtu.be/6J6eppvIIgI?t=1'
-              title='Les Danceuses Du Moulin Rouge - French Cancan on YouTube'
-              lightColor="#fb4d42"
-              darkColor="#ff5146"
-          >
-            Paris
-          </ColorfulLink>{ "" }.
-        </Heading2>
-      </>
+    <>
+      <Heading1>
+        Hi there! I'm Coco <Wave>👋</Wave>
+      </Heading1>
+      <Heading2>
+        I'm a frontend web developer based in{ " " }
+        <ColorfulLink
+          href='https://youtu.be/6J6eppvIIgI?t=1'
+          title='Les Danceuses Du Moulin Rouge - French Cancan on YouTube'
+          lightColor="#fb4d42"
+          darkColor="#ff5146"
+        >
+          Paris
+        </ColorfulLink>{ "" }.
+      </Heading2>
+    </>
   );
 }
 
