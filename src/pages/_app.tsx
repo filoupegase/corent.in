@@ -1,6 +1,7 @@
 import type { ReactElement, ReactNode } from 'react'
 import type { NextPage } from 'next'
 import type { AppProps as NextAppProps } from "next/app";
+import Layout from '../_common/components/Layout'
 
 // style
 import { globalStyles } from '../lib/styles/stitches.config';
@@ -14,9 +15,11 @@ export type AppProps = NextAppProps & {
 
 globalStyles()
 
-export default function App({ Component, pageProps }: AppProps) {
+const App = ({ Component, pageProps }: AppProps) => {
   // Use the layout defined at the page level, if available
   const getLayout = Component.getLayout ?? ((page) => page)
 
   return getLayout(<Component { ...pageProps } />)
 }
+
+export default App;
