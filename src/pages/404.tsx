@@ -2,7 +2,7 @@
 
 const FourOhFour = () => {
   return (
-    <p>salut</p>
+    <p>404</p>
   )
 }
 
