@@ -2,7 +2,7 @@
 const path = require('path');
 const { PHASE_DEVELOPMENT_SERVER } = require('next/constants');
 const withPlugins = require('next-compose-plugins');
-const config = require('./src/lib/config');
+const config = require('./lib/config');
 
 module.exports = (phase, { defaultConfig }) => {
   const nextPlugins = [

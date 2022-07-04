@@ -1,19 +1,22 @@
-import { createStitches, globalCss } from '@stitches/react';
+import { createStitches } from '@stitches/react';
 
 import hexToRgba from "hex-to-rgba";
+import normalizeStyles from "./helpers/normalize";
 
 // web fonts
 import { Inter, RobotoMono } from './fonts'
 
 
-export const { styled, theme, createTheme, keyframes } = createStitches({
+export const { styled, css, getCssText, globalCss, createTheme, keyframes, theme } = createStitches({
   theme: {
+
     fonts: {
       sans: `"${ Inter.name.regular }", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif`,
       sansVar: `"${ Inter.name.variable }", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif`,
       mono: `"${ RobotoMono.name.regular }", ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, Courier`,
       monoVar: `"${ RobotoMono.name.variable }", ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, Courier`,
     },
+
     colors: {
       backgroundInner: "#ffffff",
       backgroundOuter: "#fcfcfc",
@@ -44,10 +47,25 @@ export const { styled, theme, createTheme, keyframes } = createStitches({
       codeAddition: "#44a248",
       codeDeletion: "#ff1b1b",
     },
+
     radii: {
       rounded: "0.65em"
     }
   },
+
+  media: {
+    medium: "(max-width: 768px)",
+    small: "(max-width: 300px)",
+  },
+
+  utils: {
+    setUnderlineVars: ({
+                         color = "$colors$linkUnderline",
+                         alpha = 0.4
+                       }) => ({
+      $$underlineColor: color.startsWith("#") ? hexToRgba(color, alpha) : color
+    })
+  }
 });
 
 export const darkTheme = createTheme({
@@ -84,15 +102,44 @@ export const darkTheme = createTheme({
 });
 
 export const globalStyles = globalCss(
-    //normalizeStyle,
-    {
-      "@font-face": [...Inter.family, ...RobotoMono.family],
+  normalizeStyles,
+  {
+    "@font-face": [...Inter.family, ...RobotoMono.family],
 
+    body: {
+      backgroundColor: "$backgroundInner",
+      fontFamily: "$sans",
+      transition: "background 0.25s ease"
+    },
+
+    "code, kbd, samp, pre": {
+      fontFamily: "$mono"
+    },
+
+    "@supports (font-variation-settings: normal)": {
       body: {
-        backgroundColor: "$backgroundInner",
-        fontFamily: "$sans",
-        transition: "background 0.25s ease"
+        fontFamily: "$sansVar",
+        fontOpticalSizing: "auto"
       },
 
+      "code, kbd, samp, pre": {
+        fontFamily: "$monoVar"
+      },
+
+      // Chrome doesn't automatically slant multi-axis Inter var, for some reason.
+      // Adding "slnt" -10 fixes Chrome but then over-italicizes in Firefox. AHHHHHHHHHH.
+      em: {
+        fontStyle: "norma;",
+        fontVariationSettings: `"ital" 1, "slnt" -10`,
+
+        // Roboto Mono doesn't have this problem, but the above fix breaks it, of course.
+        "& code, & kbd, & samp, & pre": {
+          fontStyle: "italic !important",
+          fontVariationSettings: "initial !important",
+        },
+      }
     }
-)
+  }
+);
+
+export const preloadFonts = [...Inter.preloadFonts, ...RobotoMono.preloadFonts];

@@ -12,6 +12,7 @@ export type AppProps = NextAppProps & {
     getLayout?: (page: ReactElement) => ReactNode;
   };
 };
+
 globalStyles()
 
 const App = ({ Component, pageProps }: AppProps) => {
