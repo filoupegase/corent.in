@@ -1,6 +1,6 @@
-const Layout = ({}) => {
+const Layout = () => {
   return (
-    <p>salut</p>
+    <p>salut Layout</p>
   )
 }
 
