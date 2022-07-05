@@ -33,7 +33,7 @@ const Heading1 = styled("h1", {
   fontSize: '1.8em',
   fontWeight: 500,
   lineHeight: 1.1,
-  color: '$text',
+  color: "$text",
   "@medium": {
     fontSize: "1.6em"
   }

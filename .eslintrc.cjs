@@ -1,13 +1,16 @@
+/**
+ * @type {import('eslint').Linter.Config}
+ */
 module.exports = {
   root: true,
   parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint', 'prettier'],
   extends: [
-    "@jakejarvis/eslint-config",
-    "next/core-web-vitals",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:prettier/recommended",
+    '@jakejarvis/eslint-config',
+    'next/core-web-vitals',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:prettier/recommended'
   ],
+  plugins: ['@typescript-eslint', 'prettier'],
   rules: {
     '@typescript-eslint/ban-ts-comment': 'off',
     '@typescript-eslint/no-explicit-any': 'warn',
