@@ -1,6 +1,8 @@
 import type { ReactElement, ReactNode } from "react";
 import type { NextPage } from "next";
 import type { AppProps as NextAppProps } from "next/app";
+import { ThemeProvider } from "../contexts/ThemeContext";
+import { themeClassNames } from '../lib/config/themes';
 import Layout from "../_common/components/Layout";
 
 // style
@@ -13,17 +15,21 @@ export type AppProps = NextAppProps & {
   };
 };
 
-globalStyles();
 
 const App = ({ Component, pageProps }: AppProps) => {
   // Use the layout defined at the page level, if available
+
+  globalStyles();
 
   // allow layout overrides per-page, but default to plain `<Layout />`
   const getLayout = Component.getLayout || ((page) => <Layout>{ page }</Layout>);
 
   return (
     <>
-      <Component { ...pageProps } />
+      <ThemeProvider
+        classNames={ themeClassNames }>
+        { getLayout(<Component { ...pageProps } />) }
+      </ThemeProvider>
     </>
   );
 };

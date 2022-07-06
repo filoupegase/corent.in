@@ -98,7 +98,7 @@ const Index = () => {
           darkColor="#ff5146"
         >
           Paris
-        </ColorfulLink>{ " " }.
+        </ColorfulLink>{ "" }.
       </Heading2>
     </>
   );
