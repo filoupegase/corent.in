@@ -29,17 +29,17 @@ const ColorfulLink = ({
 };
 
 const Heading1 = styled("h1", {
-  margin: '0 0 0.5em -1px',
-  fontSize: '1.8em',
+  margin: "0 0 0.5em -1px",
+  fontSize: "1.8em",
   fontWeight: 500,
   lineHeight: 1.1,
   color: "$text",
   "@medium": {
-    fontSize: "1.6em"
-  }
+    fontSize: "1.6em",
+  },
 });
 
-const Heading2 = styled('h2', {
+const Heading2 = styled("h2", {
   margin: "0.5em 0 0.5em -1px",
   fontSize: "1.35em",
   fontWeight: 400,
@@ -92,16 +92,16 @@ const Index = () => {
       <Heading2>
         I'm a frontend web developer based in{ " " }
         <ColorfulLink
-          href='https://youtu.be/6J6eppvIIgI?t=1'
-          title='Les Danceuses Du Moulin Rouge - French Cancan on YouTube'
+          href="https://youtu.be/6J6eppvIIgI?t=1"
+          title="Les Danceuses Du Moulin Rouge - French Cancan on YouTube"
           lightColor="#fb4d42"
           darkColor="#ff5146"
         >
           Paris
-        </ColorfulLink>{ "" }.
+        </ColorfulLink>{ " " }.
       </Heading2>
     </>
   );
-}
+};
 
 export default Index;

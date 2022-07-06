@@ -23,8 +23,7 @@ const App = ({ Component, pageProps }: AppProps) => {
 
   return (
     <>
-      getLayout(
-      <Component { ...pageProps } />)
+      <Component { ...pageProps } />
     </>
   );
 };
