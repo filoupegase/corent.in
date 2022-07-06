@@ -39,6 +39,17 @@ const Heading1 = styled("h1", {
   },
 });
 
+const UnderHeadOne = styled("h3", {
+  margin: "0 0 0.5em -1px",
+  fontSize: "1.45em",
+  fontWeight: 500,
+  lineHeight: 1.1,
+  color: "$text",
+  "@medium": {
+    fontSize: "1.30em",
+  },
+});
+
 const Heading2 = styled("h2", {
   margin: "0.5em 0 0.5em -1px",
   fontSize: "1.35em",
@@ -89,6 +100,7 @@ const Index = () => {
       <Heading1>
         Hi there! I'm Coco <Wave>👋</Wave>
       </Heading1>
+      <UnderHeadOne>Welcome to my humble abode on the World Wide Web 🏡</UnderHeadOne>
       <Heading2>
         I'm a frontend web developer based in{ " " }
         <ColorfulLink
