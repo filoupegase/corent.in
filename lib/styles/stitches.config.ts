@@ -1,15 +1,15 @@
-import { createStitches } from '@stitches/react';
+import { createStitches } from "@stitches/react";
 
+// misc. helpers
 import hexToRgba from "hex-to-rgba";
-import normalizeStyles from "./helpers/normalize";
+//import normalizeStyles from "./helpers/normalize";
 
 // web fonts
-import { Inter, RobotoMono } from './fonts'
+import { Inter, RobotoMono } from "./fonts";
 
 
-export const { styled, css, getCssText, globalCss, createTheme, keyframes, theme } = createStitches({
+export const { styled, css, getCssText, globalCss, keyframes, createTheme, theme } = createStitches({
   theme: {
-
     fonts: {
       sans: `"${ Inter.name.regular }", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif`,
       sansVar: `"${ Inter.name.variable }", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif`,
@@ -34,6 +34,7 @@ export const { styled, css, getCssText, globalCss, createTheme, keyframes, theme
       success: "#44a248",
       error: "#ff1b1b",
       warning: "#f78200",
+
       // Syntax Highlighting (light) - modified from Monokai Light: https://github.com/mlgill/pygments-style-monokailight
       codeText: "#313131",
       codeBackground: "#fdfdfd",
@@ -48,24 +49,40 @@ export const { styled, css, getCssText, globalCss, createTheme, keyframes, theme
       codeDeletion: "#ff1b1b",
     },
 
+    borderWidths: {
+      // underline height is based on link's font size
+      underline: "calc(0.1em + 0.05rem)",
+    },
+
     radii: {
-      rounded: "0.65em"
-    }
+      rounded: "0.65em",
+    },
+
+    transitions: {
+      // light <-> dark theme fade duration
+      fade: "0.25s ease",
+      // fancy underline animation
+      linkHover: "0.2s ease-in-out",
+    },
   },
 
   media: {
+    // most responsive styles will go here:
     medium: "(max-width: 768px)",
-    small: "(max-width: 300px)",
+    // used rarely only for SUPER narrow windows:
+    small: "(max-width: 380px)",
+    // ...note: things then COMPLETELY break at 300px. but it's 2022 let's be real.
   },
 
   utils: {
     setUnderlineVars: ({
-                         color = "$colors$linkUnderline",
-                         alpha = 0.4
+                         color = "$colors$linkUnderline", // see theme values below
+                         alpha = 0.4,
                        }) => ({
-      $$underlineColor: color.startsWith("#") ? hexToRgba(color, alpha) : color
-    })
-  }
+      // allow both pre-set rgba stitches variables and hex values
+      $$underlineColor: color.startsWith("#") ? hexToRgba(color, alpha) : color,
+    }),
+  },
 });
 
 export const darkTheme = createTheme({
@@ -86,6 +103,7 @@ export const darkTheme = createTheme({
     success: "#78df55",
     error: "#ff5151",
     warning: "#f2b702",
+
     // Syntax Highlighting (dark) - modified from Dracula: https://github.com/dracula/pygments
     codeText: "#e4e4e4",
     codeBackground: "#212121",
@@ -102,34 +120,36 @@ export const darkTheme = createTheme({
 });
 
 export const globalStyles = globalCss(
-  normalizeStyles,
+  // @ts-ignore
+  //normalizeStyles,
   {
     "@font-face": [...Inter.family, ...RobotoMono.family],
 
     body: {
-      backgroundColor: "$backgroundInner",
       fontFamily: "$sans",
-      transition: "background 0.25s ease"
+      backgroundColor: "$backgroundInner",
+      transition: "background $fade",
     },
 
     "code, kbd, samp, pre": {
-      fontFamily: "$mono"
+      fontFamily: "$mono",
     },
 
+    // variable font support?
     "@supports (font-variation-settings: normal)": {
       body: {
         fontFamily: "$sansVar",
-        fontOpticalSizing: "auto"
+        fontOpticalSizing: "auto",
       },
 
       "code, kbd, samp, pre": {
-        fontFamily: "$monoVar"
+        fontFamily: "$monoVar",
       },
 
       // Chrome doesn't automatically slant multi-axis Inter var, for some reason.
       // Adding "slnt" -10 fixes Chrome but then over-italicizes in Firefox. AHHHHHHHHHH.
       em: {
-        fontStyle: "norma;",
+        fontStyle: "normal",
         fontVariationSettings: `"ital" 1, "slnt" -10`,
 
         // Roboto Mono doesn't have this problem, but the above fix breaks it, of course.
@@ -137,9 +157,10 @@ export const globalStyles = globalCss(
           fontStyle: "italic !important",
           fontVariationSettings: "initial !important",
         },
-      }
-    }
+      },
+    },
   }
 );
 
+// re-export hashed URLs of the most important variable fonts so we can preload them in pages/_document.tsx
 export const preloadFonts = [...Inter.preloadFonts, ...RobotoMono.preloadFonts];
