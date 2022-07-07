@@ -1,7 +1,10 @@
 import { ComponentProps } from 'react';
 import Head from 'next/head';
 import { styled } from "../../../lib/styles/stitches.config"
+import { useTheme } from "../../hooks/use-theme";
+import { themeColors } from '../../../lib/config/themes';
 import Header from '../Header';
+import Footer from '../Footer';
 
 
 const Flex = styled('div', {
@@ -26,11 +29,9 @@ const StickyHeader = styled(Header, {
   top: 0
 });
 
-/*
 const FlexedFooter = styled(Footer, {
   flex: 1
 })
-*/
 
 const SkipNavLink = styled("a", {
   // accessible invisibility stuff pulled from @reach/skip-nav:
@@ -67,13 +68,14 @@ export type LayoutProps = ComponentProps<typeof Flex> & {
 }
 
 const Layout = ({ container = true, children, ...rest }: LayoutProps) => {
-  //const { activeTheme } = useTheme();
+  const { activeTheme } = useTheme();
   const skipNavId = "skip-nav";
 
   return (
     <>
       <Head>
-
+        <title>My page title</title>
+        <meta name='theme-color' content={ themeColors[activeTheme === "dark" ? activeTheme : "light"] } />
       </Head>
       <Flex { ...rest }>
         <Default>
