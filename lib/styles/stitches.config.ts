@@ -49,6 +49,11 @@ export const { styled, css, getCssText, globalCss, keyframes, createTheme, theme
       codeDeletion: "#ff1b1b",
     },
 
+    sizes: {
+      maxLayoutWidth: "865px",
+    },
+
+
     borderWidths: {
       // underline height is based on link's font size
       underline: "calc(0.1em + 0.05rem)",

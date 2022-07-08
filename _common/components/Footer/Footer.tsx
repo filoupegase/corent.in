@@ -14,13 +14,21 @@ const Wrapper = styled('footer', {
   },
 });
 
+const Row = styled("div", {
+  display: "flex",
+  width: "100%",
+  maxWidth: theme.sizes.maxLayoutWidth,
+});
+
 
 export type FooterProps = ComponentProps<typeof Wrapper>;
 
 const Footer = ({ ...rest }: FooterProps) => {
   return (
     <Wrapper { ...rest }>
+      <Row>
 
+      </Row>
     </Wrapper>
   )
 }
