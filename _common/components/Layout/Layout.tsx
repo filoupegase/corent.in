@@ -75,12 +75,20 @@ const Layout = ({ container = true, children, ...rest }: LayoutProps) => {
     <>
       <Head>
         <title>My page title</title>
-        <meta name='theme-color' content={ themeColors[activeTheme === "dark" ? activeTheme : "light"] } />
+        <meta name="theme-color" content={ themeColors[activeTheme === "dark" ? activeTheme : "light"] } />
       </Head>
+
+      <SkipNavLink href={ `#${ skipNavId }` } role='link' tabIndex={ 0 }>
+        Skip to content
+      </SkipNavLink>
+
       <Flex { ...rest }>
+        <StickyHeader />
         <Default>
           <ContainerDiv>{ children }</ContainerDiv>
         </Default>
+
+        <FlexedFooter />
       </Flex>
     </>
   )
