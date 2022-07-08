@@ -1,5 +1,6 @@
 import type { ComponentProps } from "react";
 import { styled, theme } from "../../../lib/styles/stitches.config"
+import Menu from "../Menu";
 
 
 const Wrapper = styled('header', {
@@ -17,14 +18,36 @@ const Wrapper = styled('header', {
     padding: "0.75em 1.25em",
     height: "5.9em"
   }
-})
+});
+
+const Nav = styled("nav", {
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "space-between",
+  width: "100%",
+  maxWidth: theme.sizes.maxLayoutWidth,
+  margin: "0 auto"
+});
+
+const ResponsiveMenu = styled(Menu, {
+  "@medium": {
+    maxWidth: "325px",
+  },
+
+  "@small": {
+    maxWidth: "225px",
+  },
+});
 
 export type HeaderProps = ComponentProps<typeof Wrapper>;
 
 const Header = ({ ...rest }: HeaderProps) => {
   return (
     <Wrapper { ...rest }>
+      <Nav>
 
+        <ResponsiveMenu />
+      </Nav>
     </Wrapper>
   )
 }

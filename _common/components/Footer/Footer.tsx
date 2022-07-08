@@ -1,5 +1,6 @@
 import type { ComponentProps } from "react";
 import { styled, theme, keyframes } from "../../../lib/styles/stitches.config";
+import Link from '../Link';
 
 
 const Wrapper = styled('footer', {
@@ -18,6 +19,19 @@ const Row = styled("div", {
   display: "flex",
   width: "100%",
   maxWidth: theme.sizes.maxLayoutWidth,
+  margin: "0 auto",
+  justifyContent: "space-between",
+  fontSize: "0.85em",
+  lineHeight: 2.3,
+
+  "@meduim": {
+    fontSize: "0.8em",
+    display: "block"
+  }
+});
+
+const PainLink = styled(Link, {
+  color: theme.colors.mediumDark
 });
 
 
