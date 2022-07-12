@@ -94,6 +94,23 @@ const Wave = styled("span", {
   }
 });
 
+const Sup = styled("sup", {
+  margin: "0 0.15em",
+  fontSize: "0.65em"
+});
+
+const PGPKey = styled("code", {
+  marginLeft: "0.15em",
+  wordSpacing: "-0.4em"
+});
+
+const Quiet = styled(ColorfulLink, {
+  // rotated 🪄 emoji on hover
+  "&:hover": {
+    cursor: `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='30' style='font-size:24px'><text y='50%' transform='rotate(-70 0 0) translate(-20, 6)'>🪄</text></svg>") 5 5, auto`,
+  }
+})
+
 const Index = () => {
   return (
     <>
