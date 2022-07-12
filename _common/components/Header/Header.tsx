@@ -1,6 +1,7 @@
 import type { ComponentProps } from "react";
 import { styled, theme } from "../../../lib/styles/stitches.config"
 import Menu from "../Menu";
+import Selfie from "../Selfie";
 
 
 const Wrapper = styled('header', {
@@ -45,7 +46,7 @@ const Header = ({ ...rest }: HeaderProps) => {
   return (
     <Wrapper { ...rest }>
       <Nav>
-
+        <Selfie />
         <ResponsiveMenu />
       </Nav>
     </Wrapper>
