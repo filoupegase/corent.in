@@ -149,7 +149,8 @@ const Index = () => {
           vanilla JavaScript
         </ColorfulLink>{ " " }
         to make nifty{ " " }
-        <ColorfulLink href="https://mui.com/" title="WTF is Mui?" lightColor="#007FFF" darkColor="#0059B2">
+        <ColorfulLink href="https://mui.com/" title="Move faster with intuitive React UI tools" lightColor="#007FFF"
+                      darkColor="#0059B2">
           Mui
         </ColorfulLink>{ " " } and { " " }
         <ColorfulLink href="https://jamstack.wtf/" title="WTF is Jamstack?" lightColor="#04a699" darkColor="#08bbac">
@@ -164,7 +165,16 @@ const Index = () => {
         >
           Node.js
         </ColorfulLink>{ " " }
-        services. But I still know my way
+        services. But I still know my way around less buzzwordy stacks like
+        { " " }
+        <ColorfulLink
+          href="https://www.jetbrains.com/lp/php-25/"
+          title="25 Years of PHP History"
+          lightColor="#8892bf"
+          darkColor="#a4afe3"
+        >
+          LAMP
+        </ColorfulLink>, too.
       </Paragraph>
     </>
   );
