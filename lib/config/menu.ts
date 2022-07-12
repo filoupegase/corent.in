@@ -1,5 +1,5 @@
-import { HomeIcon, NotesIcon, ProjectsIcon, ContactIcon } from "../../components/Icons";
-import type { MenuItemProps } from "../../components/MenuItem";
+import { HomeIcon, NotesIcon, ProjectsIcon, ContactIcon } from "../../_common/components/Icons";
+import type { MenuItemProps } from "../../_common/components/MenuItem";
 
 
 export const menuItems: MenuItemProps[] = [
