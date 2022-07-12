@@ -2,11 +2,8 @@ import type { ReactElement, ReactNode } from "react";
 import type { NextPage } from "next";
 import type { AppProps as NextAppProps } from "next/app";
 import { ThemeProvider } from "../contexts/ThemeContext";
-import { themeClassNames } from '../lib/config/themes';
+import { globalStyles, themeClassNames } from "../lib/styles/stitches.config";
 import Layout from "../_common/components/Layout";
-
-// style
-import { globalStyles } from "../lib/styles/stitches.config";
 
 // https://nextjs.org/docs/basic-features/layouts#with-typescript
 export type AppProps = NextAppProps & {
