@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const path = require('path');
-const { PHASE_DEVELOPMENT_SERVER } = require('next/constants');
+const {PHASE_DEVELOPMENT_SERVER} = require('next/constants');
 const withPlugins = require('next-compose-plugins');
 const config = require('./lib/config');
 
-module.exports = (phase, { defaultConfig }) => {
+module.exports = (phase, {defaultConfig}) => {
   const nextPlugins = [
     require('next-transpile-modules')([
       // fixes some mystery issues in the noVNC library
@@ -47,7 +47,7 @@ module.exports = (phase, { defaultConfig }) => {
       // this lets us statically import webfonts like we would images, allowing cool things like preloading them
       config.module.rules.push({
         test: /\.(woff|woff2|eot|ttf|otf)$/i,
-        issuer: { and: [/\.(js|ts)x?$/] },
+        issuer: {and: [/\.(js|ts)x?$/]},
         type: 'asset/resource',
         generator: {
           filename: 'static/media/[name].[hash:8][ext]'
@@ -59,7 +59,7 @@ module.exports = (phase, { defaultConfig }) => {
       // see: ./components/Icons/index.ts
       config.module.rules.push({
         test: /\.svg$/i,
-        issuer: { and: [/\.(js|ts)x?$/] },
+        issuer: {and: [/\.(js|ts)x?$/]},
         use: [
           {
             loader: '@svgr/webpack',
@@ -82,21 +82,21 @@ module.exports = (phase, { defaultConfig }) => {
       return config;
     },
     headers: async () => [
-/*      {
-        source: '/:path(.*)',
-        headers: [
-          config.onionDomain && {
-            // https://gitweb.torproject.org/tor-browser-spec.git/tree/proposals/100-onion-location-header.txt
-            key: 'Onion-Location',
-            value: `${ config.onionDomain }/:path*`
-          },
-          {
-            // 🥛
-            key: 'x-got-milk',
-            value: '2%'
-          }
-        ]
-      },*/
+      /*      {
+              source: '/:path(.*)',
+              headers: [
+                config.onionDomain && {
+                  // https://gitweb.torproject.org/tor-browser-spec.git/tree/proposals/100-onion-location-header.txt
+                  key: 'Onion-Location',
+                  value: `${ config.onionDomain }/:path*`
+                },
+                {
+                  // 🥛
+                  key: 'x-got-milk',
+                  value: '2%'
+                }
+              ]
+            },*/
       {
         source: '/pubkey.asc',
         headers: [
@@ -112,22 +112,22 @@ module.exports = (phase, { defaultConfig }) => {
       }
     ],
     rewrites: async () => [
-      { source: '/favicon.ico', destination: '/static/favicons/favicon.ico' },
-      { source: '/favicon.png', destination: '/static/favicons/favicon.png' },
-      { source: '/apple-touch-icon.png', destination: '/static/favicons/apple-touch-icon.png' },
-      { source: '/apple-touch-icon-precomposed.png', destination: '/static/favicons/apple-touch-icon.png' }
+      {source: '/favicon.ico', destination: '/static/favicons/favicon.ico'},
+      {source: '/favicon.png', destination: '/static/favicons/favicon.png'},
+      {source: '/apple-touch-icon.png', destination: '/static/favicons/apple-touch-icon.png'},
+      {source: '/apple-touch-icon-precomposed.png', destination: '/static/favicons/apple-touch-icon.png'}
     ],
     redirects: async () => [
       // NOTE: don't remove this, it ensures de-AMPing the site hasn't offended our google overlords too badly!
       // https://developers.google.com/search/docs/advanced/experience/remove-amp#remove-only-amp
-      { source: '/notes/:slug/amp.html', destination: '/notes/:slug/', statusCode: 301 },
+      {source: '/notes/:slug/amp.html', destination: '/notes/:slug/', statusCode: 301},
 
       // remnants of previous sites/CMSes:
-      { source: '/index.xml', destination: '/feed.xml', permanent: true },
-      { source: '/feed/', destination: '/feed.xml', permanent: true },
-      { source: '/rss/', destination: '/feed.xml', permanent: true },
-      { source: '/blog/:path*', destination: '/notes/', permanent: true },
-      { source: '/archives/:path*', destination: '/notes/', permanent: true },
+      {source: '/index.xml', destination: '/feed.xml', permanent: true},
+      {source: '/feed/', destination: '/feed.xml', permanent: true},
+      {source: '/rss/', destination: '/feed.xml', permanent: true},
+      {source: '/blog/:path*', destination: '/notes/', permanent: true},
+      {source: '/archives/:path*', destination: '/notes/', permanent: true},
       {
         source: '/2016/02/28/millenial-with-hillary-clinton/',
         destination: '/notes/millenial-with-hillary-clinton/',
@@ -143,10 +143,10 @@ module.exports = (phase, { defaultConfig }) => {
         destination: '/notes/cool-bash-tricks-for-your-terminal-dotfiles/',
         permanent: true
       },
-      { source: '/resume/', destination: '/static/resume.pdf', permanent: false },
-      { source: '/resume.pdf', destination: '/static/resume.pdf', permanent: false }
+      {source: '/resume/', destination: '/static/resume.pdf', permanent: false},
+      {source: '/resume.pdf', destination: '/static/resume.pdf', permanent: false}
     ]
   };
 
-  return withPlugins(nextPlugins, nextConfig)(phase, { defaultConfig });
+  return withPlugins(nextPlugins, nextConfig)(phase, {defaultConfig});
 };

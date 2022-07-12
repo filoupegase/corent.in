@@ -1,6 +1,8 @@
 import type { ComponentProps } from "react";
 import { useRouter } from "next/router";
 import { styled } from '../../../lib/styles/stitches.config';
+import MenuItem from '../MenuItem';
+import { menuItems } from '../../../lib/config/menu';
 
 
 const Wrapper = styled("ul", {
@@ -43,6 +45,16 @@ const Menu = ({ ...rest }: MenuProps) => {
 
   return (
     <Wrapper { ...rest }>
+      { menuItems.map((item, index) => {
+        return (
+          <Item>
+            <MenuItem
+              { ...item }
+              //current={isCurrent}
+            />
+          </Item>
+        )
+      }) }
       <Item>
       </Item>
     </Wrapper>
