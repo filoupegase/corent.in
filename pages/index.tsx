@@ -30,12 +30,12 @@ const ColorfulLink = ({
 
 const Heading1 = styled("h1", {
   margin: "0 0 0.5em -1px",
-  fontSize: "1.8em",
+  fontSize: "1.9em",
   fontWeight: 500,
   lineHeight: 1.1,
   color: "$text",
   "@medium": {
-    fontSize: "1.6em",
+    fontSize: "1.7em",
   },
 });
 
@@ -129,6 +129,43 @@ const Index = () => {
           Paris
         </ColorfulLink>{ "" }.
       </Heading2>
+      <Paragraph>
+        I specialize in{ " " }
+        <ColorfulLink
+          href="https://fr.reactjs.org/"
+          title="React Official Website"
+          lightColor="#1091b3"
+          darkColor="#6fcbe3"
+        >
+          React
+        </ColorfulLink>{ " " }
+        and { " " }
+        <ColorfulLink
+          href="https://timkadlec.com/remembers/2020-04-21-the-cost-of-javascript-frameworks/"
+          title='"The Cost of Javascript Frameworks" by Tim Kadlec'
+          lightColor="#f48024"
+          darkColor="#e18431"
+        >
+          vanilla JavaScript
+        </ColorfulLink>{ " " }
+        to make nifty{ " " }
+        <ColorfulLink href="https://mui.com/" title="WTF is Mui?" lightColor="#007FFF" darkColor="#0059B2">
+          Mui
+        </ColorfulLink>{ " " } and { " " }
+        <ColorfulLink href="https://jamstack.wtf/" title="WTF is Jamstack?" lightColor="#04a699" darkColor="#08bbac">
+          Jamstack sites
+        </ColorfulLink>{ " " }
+        with dynamic{ " " }
+        <ColorfulLink
+          href="https://nodejs.org/en/"
+          title="Node.js Official Website"
+          lightColor="#6fbc4e"
+          darkColor="#84d95f"
+        >
+          Node.js
+        </ColorfulLink>{ " " }
+        services. But I still know my way
+      </Paragraph>
     </>
   );
 };
