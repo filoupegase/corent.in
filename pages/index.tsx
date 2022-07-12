@@ -152,7 +152,7 @@ const Index = () => {
         <ColorfulLink href="https://mui.com/" title="Move faster with intuitive React UI tools" lightColor="#007FFF"
                       darkColor="#0059B2">
           Mui
-        </ColorfulLink>{ " " } and { " " }
+        </ColorfulLink>{ " " } & { " " }
         <ColorfulLink href="https://jamstack.wtf/" title="WTF is Jamstack?" lightColor="#04a699" darkColor="#08bbac">
           Jamstack sites
         </ColorfulLink>{ " " }
