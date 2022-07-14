@@ -63,8 +63,14 @@ const MenuItem = ({ icon: ItemIcon, href, text, current, className }: MenuItemPr
 
   if (href) {
     return (
-      <MenuLink href={ href } className={ className } current={ current } title={ text } underline={ false }
-                aria-label={ text }>
+      <MenuLink
+        href={ href }
+        className={ className }
+        current={ current }
+        title={ text }
+        underline={ false }
+        aria-label={ text }
+      >
         { linkContent }
       </MenuLink>
     );

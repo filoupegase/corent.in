@@ -1,11 +1,11 @@
 import type { ComponentProps } from 'react';
 import NextLink from "next/link"
-import { styled } from '../../../lib/styles/stitches.config';
+import { styled, theme } from '../../../lib/styles/stitches.config';
 import { baseUrl } from "../../../lib/config"
 
 
 const StyledLink = styled(NextLink, {
-  color: "$link",
+  color: theme.colors.link,
   textDecoration: "none",
 
   variants: {
@@ -15,21 +15,19 @@ const StyledLink = styled(NextLink, {
         // sets psuedo linear-gradient() for the underline's color; see stitches config for the weird calculation behind
         // the local `$$underlineColor` variable.
         setUnderlineVars: {},
-        // underline height is based on link's font size
-        $$underlineSize: "calc(0.1em + 0.05rem)",
 
         backgroundImage: `linear-gradient($$underlineColor, $$underlineColor)`,
         backgroundPosition: "0% 100%",
         backgroundRepeat: "no-repeat",
-        backgroundSize: "0% $$underlineSize",
+        backgroundSize: `0% ${ theme.borderWidths.underline }`,
         paddingBottom: "0.2rem",
 
         "@media (prefers-reduced-motion: no-preference)": {
-          transition: "background-size 0.25s ease-in-out",
+          transition: `background-size ${ theme.transitions.linkHover }`,
         },
 
         "&:hover": {
-          backgroundSize: "100% $$underlineSize",
+          backgroundSize: `100% ${ theme.borderWidths.underline }`,
         },
       },
       false: {},
