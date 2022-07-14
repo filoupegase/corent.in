@@ -11,7 +11,7 @@ const Wrapper = styled("ul", {
   padding: 0,
   margin: 0,
 
-  "@meduim": {
+  "@medium": {
     width: "100%",
     justifyContent: "space-between",
     marginLeft: "1em"
@@ -27,7 +27,7 @@ const Item = styled("li", {
   marginLeft: "1em",
   listStyle: "none",
 
-  "@meduim": {
+  "@medium": {
     marginLeft: 0
   },
 

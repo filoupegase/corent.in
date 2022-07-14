@@ -1,6 +1,6 @@
 const Selfie = ({ ...rest }) => {
   return (
-    <>Selfie</>
+    <>⚉</>
   )
 }
 

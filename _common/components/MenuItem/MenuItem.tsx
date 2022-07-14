@@ -28,7 +28,7 @@ const Icon = styled("svg", {
   height: "1.25em",
   verticalAlign: "-0.3em",
 
-  "@meduim": {
+  "@medium": {
     width: "1.8em",
     height: "1.8em"
   }
@@ -39,7 +39,7 @@ const Label = styled("span", {
   fontWeight: 500,
   marginLeft: "0.7em",
 
-  "@meduim": {
+  "@medium": {
     display: 'none'
   }
 });
