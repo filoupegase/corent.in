@@ -2,6 +2,7 @@ import type { ComponentProps } from "react";
 import { useRouter } from "next/router";
 import { styled } from '../../../lib/styles/stitches.config';
 import MenuItem from '../MenuItem';
+import ThemeToggle from '../ThemeToggle';
 import { menuItems } from '../../../lib/config/menu';
 
 
@@ -45,17 +46,22 @@ const Menu = ({ ...rest }: MenuProps) => {
 
   return (
     <Wrapper { ...rest }>
-      { menuItems.map((item, index) => {
+      { menuItems.map((item, idx) => {
+        const isCurrent = item.href === `/${ router.pathname.split("/")[1] }`;
+
         return (
-          <Item>
+          <Item
+            key={ idx }
+          >
             <MenuItem
               { ...item }
-              //current={isCurrent}
+              current={ isCurrent }
             />
           </Item>
         )
       }) }
       <Item>
+        <MenuItem icon={ ThemeToggle } />
       </Item>
     </Wrapper>
   )
