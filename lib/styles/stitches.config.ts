@@ -231,7 +231,6 @@ export const globalStyles = globalCss(
     "@supports (font-variation-settings: normal)": {
       body: {
         fontFamily: "$sansVar",
-        fontOpticalSizing: "auto",
       },
 
       "code, kbd, samp, pre": {
