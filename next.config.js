@@ -13,22 +13,22 @@ module.exports = (phase) => {
     trailingSlash: true,
     productionBrowserSourceMaps: true,
     env: {
-      // freeze build timestamp for when serverless pages need a "last updated" date:
-      NEXT_PUBLIC_RELEASE_DATE: new Date().toISOString(),
+      // freeze build timestamp for when server-side pages need a "last updated" date:
+      RELEASE_DATE: new Date().toISOString(),
       // check if we're running locally via `next dev`:
-      IS_DEV_SERVER: phase === PHASE_DEVELOPMENT_SERVER,
+      IS_DEV_SERVER: phase === PHASE_DEVELOPMENT_SERVER ? 'true' : '',
       // https://nextjs.org/docs/api-reference/cli#development
-      NEXT_DEV_PORT: process.env.PORT || 3000
+      NEXT_DEV_PORT: process.env.PORT || '3000'
     },
     images: {
       deviceSizes: [640, 750, 828, 1080, 1200, 1920],
-      formats: ['image/avif', 'image/webp'],
-      minimumCacheTTL: 43200
+      formats: ['image/avif', 'image/webp']
     },
     experimental: {
+      legacyBrowsers: false,
+      browsersListForSwc: true,
       images: {
-        // allow forgoing the mess of `<span>`s around statically imported images
-        layoutRaw: true
+        allowFutureImage: true // https://github.com/vercel/next.js/pull/37927
       },
       newNextLinkBehavior: true // https://github.com/vercel/next.js/pull/36436
     },

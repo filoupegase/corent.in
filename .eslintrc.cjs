@@ -1,3 +1,20 @@
+module.exports = {
+  'root': true,
+  'env': {
+    'browser': true,
+    'es6': true
+  },
+  'parserOptions': {
+    'ecmaVersion': 2021,
+    'sourceType': 'module'
+  },
+  'rules': {
+    'no-console': 'off'
+  }
+  //  "extends": [
+//    "eslint:recommended"
+//  ]
+};
 /*
 /!**
  * @type {import('eslint').Linter.Config}
