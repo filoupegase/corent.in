@@ -12,10 +12,10 @@ const Heading2 = styled("h2", {
   },
 });
 
-const Projects = () => {
+const Notes = () => {
   return (
-    <Heading2>New projects coming soon 🛒</Heading2>
+    <Heading2>Notes coming soon 🦠</Heading2>
   )
 }
 
-export default Projects;
+export default Notes;
