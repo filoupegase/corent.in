@@ -19,6 +19,7 @@ const FourOhFour = () => {
   return (
     <>
       <Center>
+
         <H1>404: Page Not Found 😢</H1>
       </Center>
     </>
