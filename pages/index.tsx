@@ -176,6 +176,37 @@ const Index = () => {
           LAMP
         </ColorfulLink>, too.
       </Paragraph>
+
+      <Paragraph>
+        Whenever possible, I also apply my experience in{ " " }
+        <ColorfulLink
+          href='https://www.bugcrowd.com/'
+          title="Bugcrowd"
+          lightColor="#00b81a"
+          darkColor="#57f06d"
+        >
+          application security
+        </ColorfulLink>
+        ,{ " " }
+        <ColorfulLink
+          href="https://www.cloudflare.com/learning/serverless/what-is-serverless/"
+          title='"What is serverless computing?" on Cloudflare'
+          lightColor="#0098ec"
+          darkColor="#43b9fb"
+        >
+          serverless stacks
+        </ColorfulLink>
+        { " " }&{ " " }
+        <ColorfulLink
+          href="https://xkcd.com/1319/"
+          title='"Automation" on xkcd'
+          lightColor="#ff6200"
+          darkColor="#f46c16"
+        >
+          DevOps automation
+        </ColorfulLink>
+        .
+      </Paragraph>
     </>
   );
 };
