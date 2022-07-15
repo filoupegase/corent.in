@@ -60,7 +60,7 @@ const Icon = styled('svg', {
 });
 
 const Heart = styled("span", {
-  display: "initial-block",
+  display: "inline-block",
   color: theme.colors.error,
 
   "@media (prefers-reduced-motion: no-preference)": {
@@ -83,9 +83,8 @@ const Footer = ({ ...rest }: FooterProps) => {
     <Wrapper { ...rest }>
       <Row>
         <div>
-          Content{ " " }
+          Content licensed under CC-BY-4.0, 2001 – 2022.{ " " }
         </div>
-
         <div>
           Made with{ " " }
           <Heart title="love">
