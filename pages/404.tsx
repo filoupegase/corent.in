@@ -1,4 +1,7 @@
-import { styled, theme } from "../lib/styles/stitches.config"
+import { styled, theme } from "../lib/styles/stitches.config";
+import Link from "../_common/components/Link";
+import Image from "../_common/components/Image";
+import pandaAngry from "../public/static/angry-panda.gif";
 
 
 const Center = styled('div', {
@@ -19,7 +22,10 @@ const FourOhFour = () => {
   return (
     <>
       <Center>
+        <Image src={ pandaAngry } alt="404s make a panda angry..." quality={ 30 } />
         <H1>404: Page Not Found 😢</H1>
+
+        <Link href="/">Go home?</Link>
       </Center>
     </>
   );
