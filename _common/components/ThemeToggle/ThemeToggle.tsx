@@ -4,7 +4,7 @@ export type ThemeToggleProps = {
 
 const ThemeToggle = ({ className }: ThemeToggleProps) => {
   return (
-    <p>@</p>
+    <p>☀️</p>
   )
 };
 
