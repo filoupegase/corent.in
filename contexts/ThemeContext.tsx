@@ -1,4 +1,4 @@
-import { createContext, useState, useCallback } from "react";
+import { createContext, useState, useCallback, useEffect } from "react";
 import { useLocalStorage, useMedia } from "react-use";
 import type { Context, PropsWithChildren } from "react";
 import { themeStorageKey } from '../lib/styles/stitches.config';
@@ -27,9 +27,13 @@ export const ThemeProvider = ({
     [themeName: string]: string;
   };
 }>) => {
+  // keep track of if/when the user has set their theme *on this site*
   const [preferredTheme, setPreferredTheme] = useLocalStorage<string>(themeStorageKey, undefined, { raw: true });
+  // keep track of changes to the user's OS/browser dark mode setting
   const [systemTheme, setSystemTheme] = useState('')
-
+  // hook into system `prefers-dark-mode` setting
+  // https://web.dev/prefers-color-scheme/#the-prefers-color-scheme-media-query
+  const isSystemDark = useMedia("(prefers-color-scheme: dark)");
   const themeNames = Object.keys(classNames);
 
   // updates the DOM and optionally saves the new theme to local storage
@@ -47,6 +51,22 @@ export const ThemeProvider = ({
     [classNames, setPreferredTheme]
   );
 
+  useEffect(() => {
+    const systemResolved = isSystemDark ? "dark" : "light";
+
+    setSystemTheme(systemResolved);
+
+    if (!preferredTheme || !themeNames.includes(preferredTheme)) {
+      changeTheme(systemResolved, false);
+    }
+  }, [changeTheme, themeNames, preferredTheme, isSystemDark]);
+
+  useEffect(() => {
+    const colorScheme = preferredTheme && ["light", "dark"].includes(preferredTheme) ? preferredTheme : systemTheme;
+
+    document.documentElement.style?.setProperty("color-scheme", colorScheme);
+  }, [preferredTheme, systemTheme]);
+
   return (
     <ThemeContext.Provider
       value={ {
@@ -62,5 +82,10 @@ export const ThemeProvider = ({
     >
       { children }
     </ThemeContext.Provider>
-  )
+  );
+};
+
+
+if (process.env.NODE_ENV !== "production") {
+  ThemeContext.displayName = "ThemeContext";
 }
