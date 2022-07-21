@@ -1,9 +1,10 @@
-import { ComponentProps } from 'react';
+import type { ComponentProps } from 'react';
 import Head from 'next/head';
 import { styled, theme, darkTheme } from "../../../lib/styles/stitches.config"
 import { useTheme } from "../../hooks/use-theme";
 import Header from '../Header';
 import Footer from '../Footer';
+import { SkipToContentLink, SkipToContentTarget } from "../SkipToContent";
 
 
 const Flex = styled("div", {
@@ -48,11 +49,21 @@ const Layout = ({ container = true, children, ...rest }: LayoutProps) => {
         />
       </Head>
 
+      <SkipToContentLink />
+
       <Flex { ...rest }>
         <StickyHeader />
-        <Default>
-          <ContainerDiv>{ children }</ContainerDiv>
-        </Default>
+        { container ? (
+          <Default>
+            <SkipToContentTarget />
+            <ContainerDiv>{ children }</ContainerDiv>
+          </Default>
+        ) : (
+          <>
+            <SkipToContentTarget />
+            { children }
+          </>
+        ) }
 
         <FlexedFooter />
       </Flex>
