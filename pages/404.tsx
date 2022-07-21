@@ -1,3 +1,4 @@
+import { NextSeo } from "next-seo";
 import { styled, theme } from "../lib/styles/stitches.config";
 import Link from "../_common/components/Link";
 import Image from "../_common/components/Image";
@@ -21,6 +22,8 @@ const H1 = styled("h1", {
 const FourOhFour = () => {
   return (
     <>
+      <NextSeo title='404 Not Found' />
+
       <Center>
         <Image src={ pandaAngry } alt="404s make a panda angry..." quality={ 30 } />
         <H1>404: Page Not Found 😢</H1>

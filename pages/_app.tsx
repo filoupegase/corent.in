@@ -1,11 +1,14 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
+import { DefaultSeo, SocialProfileJsonLd } from 'next-seo';
+import * as Fathom from "fathom-client";
+import { ThemeProvider } from "../contexts/ThemeContext";
+import Layout from "../_common/components/Layout";
+import * as config from "../lib/config";
 import type { ReactElement, ReactNode } from "react";
 import type { NextPage } from "next";
 import type { AppProps as NextAppProps } from "next/app";
-import { ThemeProvider } from "../contexts/ThemeContext";
 import { globalStyles, themeClassNames } from "../lib/styles/stitches.config";
-import Layout from "../_common/components/Layout";
 
 // https://nextjs.org/docs/basic-features/layouts#with-typescript
 export type AppProps = NextAppProps & {
@@ -20,7 +23,6 @@ const App = ({ Component, pageProps }: AppProps) => {
 
   globalStyles();
 
-  // allow layout overrides per-page, but default to plain `<Layout />`
   const getLayout = Component.getLayout || ((page) => <Layout>{ page }</Layout>);
 
   return (
