@@ -22,6 +22,35 @@ export type AppProps = NextAppProps & {
 const App = ({ Component, pageProps }: AppProps) => {
   const router = useRouter();
 
+  // get this page's URL with full domain, and hack around query parameters and anchors
+  // NOTE: this assumes trailing slashes are enabled in next.config.js
+  const canonical = `${ config.baseUrl }${ router.pathname === "/" ? "" : router.pathname }`;
+
+  useEffect(() => {
+    // don't track page views on branch/deploy previews and localhost
+    if (process.env.NEXT_PUBLIC_VERCEL_ENV !== "production") {
+      return;
+    }
+
+    // https://usefathom.com/docs/integrations/next
+    // https://vercel.com/guides/deploying-nextjs-using-fathom-analytics-with-vercel
+    Fathom.load(config.fathomSiteId, {
+      includedDomains: [config.siteDomain],
+    });
+
+    const onRouteChangeComplete = (url: string) => {
+      Fathom.trackPageview({ url });
+    };
+
+    // needs to be triggered manually on link clicks (the page doesn't actually change)
+    router.events.on("routeChangeComplete", onRouteChangeComplete);
+
+    return () => {
+      // unassign event listener
+      router.events.off("routeChangeComplete", onRouteChangeComplete);
+    };
+  }, [router.events]);
+
   globalStyles();
 
   const getLayout = Component.getLayout || ((page) => <Layout>{ page }</Layout>);
@@ -30,6 +59,14 @@ const App = ({ Component, pageProps }: AppProps) => {
     <>
       <DefaultSeo
         { ...defaultSeo }
+        canonical={ canonical }
+        openGraph={ {
+          ...defaultSeo.openGraph,
+          url: canonical
+        } }
+        // don't let search engines index branch/deploy previews
+        dangerouslySetAllPagesToNoIndex={ process.env.NEXT_PUBLIC_VERCEL_ENV !== "production" }
+        dangerouslySetAllPagesToNoFollow={ process.env.NEXT_PUBLIC_VERCEL_ENV !== "production" }
       />
       <SocialProfileJsonLd { ...socialProfileJsonLd } />
 

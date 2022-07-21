@@ -14,7 +14,7 @@ const Heading2 = styled("h2", {
 
 const Projects = () => {
   return (
-    <Heading2>New projects coming soon 🛒</Heading2>
+    <Heading2>💾 Projects</Heading2>
   )
 }
 
