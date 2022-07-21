@@ -22,14 +22,15 @@ export const name = {
   regular: "Inter",
   variable: "Inter var",
 };
-// re-export hashed URL(s) of the most prominent file so we can preload it in head:
-export const preloadFonts = [
+
+// re-export hashed URL(s) of the most prominent files so we can preload them in `<head>` (see pages/_document.tsx):
+export const preload = [
   {
-    key: "inter-var",
-    src: interLatinVarFullNormalWoff2,
+    href: interLatinVarFullNormalWoff2,
     type: "font/woff2",
   },
 ];
+
 export const family: AtRule.FontFace[] = [
   {
     fontFamily: name.regular,

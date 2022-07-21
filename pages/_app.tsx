@@ -5,6 +5,7 @@ import * as Fathom from "fathom-client";
 import { ThemeProvider } from "../contexts/ThemeContext";
 import Layout from "../_common/components/Layout";
 import * as config from "../lib/config";
+import { defaultSeo, socialProfileJsonLd } from "../lib/config/seo";
 import type { ReactElement, ReactNode } from "react";
 import type { NextPage } from "next";
 import type { AppProps as NextAppProps } from "next/app";
@@ -27,6 +28,11 @@ const App = ({ Component, pageProps }: AppProps) => {
 
   return (
     <>
+      <DefaultSeo
+        { ...defaultSeo }
+      />
+      <SocialProfileJsonLd { ...socialProfileJsonLd } />
+
       <ThemeProvider
         classNames={ themeClassNames }>
         { getLayout(<Component { ...pageProps } />) }

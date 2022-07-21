@@ -80,7 +80,6 @@ const Heart = styled("span", {
 export type FooterProps = ComponentProps<typeof Wrapper>;
 
 const Footer = ({ ...rest }: FooterProps) => {
-  // @ts-ignore
   return (
     <Wrapper { ...rest }>
       <Row>
@@ -91,7 +90,7 @@ const Footer = ({ ...rest }: FooterProps) => {
           </PlainLink>
           ,{ ' ' }
           <PlainLink href="/previously/" title="Previously on..." underline={ false }>
-            { config.copyrightYearStart }
+            2001
           </PlainLink>{ " " }
           – { new Date(process.env.RELEASE_DATE || Date.now()).getUTCFullYear() }.
         </div>
