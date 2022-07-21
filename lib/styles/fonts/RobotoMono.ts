@@ -38,7 +38,7 @@ export const name = {
 };
 
 // re-export hashed URL(s) of the most prominent file so we can preload it in head:
-export const preload = [
+export const preloads = [
   {
     href: robotoMonoLatinVarWghtOnlyNormalWoff2,
     type: "font/woff2",

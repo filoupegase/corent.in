@@ -24,7 +24,7 @@ export const name = {
 };
 
 // re-export hashed URL(s) of the most prominent files so we can preload them in `<head>` (see pages/_document.tsx):
-export const preload = [
+export const preloads = [
   {
     href: interLatinVarFullNormalWoff2,
     type: "font/woff2",
