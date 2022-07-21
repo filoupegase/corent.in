@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+import { useRouter } from 'next/router';
 import type { ReactElement, ReactNode } from "react";
 import type { NextPage } from "next";
 import type { AppProps as NextAppProps } from "next/app";
@@ -14,7 +16,7 @@ export type AppProps = NextAppProps & {
 
 
 const App = ({ Component, pageProps }: AppProps) => {
-  // Use the layout defined at the page level, if available
+  const router = useRouter();
 
   globalStyles();
 

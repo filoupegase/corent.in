@@ -26,6 +26,7 @@
     "@types/node": "^16.11.41",
     "@types/react": "^18.0.14",
     "@types/react-dom": "^18.0.5",
+    "fathom-client": "^3.5.0",
     "feather-icons": "^4.29.0",
     "hex-to-rgba": "^2.0.1",
     "next": "12.2.3-canary.8",
