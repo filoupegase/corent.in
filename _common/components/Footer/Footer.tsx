@@ -2,6 +2,7 @@ import type { ComponentProps } from "react";
 import { HeartIcon, NextjsLogo } from "../Icons";
 import { styled, theme, keyframes } from "../../../lib/styles/stitches.config";
 import Link from '../Link';
+import * as config from "../../../lib/config";
 
 
 const Wrapper = styled('footer', {
@@ -32,18 +33,18 @@ const Row = styled("div", {
   }
 });
 
-const PainLink = styled(Link, {
+const PlainLink = styled(Link, {
   color: theme.colors.mediumDark
 });
 
-const NextjsLink = styled(PainLink, {
+const NextjsLink = styled(PlainLink, {
   "&:hover": {
     color: theme.colors.medium
   }
 });
 
-const ViewSourceLink = styled(PainLink, {
-  paddingBottom: "2px",
+const ViewSourceLink = styled(PlainLink, {
+  paddingBottom: 2,
   borderBottom: `1px solid ${ theme.colors.light }`,
 
   "&:hover": {
@@ -79,12 +80,22 @@ const Heart = styled("span", {
 export type FooterProps = ComponentProps<typeof Wrapper>;
 
 const Footer = ({ ...rest }: FooterProps) => {
+  // @ts-ignore
   return (
     <Wrapper { ...rest }>
       <Row>
         <div>
-          Content licensed under CC-BY-4.0, 2001 – 2022.{ " " }
+          Content
+          <PlainLink href="/license/" title={ config.license } underline={ false }>
+            licensed under { config.licenseAbbr }
+          </PlainLink>
+          ,{ ' ' }
+          <PlainLink href="/previously/" title="Previously on..." underline={ false }>
+            { config.copyrightYearStart }
+          </PlainLink>{ " " }
+          – { new Date(process.env.RELEASE_DATE || Date.now()).getUTCFullYear() }.
         </div>
+
         <div>
           Made with{ " " }
           <Heart title="love">
@@ -100,6 +111,13 @@ const Footer = ({ ...rest }: FooterProps) => {
             <Icon as={ NextjsLogo } />
           </NextjsLink>
           .{ " " }
+          <ViewSourceLink
+            href={ `https://github.com/${ config.githubRepo }` }
+            title="View Source on GitHub"
+            underline={ false }
+          >
+            View source.
+          </ViewSourceLink>
         </div>
       </Row>
     </Wrapper>
