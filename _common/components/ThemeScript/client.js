@@ -1,4 +1,5 @@
 // @ts-check
+/* eslint-disable no-var, no-empty */
 
 // this function is converted to a string verbatim, substitutions are made to insert dynamic values, minified, and then
 // finally exported as an inline `<script>` tag in ThemeScript.tsx for _document.tsx to use.
