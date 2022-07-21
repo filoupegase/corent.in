@@ -32,6 +32,7 @@ export const clientScript = () => {
     // @ts-ignore
     classList.remove(classNames[light], classNames[dark]);
     // ...and then FINALLY set the root class
+    // @ts-ignore
     classList.add(classNames[newTheme]);
   } catch (err) {
   }
