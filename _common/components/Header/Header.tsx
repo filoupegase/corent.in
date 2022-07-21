@@ -7,11 +7,12 @@ import Selfie from "../Selfie";
 const Wrapper = styled('header', {
   width: "100%",
   height: "4.5em",
-  padding: "0.7 1.5em",
+  padding: "0.7em 1.5em",
   borderBottom: `1px solid ${ theme.colors.kindaLight }`,
   backgroundColor: theme.colors.backgroundHeader,
   transition: `background ${ theme.transitions.fade }, border ${ theme.transitions.fade }`,
   zIndex: 9999,
+
   // blurry glass-like background effect (except on firefox...?)
   backdropFilter: "saturate(180%) blur(5px)",
 

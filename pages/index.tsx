@@ -78,10 +78,11 @@ const Wave = styled("span", {
   display: "inline-block",
   marginLeft: "0.1em",
   fontSize: "1.2em",
+
   "@media (prefers-reduced-motion: no-preference)": {
     animation: `${ keyframes({
       "0%": { transform: "rotate(0deg)" },
-      "5%": { transform: "rotate(15deg)" },
+      "5%": { transform: "rotate(14deg)" },
       "10%": { transform: "rotate(-8deg)" },
       "15%": { transform: "rotate(14deg)" },
       "20%": { transform: "rotate(-4deg)" },
@@ -103,7 +104,7 @@ const EasterEgg = styled(ColorfulLink, {
   "&:hover": {
     cursor: `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='30' style='font-size:24px'><text y='50%' transform='rotate(-70 0 0) translate(-20, 6)'>🪄</text></svg>") 5 5, auto`,
   }
-})
+});
 
 const Index = () => {
   return (
@@ -111,7 +112,9 @@ const Index = () => {
       <Heading1>
         Hi there! I'm Coco <Wave>👋</Wave>
       </Heading1>
-      <UnderHeadOne>Welcome to my humble abode on the World Wide Web 🏡</UnderHeadOne>
+      <UnderHeadOne>
+        Welcome to my humble abode on the World Wide Web 🏡
+      </UnderHeadOne>
       <Heading2>
         I'm a frontend web developer based in{ " " }
         <ColorfulLink
@@ -249,17 +252,17 @@ const Index = () => {
         <ColorfulLink href="/contact/" title="Send an email" lightColor="#de0c0c" darkColor="#ff5050">
           email
         </ColorfulLink>
+        { " " } or { " " }
+        <ColorfulLink
+          href="sms:+33-6-26-64-74-52"
+          title="Send SMS to +33-6-26-64-74-52"
+          lightColor="#6fcc01"
+          darkColor="#8edb34"
+        >
+          SMS
+        </ColorfulLink>{ " " }
+        as well!
       </Paragraph>
-      or{ " " }
-      <ColorfulLink
-        href="sms:+33-6-26-64-74-52"
-        title="Send SMS to +33-6-26-64-74-52"
-        lightColor="#6fcc01"
-        darkColor="#8edb34"
-      >
-        SMS
-      </ColorfulLink>{ " " }
-      as well!
     </>
   );
 };
