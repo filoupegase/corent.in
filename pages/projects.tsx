@@ -9,6 +9,7 @@ import { authorSocial } from "../lib/config";
 import type { GetStaticProps, InferGetStaticPropsType } from 'next';
 import type { Project } from '../types';
 import { User, Repository } from '@octokit/graphql-schema';
+import RepositoryCard from '../_common/components/RepositoryCard';
 
 
 const Wrapper = styled("div", {
@@ -49,7 +50,9 @@ const Projects = ({ repos }: InferGetStaticPropsType<typeof getStaticProps>) => 
 
       <Content>
         <Wrapper>
-
+          { repos.map((repo) => (
+            <RepositoryCard key={ repo.name } { ...repo } />
+          )) }
         </Wrapper>
         <ViewMore>
           <Link href={ `https://github.com/${ authorSocial.github }` }>

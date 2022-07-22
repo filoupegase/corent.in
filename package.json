@@ -28,6 +28,8 @@
     "@types/node": "^16.11.41",
     "@types/react": "^18.0.14",
     "@types/react-dom": "^18.0.5",
+    "comma-number": "^2.1.0",
+    "dayjs": "^1.11.4",
     "fathom-client": "^3.5.0",
     "feather-icons": "^4.29.0",
     "hex-to-rgba": "^2.0.1",
@@ -67,6 +69,7 @@
   "devDependencies": {
     "@jakejarvis/eslint-config": "*",
     "@svgr/webpack": "^6.3.0",
+    "@types/comma-number": "^2.1.0",
     "@types/uglify-js": "^3.16.0",
     "@typescript-eslint/eslint-plugin": "^5.30.5",
     "@typescript-eslint/parser": "^5.30.5",
