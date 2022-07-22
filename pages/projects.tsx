@@ -1,4 +1,5 @@
 import { styled } from '../lib/styles/stitches.config';
+import PageTitle from '../_common/components/PageTitle';
 
 
 const Heading2 = styled("h2", {
@@ -14,7 +15,7 @@ const Heading2 = styled("h2", {
 
 const Projects = () => {
   return (
-    <Heading2>💾 Projects</Heading2>
+    <PageTitle>💾 Projects</PageTitle>
   )
 }
 
