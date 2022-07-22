@@ -22,6 +22,12 @@ const Wrapper = styled("div", {
   lineHeight: 1.1
 });
 
+const Card = styled(RepositoryCard, {
+  flexGrow: 1,
+  margin: "0.6em",
+  width: "370px",
+});
+
 const ViewMore = styled('p', {
   textAlign: 'center',
   marginBottom: 0,
@@ -51,7 +57,7 @@ const Projects = ({ repos }: InferGetStaticPropsType<typeof getStaticProps>) => 
       <Content>
         <Wrapper>
           { repos.map((repo) => (
-            <RepositoryCard key={ repo.name } { ...repo } />
+            <Card key={ repo.name } { ...repo } />
           )) }
         </Wrapper>
 
