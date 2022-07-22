@@ -81,7 +81,7 @@ const RepositoryCard = ({
                           className
                         }: RepositoryCardProps) => {
   return (
-    <Wrapper>
+    <Wrapper className={ className }>
       <Name href={ url }>{ name }</Name>
       { description && <Description>{ description }</Description> }
 
@@ -93,7 +93,7 @@ const RepositoryCard = ({
           </MetaItem>
         ) }
 
-        { stars && stars > 0 && (
+        { stars && stars > 0 ? (
           <MetaItem>
             <MetaLink
               href={ `${ url }/stargazers` }
@@ -104,9 +104,9 @@ const RepositoryCard = ({
               { commaNumber(stars) }
             </MetaLink>
           </MetaItem>
-        ) }
+        ) : (<><MetaItem><MetaIcon as={ StarOcticon } /> 0 </MetaItem></>) }
 
-        { forks && forks > 0 && (
+        { forks && forks > 0 ? (
           <MetaItem>
             <MetaLink
               href={ `${ url }/network/members` }
@@ -117,7 +117,7 @@ const RepositoryCard = ({
               { commaNumber(forks) }
             </MetaLink>
           </MetaItem>
-        ) }
+        ) : (<><MetaItem><MetaIcon as={ ForkOcticon } /> 0 </MetaItem></>) }
         {/* only use relative "time ago" on client side, since it'll be outdated via SSG and cause hydration errors */ }
         <MetaItem>
           <RelativeTime date={ updatedAt } verb="Updated" staticFormat="MMM D, YYYY" />
