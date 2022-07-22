@@ -86,7 +86,7 @@ export const getStaticProps: GetStaticProps<{
   // https://docs.github.com/en/graphql/reference/objects#repository
   const { user } = await graphql<{ user: User }>(
     `
-    query ($username: String!, $sort: RepositoryOrderField!, $limit: Int) {
+      query ($username: String!, $sort: RepositoryOrderField!, $limit: Int) {
         user(login: $username) {
           repositories(
             first: $limit
