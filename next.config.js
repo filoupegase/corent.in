@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const path = require('path');
 const {PHASE_DEVELOPMENT_SERVER} = require('next/constants');
-const config = require('./lib/config');
 
 module.exports = (phase) => {
   /**
@@ -69,6 +68,10 @@ module.exports = (phase) => {
       });
 
       return config;
+    },
+    eslint: {
+      // https://nextjs.org/docs/basic-features/eslint#linting-custom-directories-and-files
+      dirs: ['components', 'contexts', 'hooks', 'lib', 'pages', 'types']
     },
     headers: async () => [
       /*      {
