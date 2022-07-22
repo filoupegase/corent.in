@@ -1,15 +1,15 @@
 import { graphql } from "@octokit/graphql";
-import { styled, theme } from '../lib/styles/stitches.config';
-import PageTitle from '../_common/components/PageTitle';
-import Link from '../_common/components/Link';
 import { NextSeo } from 'next-seo';
 import Content from '../_common/components/Content';
+import PageTitle from '../_common/components/PageTitle';
+import Link from '../_common/components/Link';
+import RepositoryCard from '../_common/components/RepositoryCard';
 import { OctocatOcticon } from '../_common/components/Icons';
+import { styled, theme } from '../lib/styles/stitches.config';
 import { authorSocial } from "../lib/config";
 import type { GetStaticProps, InferGetStaticPropsType } from 'next';
-import type { Project } from '../types';
 import { User, Repository } from '@octokit/graphql-schema';
-import RepositoryCard from '../_common/components/RepositoryCard';
+import type { Project } from '../types';
 
 
 const Wrapper = styled("div", {
