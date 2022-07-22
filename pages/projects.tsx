@@ -54,6 +54,7 @@ const Projects = ({ repos }: InferGetStaticPropsType<typeof getStaticProps>) => 
             <RepositoryCard key={ repo.name } { ...repo } />
           )) }
         </Wrapper>
+
         <ViewMore>
           <Link href={ `https://github.com/${ authorSocial.github }` }>
             View more on <GitHubLogo /> GitHub...
