@@ -1,3 +1,4 @@
+import { graphql } from "@octokit/graphql";
 import { styled, theme } from '../lib/styles/stitches.config';
 import PageTitle from '../_common/components/PageTitle';
 import Link from '../_common/components/Link';
@@ -5,6 +6,9 @@ import { NextSeo } from 'next-seo';
 import Content from '../_common/components/Content';
 import { OctocatOcticon } from '../_common/components/Icons';
 import { authorSocial } from "../lib/config";
+import type { GetStaticProps, InferGetStaticPropsType } from 'next';
+import type { Project } from '../types';
+import { User, Repository } from '@octokit/graphql-schema';
 
 
 const Wrapper = styled("div", {
@@ -32,7 +36,7 @@ const GitHubLogo = styled(OctocatOcticon, {
   fill: theme.colors.text
 });
 
-const Projects = () => {
+const Projects = ({ repos }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
     <>
       <NextSeo
@@ -55,6 +59,82 @@ const Projects = () => {
       </Content>
     </>
   )
-}
+};
+
+export const getStaticProps: GetStaticProps<{
+  repos: Project[];
+}> = async () => {
+  // don't fail the entire site build if the required API key for this page is missing
+  if (typeof process.env.GH_PUBLIC_TOKEN === "undefined" || process.env.GH_PUBLIC_TOKEN === "") {
+    console.warn(`ERROR: I can't fetch any GitHub projects without "GH_PUBLIC_TOKEN" set! Skipping for now...`);
+
+    return {
+      notFound: true,
+    };
+  }
+
+  // https://docs.github.com/en/graphql/reference/objects#repository
+  const { user } = await graphql<{ user: User }>(
+    `
+    query ($username: String!, $sort: RepositoryOrderField!, $limit: Int) {
+        user(login: $username) {
+          repositories(
+            first: $limit
+            isLocked: false
+            isFork: false
+            ownerAffiliations: OWNER
+            privacy: PUBLIC
+            orderBy: { field: $sort, direction: DESC }
+          ) {
+            edges {
+              node {
+                name
+                url
+                description
+                pushedAt
+                stargazerCount
+                forkCount
+                primaryLanguage {
+                  name
+                  color
+                }
+              }
+            }
+          }
+        }
+      }
+    `,
+    {
+      username: authorSocial.github,
+      sort: "STARGAZERS",
+      limit: 12,
+      headers: {
+        accept: "application/vnd.github.v3+json",
+        authorization: `token ${ process.env.GH_PUBLIC_TOKEN }`,
+      },
+    }
+  );
+
+  const results = user.repositories.edges as Array<{ node: Repository }>;
+
+  const repos = results.map<Project>(({ node: repo }) => ({
+    name: repo.name,
+    url: repo.url,
+    description: repo.description as string,
+    updatedAt: repo.pushedAt,
+    stars: repo.stargazerCount,
+    forks: repo.forkCount,
+    language: repo.primaryLanguage as Project["language"],
+  }));
+
+  return {
+    props: {
+      repos
+    },
+    // fetch updated data and update page every 10 minutes (as needed)
+    // https://nextjs.org/docs/basic-features/data-fetching#incremental-static-regeneration
+    revalidate: 600
+  };
+};
 
 export default Projects;
