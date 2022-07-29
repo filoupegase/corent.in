@@ -26,7 +26,7 @@ const StyledLink = styled(NextLink, {
           transition: `background-size ${ theme.transitions.linkHover }`,
         },
 
-        "&:hover": {
+        "&:hover, &:focus-visible": {
           backgroundSize: `100% ${ theme.borderWidths.underline }`,
         },
       },

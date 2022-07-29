@@ -25,7 +25,7 @@ const SelfieLink = styled(Link, {
   alignItems: "center",
   color: theme.colors.mediumDark,
 
-  "&:hover": {
+  "&:hover, &:focus-visible": {
     color: theme.colors.link,
 
     "@medium": {

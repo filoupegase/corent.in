@@ -2,7 +2,7 @@ import { useEffect, useId } from 'react';
 import { useFirstMountState, useMedia } from 'react-use';
 import { styled, theme } from "../../../lib/styles/stitches.config";
 import { useSpring, animated, Globals } from "@react-spring/web";
-import { useHasMounted } from '../../hooks/use-has-mounted';
+import useHasMounted from '../../hooks/useHasMounted';
 import { useTheme } from '../../hooks/use-theme';
 
 
@@ -14,7 +14,7 @@ const Button = styled('button', {
     cursor: "pointer",
     color: theme.colors.mediumDark,
 
-    "&:hover": {
+    "&:hover, &:focus-visible": {
       color: theme.colors.warning
     }
   }
