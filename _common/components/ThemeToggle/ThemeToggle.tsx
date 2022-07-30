@@ -3,7 +3,7 @@ import { useFirstMountState, useMedia } from 'react-use';
 import { styled, theme } from "../../../lib/styles/stitches.config";
 import { useSpring, animated, Globals } from "@react-spring/web";
 import useHasMounted from '../../hooks/useHasMounted';
-import { useTheme } from '../../hooks/use-theme';
+import useTheme from '../../hooks/useTheme';
 
 
 const Button = styled('button', {

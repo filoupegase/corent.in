@@ -1,7 +1,7 @@
 import type { ComponentProps } from 'react';
 import Head from 'next/head';
 import { styled, theme, darkTheme } from "../../../lib/styles/stitches.config"
-import { useTheme } from "../../hooks/use-theme";
+import useTheme from "../../hooks/useTheme";
 import Header from '../Header';
 import Footer from '../Footer';
 import { SkipToContentLink, SkipToContentTarget } from "../SkipToContent";
