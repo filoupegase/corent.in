@@ -1,4 +1,5 @@
 import type { ComponentProps } from 'react';
+import objStr from "obj-str";
 import NextLink from "next/link"
 import { styled, theme } from '../../../lib/styles/stitches.config';
 import { baseUrl } from "../../../lib/config"
@@ -50,7 +51,12 @@ const Link = ({ href, rel, target, prefetch = false, underline = true, openInNew
       <StyledLink
         href={ href }
         target={ target || "_blank" }
-        rel={ `${ rel || "" } noopener ${ isExternal ? "noreferrer" : "" }`.trim() }
+        rel={
+          objStr({
+            [`${ rel }`]: rel,
+            noopener: true,
+            noreferrer: isExternal
+          }) }
         underline={ underline }
         { ...rest }
       />
