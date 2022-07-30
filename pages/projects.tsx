@@ -44,7 +44,6 @@ const GitHubLogo = styled(OctocatOcticon, {
 });
 
 const Projects = ({ repos }: InferGetStaticPropsType<typeof getStaticProps>) => {
-  console.log("repos", repos)
   return (
     <>
       <NextSeo
@@ -77,13 +76,11 @@ export const getStaticProps: GetStaticProps<{
 }> = async () => {
   // don't fail the entire site build if the required API key for this page is missing
   if (typeof process.env.GH_PUBLIC_TOKEN === "undefined" || process.env.GH_PUBLIC_TOKEN === "") {
-    console.log(`ERROR: I can't fetch any GitHub projects without "GH_PUBLIC_TOKEN" set! Skipping for now...`);
+    console.warn(`ERROR: I can't fetch any GitHub projects without "GH_PUBLIC_TOKEN" set! Skipping for now...`);
 
     return {
       notFound: true,
     };
-  } else {
-    console.log("ok")
   }
 
   // https://docs.github.com/en/graphql/reference/objects#repository

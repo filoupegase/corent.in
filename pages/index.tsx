@@ -216,14 +216,20 @@ const Index = () => {
           frontend web design
         </ColorfulLink>{ " " }
         back when my only source of income was{ " " }
-        <EasterEgg
+        <ColorfulLink
           href="/birthday/"
-          title="🎉 Cranky Birthday Boy"
+          title="🎉 Cranky Birthday Boy on VHS Tape 📼"
           lightColor="#e40088"
           darkColor="#fd40b1"
+          css={ {
+            // rotated 🪄 emoji on hover
+            "&:hover": {
+              cursor: `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='30' style='font-size:24px'><text y='50%' transform='rotate(-70 0 0) translate(-20, 6)'>🪄</text></svg>") 5 5, auto`,
+            },
+          } }
         >
           the Tooth Fairy
-        </EasterEgg>
+        </ColorfulLink>
         . <Quiet>I've improved a bit since then, I think? 🤷‍♂️</Quiet>
       </Paragraph>
 
