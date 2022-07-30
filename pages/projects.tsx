@@ -44,6 +44,7 @@ const GitHubLogo = styled(OctocatOcticon, {
 });
 
 const Projects = ({ repos }: InferGetStaticPropsType<typeof getStaticProps>) => {
+  console.log("repos", repos)
   return (
     <>
       <NextSeo
