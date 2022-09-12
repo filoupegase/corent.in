@@ -7,6 +7,6 @@ export type Project = {
     color?: string;
   };
   stars?: number;
-  forks?: nnumber;
+  forks?: number;
   updatedAt: string;
 };
