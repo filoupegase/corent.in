@@ -1,24 +1,23 @@
-import { useEffect, useId } from 'react';
-import { useFirstMountState, useMedia } from 'react-use';
-import { styled, theme } from "../../../lib/styles/stitches.config";
+import { useEffect, useId } from "react";
 import { useSpring, animated, Globals } from "@react-spring/web";
-import useHasMounted from '../../hooks/useHasMounted';
-import useTheme from '../../hooks/useTheme';
+import useMedia from "../../hooks/useMedia";
+import useFirstMountState from "../../hooks/useFirstMountState";
+import useTheme from "../../hooks/useTheme";
+import useHasMounted from "../../hooks/useHasMounted";
+import { styled, theme } from "../../../lib/styles/stitches.config";
 
+const Button = styled("button", {
+  border: 0,
+  padding: "0.6em",
+  marginRight: "-0.6em",
+  background: "none",
+  cursor: "pointer",
+  color: theme.colors.mediumDark,
 
-const Button = styled('button', {
-    border: 0,
-    padding: "0.6em",
-    marginRight: "-0.6em",
-    background: "none",
-    cursor: "pointer",
-    color: theme.colors.mediumDark,
-
-    "&:hover, &:focus-visible": {
-      color: theme.colors.warning
-    }
-  }
-);
+  "&:hover, &:focus-visible": {
+    color: theme.colors.warning,
+  },
+});
 
 export type ThemeToggleProps = {
   className?: string;
@@ -29,14 +28,16 @@ const ThemeToggle = ({ className }: ThemeToggleProps) => {
   const { activeTheme, setTheme } = useTheme();
   const isFirstMount = useFirstMountState();
   const prefersReducedMotion = useMedia("(prefers-reduced-motion: reduce)", false);
-  const maskId = useId();
+  const maskId = useId(); // SSR-safe ID to cross-reference areas of the SVG
 
+  // default to light since `activeTheme` might be undefined
   const safeTheme = activeTheme === "dark" ? activeTheme : "light";
 
+  // accessibility: disable animation if user prefers reduced motion
   useEffect(() => {
     Globals.assign({
       skipAnimation: !!isFirstMount || !!prefersReducedMotion,
-    })
+    });
   }, [isFirstMount, prefersReducedMotion]);
 
   // modified from https://jfelix.info/blog/using-react-spring-to-animate-svg-icons-dark-mode-toggle
@@ -93,18 +94,20 @@ const ThemeToggle = ({ className }: ThemeToggleProps) => {
     config: springProperties.springConfig,
   });
 
+  // render a blank div of the same size to avoid layout shifting until we're fully mounted and self-aware
   if (!hasMounted) {
     return (
       <Button as="div">
-        <div className={ className } />
+        <div className={className} />
       </Button>
     );
   }
+
   return (
     <Button
-      onClick={ () => setTheme(safeTheme === "light" ? "dark" : "light") }
-      title={ safeTheme === "light" ? "Toggle Dark Mode" : "Toggle Light Mode" }
-      aria-label={ safeTheme === "light" ? "Toggle Dark Mode" : "Toggle Light Mode" }
+      onClick={() => setTheme(safeTheme === "light" ? "dark" : "light")}
+      title={safeTheme === "light" ? "Toggle Dark Mode" : "Toggle Light Mode"}
+      aria-label={safeTheme === "light" ? "Toggle Dark Mode" : "Toggle Light Mode"}
     >
       <animated.svg
         xmlns="http://www.w3.org/2000/svg"
@@ -116,34 +119,34 @@ const ThemeToggle = ({ className }: ThemeToggleProps) => {
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
-        style={ {
+        style={{
           ...svgContainerProps,
-        } }
-        className={ className }
+        }}
+        className={className}
         aria-hidden
       >
-        <mask id={ `mask-${ maskId }` }>
+        <mask id={`mask-${maskId}`}>
           <rect x="0" y="0" width="100%" height="100%" fill="white" />
           <animated.circle
             r="9"
             fill="black"
             // @ts-ignore
-            style={ maskedCircleProps }
+            style={maskedCircleProps}
           />
         </mask>
 
-        {/* circle shared by both the sun and crescent moon */ }
+        {/* circle shared by both the sun and crescent moon */}
         <animated.circle
           cx="12"
           cy="12"
           fill="currentColor"
-          mask={ `url(#mask-${ maskId })` }
+          mask={`url(#mask-${maskId})`}
           // @ts-ignore
-          style={ centerCircleProps }
+          style={centerCircleProps}
         />
 
-        {/* sunrays pulled from https://github.com/feathericons/feather/blob/734f3f51144e383cfdc6d0916831be8d1ad2a749/icons/sun.svg?short_path=fea872c#L13 */ }
-        <animated.g stroke="currentColor" style={ linesProps }>
+        {/* sunrays pulled from https://github.com/feathericons/feather/blob/734f3f51144e383cfdc6d0916831be8d1ad2a749/icons/sun.svg?short_path=fea872c#L13 */}
+        <animated.g stroke="currentColor" style={linesProps}>
           <line x1="12" y1="1" x2="12" y2="3" />
           <line x1="12" y1="21" x2="12" y2="23" />
           <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
@@ -155,8 +158,7 @@ const ThemeToggle = ({ className }: ThemeToggleProps) => {
         </animated.g>
       </animated.svg>
     </Button>
-  )
+  );
 };
 
 export default ThemeToggle;
-

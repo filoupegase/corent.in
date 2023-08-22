@@ -1,8 +1,8 @@
-import type { ComponentProps } from "react";
-import NextImage from "next/future/image";
-import { styled, theme } from "../../../lib/styles/stitches.config";
-import type { ImageProps as NextImageProps, } from 'next/future/image';
+import NextImage from "next/image";
 import Link from "../Link";
+import { styled, theme } from "../../../lib/styles/stitches.config";
+import type { ComponentProps } from "react";
+import type { ImageProps as NextImageProps, StaticImageData } from "next/image";
 
 
 const Block = styled("div", {
@@ -16,7 +16,7 @@ const Block = styled("div", {
 const StyledImage = styled(NextImage, {
   height: "auto",
   maxWidth: "100%",
-  borderRadius: theme.radii.corner
+  borderRadius: theme.radii.corner,
 });
 
 export type ImageProps = ComponentProps<typeof StyledImage> & {

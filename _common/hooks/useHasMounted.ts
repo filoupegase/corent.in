@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 
-
 const useHasMounted = (): boolean => {
   const [hasMounted, setHasMounted] = useState(false);
 

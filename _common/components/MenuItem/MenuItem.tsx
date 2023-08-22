@@ -1,6 +1,5 @@
-import { styled, theme } from "../../../lib/styles/stitches.config"
-import Link from '../Link';
-
+import Link from "../Link";
+import { styled, theme } from "../../../lib/styles/stitches.config";
 
 const MenuLink = styled(Link, {
   display: "inline-block",
@@ -8,19 +7,20 @@ const MenuLink = styled(Link, {
   padding: "0.6em",
 
   variants: {
+    // indicate active page/section
     current: {
       true: {
         marginBottom: "-0.2em",
-        borderBottom: `0.2em solid ${ theme.colors.linkUnderline }`
+        borderBottom: `0.2em solid ${theme.colors.linkUnderline}`,
       },
       false: {
         "&:hover, &:focus-visible": {
           marginBottom: "-0.2em",
-          borderBottom: `0.2em solid ${ theme.colors.kindaLight }`
-        }
-      }
-    }
-  }
+          borderBottom: `0.2em solid ${theme.colors.kindaLight}`,
+        },
+      },
+    },
+  },
 });
 
 const Icon = styled("svg", {
@@ -30,8 +30,8 @@ const Icon = styled("svg", {
 
   "@medium": {
     width: "1.8em",
-    height: "1.8em"
-  }
+    height: "1.8em",
+  },
 });
 
 const Label = styled("span", {
@@ -40,8 +40,8 @@ const Label = styled("span", {
   marginLeft: "0.7em",
 
   "@medium": {
-    display: 'none'
-  }
+    display: "none",
+  },
 });
 
 export type MenuItemProps = {
@@ -49,32 +49,29 @@ export type MenuItemProps = {
   text?: string;
   current?: boolean;
   className?: string;
+
   // `any` avoids conflicts with @svgr/webpack, see: node_modules/next/image-types/global.d.ts
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   icon: any;
-}
+};
 
 const MenuItem = ({ icon: ItemIcon, href, text, current, className }: MenuItemProps) => {
   const linkContent = (
     <>
-      <Icon as={ ItemIcon } />
-      { text && <Label>{ text }</Label> }
-    </>);
+      <Icon as={ItemIcon} />
+      {text && <Label>{text}</Label>}
+    </>
+  );
 
+  // allow both navigational links and/or other interactive react components (e.g. the theme toggle)
   if (href) {
     return (
-      <MenuLink
-        href={ href }
-        className={ className }
-        current={ current }
-        title={ text }
-        underline={ false }
-        aria-label={ text }
-      >
-        { linkContent }
+      <MenuLink href={href} className={className} current={current} title={text} underline={false} aria-label={text}>
+        {linkContent}
       </MenuLink>
     );
   }
+
   return linkContent;
 };
 

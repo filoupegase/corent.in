@@ -1,5 +1,6 @@
-import { createContext, useCallback, useEffect, useState } from "react";
-import { useLocalStorage, useMedia } from "react-use";
+import { createContext, useCallback, useEffect, useMemo, useState } from "react";
+import useLocalStorage from "../_common/hooks/useLocalStorage";
+import useMedia from "../_common/hooks/useMedia";
 import { themeStorageKey } from "../lib/styles/stitches.config";
 import type { Context, PropsWithChildren } from "react";
 
@@ -30,7 +31,7 @@ export const ThemeProvider = ({
   };
 }>) => {
   // keep track of if/when the user has set their theme *on this site*
-  const [preferredTheme, setPreferredTheme] = useLocalStorage<string>(themeStorageKey, undefined, { raw: true });
+  const [preferredTheme, setPreferredTheme] = useLocalStorage(themeStorageKey);
   // keep track of changes to the user's OS/browser dark mode setting
   const [systemTheme, setSystemTheme] = useState("");
   // hook into system `prefers-dark-mode` setting
@@ -78,24 +79,21 @@ export const ThemeProvider = ({
     document.documentElement.style?.setProperty("color-scheme", colorScheme);
   }, [preferredTheme, systemTheme]);
 
-  return (
-    <ThemeContext.Provider
-      value={ {
-        activeTheme: preferredTheme && themeNames.includes(preferredTheme) ? preferredTheme : systemTheme,
-        setTheme: useCallback(
-          (theme: string) => {
-            // force save to local storage
-            changeTheme(theme, true);
-          },
-          [changeTheme]
-        ),
-      } }
-    >
-      { children }
-    </ThemeContext.Provider>
+  const providerValues = useMemo(
+    () => ({
+      activeTheme: preferredTheme && themeNames.includes(preferredTheme) ? preferredTheme : systemTheme,
+      setTheme: (theme: string) => {
+        // force save to local storage
+        changeTheme(theme, true);
+      },
+    }),
+    [changeTheme, preferredTheme, systemTheme, themeNames]
   );
+
+  return <ThemeContext.Provider value={ providerValues }>{ children }</ThemeContext.Provider>;
 };
 
+// debugging help pls
 if (process.env.NODE_ENV !== "production") {
   ThemeContext.displayName = "ThemeContext";
 }

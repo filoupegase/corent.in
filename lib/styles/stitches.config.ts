@@ -1,26 +1,36 @@
 import { createStitches } from "@stitches/react";
+import type * as Stitches from "@stitches/react";
 
 // misc. helpers
-import hexToRgba from "hex-to-rgba";
-//import normalizeStyles from "./utils/normalize";
+import { rgba } from "polished";
+import normalizeCss from "stitches-normalize";
 
 // web fonts
-import { Inter, RobotoMono } from "./fonts";
+import { Inter, SourceCodePro } from "./fonts";
 
+// https://stitches.dev/docs/typescript#type-a-css-object
+export type CSS = Stitches.CSS<typeof stitchesConfig>;
 
-export const { styled, css, getCssText, globalCss, keyframes, createTheme, theme, config, reset } = createStitches({
+export const {
+  styled,
+  css,
+  getCssText,
+  globalCss,
+  keyframes,
+  createTheme,
+  theme,
+  config: stitchesConfig,
+} = createStitches({
   theme: {
     fonts: {
-      sans: `"${ Inter.name.regular }", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif`,
-      sansVar: `"${ Inter.name.variable }", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif`,
-      mono: `"${ RobotoMono.name.regular }", ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, Courier`,
-      monoVar: `"${ RobotoMono.name.variable }", ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, Courier`,
+      sans: `${ Inter.style.fontFamily }, sans-serif`,
+      mono: `${ SourceCodePro.style.fontFamily }, monospace`,
     },
 
     colors: {
       backgroundInner: "#ffffff",
       backgroundOuter: "#fcfcfc",
-      backgroundHeader: hexToRgba("#fcfcfc", 0.7),
+      backgroundHeader: rgba("#fcfcfc", 0.7),
       text: "#202020",
       mediumDark: "#515151",
       medium: "#5e5e5e",
@@ -30,7 +40,7 @@ export const { styled, css, getCssText, globalCss, keyframes, createTheme, theme
       superLight: "#f4f4f4",
       superDuperLight: "#fbfbfb",
       link: "#0e6dc2",
-      linkUnderline: hexToRgba("#0e6dc2", 0.4),
+      linkUnderline: rgba("#0e6dc2", 0.4),
       success: "#44a248",
       error: "#ff1b1b",
       warning: "#f78200",
@@ -51,12 +61,6 @@ export const { styled, css, getCssText, globalCss, keyframes, createTheme, theme
 
     sizes: {
       maxLayoutWidth: "865px",
-    },
-
-
-    borderWidths: {
-      // underline height is based on link's font size
-      underline: "calc(0.1em + 0.05rem)",
     },
 
     radii: {
@@ -80,12 +84,16 @@ export const { styled, css, getCssText, globalCss, keyframes, createTheme, theme
   },
 
   utils: {
-    setUnderlineVars: ({
-                         color = "$colors$linkUnderline", // see theme values below
-                         alpha = 0.4,
-                       }) => ({
+    // sets locally scoped css variable for both light and dark themes' link hover underlines
+    setUnderlineColor: ({
+                          color,
+                          alpha = 0.4,
+                        }: {
+      color: string; // hex value or one of theme tokens above in stitches `$colors$token` format
+      alpha?: number;
+    }) => ({
       // allow both pre-set rgba stitches variables and hex values
-      $$underlineColor: color.startsWith("#") ? hexToRgba(color, alpha) : color,
+      $$underlineColor: color.startsWith("#") ? rgba(color, alpha) : color,
     }),
   },
 });
@@ -94,7 +102,7 @@ export const darkTheme = createTheme({
   colors: {
     backgroundInner: "#1e1e1e",
     backgroundOuter: "#252525",
-    backgroundHeader: hexToRgba("#252525", 0.85),
+    backgroundHeader: rgba("#252525", 0.85),
     text: "#f1f1f1",
     mediumDark: "#d7d7d7",
     medium: "#b1b1b1",
@@ -104,7 +112,7 @@ export const darkTheme = createTheme({
     superLight: "#272727",
     superDuperLight: "#1f1f1f",
     link: "#88c7ff",
-    linkUnderline: hexToRgba("#88c7ff", 0.4),
+    linkUnderline: rgba("#88c7ff", 0.4),
     success: "#78df55",
     error: "#ff5151",
     warning: "#f2b702",
@@ -124,131 +132,21 @@ export const darkTheme = createTheme({
   },
 });
 
+// @ts-ignore
 export const globalStyles = globalCss(
   // @ts-ignore
-  //normalizeStyles,
+  ...normalizeCss({
+    systemFonts: false,
+  }),
   {
-    "@font-face": [...Inter.family, ...RobotoMono.family],
-    "*, ::before, ::after": {
-      boxSizing: "border-box",
-    },
-    html: {
-      lineHeight: 1.15,
-      tabSize: 4,
-      // @ts-ignore
-      WebkitTextSizeAdjust: "100%",
-    },
     body: {
-      fontFamily: "$sans",
-      backgroundColor: "$backgroundInner",
-      transition: "background $fade",
-      margin: 0,
+      fontFamily: theme.fonts.sans,
+      backgroundColor: theme.colors.backgroundInner,
+      transition: `background ${ theme.transitions.fade }`,
     },
-    hr: {
-      height: 0,
-      color: "inherit",
-    },
-    "abbr[title]": {
-      textDecoration: "underline dotted",
-    },
-    "b, strong": {
-      fontWeight: "bolder",
-    },
+
     "code, kbd, samp, pre": {
-      fontFamily: "$mono",
-      fontSize: "1em",
-    },
-    small: {
-      fontSize: "80%",
-    },
-    "sub, sup": {
-      fontSize: "75%",
-      lineHeight: 0,
-      position: "relative",
-      verticalAlign: "baseline",
-    },
-    sub: {
-      bottom: "-0.25em",
-    },
-    sup: {
-      top: "-0.5em",
-    },
-    table: {
-      textIndent: 0,
-      borderColor: "inherit",
-    },
-    "button, input, optgroup, select, textarea": {
-      fontFamily: "inherit",
-      fontSize: "100%",
-      lineHeight: 1.15,
-      margin: 0,
-      // @ts-ignore
-      WebkitAppearance: "button",
-    },
-    "button, select": {
-      textTransform: "none",
-    },
-    legend: {
-      padding: 0,
-    },
-    progress: {
-      verticalAlign: "baseline",
-    },
-    summary: {
-      display: "list-item",
-    },
-    "[type='search']": {
-      outlineOffset: -2,
-      // @ts-ignore
-      WebkitAppearance: "textfield",
-    },
-    // `-webkit` compatibility properties and rules
-    "::-webkit-search-decoration": {
-      // @ts-ignore
-      WebkitAppearance: "none",
-    },
-    "::-webkit-inner-spin-button, ::-webkit-outer-spin-button": {
-      height: "auto",
-    },
-    "::-webkit-file-upload-button": {
-      font: "inherit",
-      // @ts-ignore
-      WebkitAppearance: "button",
-    },
-
-    // `-moz` compatibility properties and rules
-    "::-moz-focus-inner": {
-      borderStyle: "none",
-      padding: 0,
-    },
-    ":-moz-focusring": {
-      outline: "1px dotted ButtonText",
-    },
-    ":-moz-ui-invalid": {
-      boxShadow: "none",
-    },
-    // variable font support?
-    "@supports (font-variation-settings: normal)": {
-      body: {
-        fontFamily: "$sansVar",
-      },
-
-      "code, kbd, samp, pre": {
-        fontFamily: "$monoVar",
-      },
-
-      // Chrome doesn't automatically slant multi-axis Inter var, for some reason.
-      // Adding "slnt" -10 fixes Chrome but then over-italicizes in Firefox. AHHHHHHHHHH.
-      em: {
-        fontStyle: "normal",
-        fontVariationSettings: `"ital" 1, "slnt" -10`,
-
-        // Roboto Mono doesn't have this problem, but the above fix breaks it, of course.
-        "& code, & kbd, & samp, & pre": {
-          fontStyle: "italic !important",
-          fontVariationSettings: "initial !important",
-        },
-      },
+      fontFamily: theme.fonts.mono,
     },
   }
 );

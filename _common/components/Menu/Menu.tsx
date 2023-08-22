@@ -1,24 +1,23 @@
-import type { ComponentProps } from "react";
 import { useRouter } from "next/router";
-import { styled } from '../../../lib/styles/stitches.config';
-import MenuItem from '../MenuItem';
-import ThemeToggle from '../ThemeToggle';
-import { menuItems } from '../../../lib/config/menu';
-
+import MenuItem from "../MenuItem";
+import ThemeToggle from "../ThemeToggle";
+import { styled } from "../../../lib/styles/stitches.config";
+import { menuItems } from "../../../lib/config/menu";
+import type { ComponentProps } from "react";
 
 const Wrapper = styled("ul", {
-  display: "initial-flex",
+  display: "inline-flex",
   padding: 0,
   margin: 0,
 
   "@medium": {
     width: "100%",
     justifyContent: "space-between",
-    marginLeft: "1em"
+    marginLeft: "1em",
   },
 
   "@small": {
-    marginLeft: "1.4em"
+    marginLeft: "1.4em",
   },
 });
 
@@ -28,7 +27,7 @@ const Item = styled("li", {
   listStyle: "none",
 
   "@medium": {
-    marginLeft: 0
+    marginLeft: 0,
   },
 
   "@small": {
@@ -36,8 +35,8 @@ const Item = styled("li", {
     "&:first-of-type": {
       display: "none",
     },
-  }
-})
+  },
+});
 
 export type MenuProps = ComponentProps<typeof Wrapper>;
 
@@ -45,26 +44,23 @@ const Menu = ({ ...rest }: MenuProps) => {
   const router = useRouter();
 
   return (
-    <Wrapper { ...rest }>
-      { menuItems.map((item, idx) => {
-        const isCurrent = item.href === `/${ router.pathname.split("/")[1] }`;
+    <Wrapper {...rest}>
+      {menuItems.map((item, index) => {
+        // kinda weird/hacky way to determine if the *first part* of the current path matches this href
+        const isCurrent = item.href === `/${router.pathname.split("/")[1]}`;
 
         return (
-          <Item
-            key={ item.text || idx }
-          >
-            <MenuItem
-              { ...item }
-              current={ isCurrent }
-            />
+          <Item key={item.text || index}>
+            <MenuItem {...item} current={isCurrent} />
           </Item>
-        )
-      }) }
+        );
+      })}
+
       <Item>
-        <MenuItem icon={ ThemeToggle } />
+        <MenuItem icon={ThemeToggle} />
       </Item>
     </Wrapper>
-  )
-}
+  );
+};
 
 export default Menu;

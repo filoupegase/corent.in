@@ -1,49 +1,48 @@
-module.exports = {
-  'root': true,
-  parser: '@typescript-eslint/parser',
-  'env': {
-    'browser': true,
-    'es6': true
-  },
-  plugins: ['@typescript-eslint', 'prettier'],
-  'parserOptions': {
-    'ecmaVersion': 2021,
-    'sourceType': 'module'
-  },
-  'rules': {
-    'no-console': 'off'
-  }
-  //  "extends": [
-//    "eslint:recommended"
-//  ]
-};
-/*
-/!**
- * @type {import('eslint').Linter.Config}
- *!/
+/**
+ * @type {import("eslint").Linter.Config}
+ */
 module.exports = {
   root: true,
-  parser: '@typescript-eslint/parser',
+  parser: "@typescript-eslint/parser",
   extends: [
-    '@jakejarvis/eslint-config',
-    'next/core-web-vitals',
-    'plugin:@typescript-eslint/recommended',
-    'plugin:prettier/recommended'
+    "@jakejarvis/eslint-config",
+    "next/core-web-vitals",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended",
   ],
-  plugins: ['@typescript-eslint', 'prettier'],
+  plugins: ["@typescript-eslint", "prettier"],
   rules: {
-    '@typescript-eslint/ban-ts-comment': 'off',
-    '@typescript-eslint/no-explicit-any': 'warn',
-    'react/no-unescaped-entities': 'off',
-    'prettier/prettier': [
-      'error',
+    camelcase: "off",
+    "@typescript-eslint/ban-ts-comment": "off",
+    "@typescript-eslint/no-explicit-any": "warn",
+    "react/no-unescaped-entities": "off",
+    "react/jsx-boolean-value": "error",
+    "react/jsx-wrap-multilines": [
+      "error",
       {
-        // normal .prettierrc config:
-        singleQuote: false,
-        tabWidth: 2,
-        printWidth: 120
-      }
-    ]
-  }
+        // https://github.com/jsx-eslint/eslint-plugin-react/blob/HEAD/docs/rules/jsx-wrap-multilines.md#rule-details
+        arrow: "parens-new-line",
+        assignment: "parens-new-line",
+        condition: "parens-new-line",
+        declaration: "parens-new-line",
+        logical: "parens-new-line",
+        prop: "ignore",
+        return: "parens-new-line",
+      },
+    ],
+    "prettier/prettier": ["error", {}, { usePrettierrc: true }],
+  },
+  overrides: [
+    {
+      files: ["*.md", "*.mdx"],
+      extends: ["plugin:mdx/recommended"],
+      rules: {
+        "mdx/code-blocks": "off",
+        "import/no-unresolved": "off",
+        "react/jsx-no-undef": "off",
+        "react/jsx-boolean-value": "off", // TODO: causes some inconsistent parser errors in mdx
+      },
+    },
+  ],
+  ignorePatterns: ["README.md"],
 };
-*/

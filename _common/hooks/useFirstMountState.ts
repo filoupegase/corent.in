@@ -1,6 +1,5 @@
 import { useRef } from "react";
 
-
 const useFirstMountState = (): boolean => {
   const isFirstMount = useRef(true);
 
