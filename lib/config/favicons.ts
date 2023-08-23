@@ -10,4 +10,4 @@ export { default as maskable512Png } from "../../public/static/favicons/maskable
 export { default as maskable192Png } from "../../public/static/favicons/maskable-192x192.png";
 
 // other
-export { default as meJpg } from "../../public/static/images/me.jpg";
+export { default as meJpeg } from "../../public/static/images/me.jpeg";

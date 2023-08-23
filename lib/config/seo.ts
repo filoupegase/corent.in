@@ -1,5 +1,5 @@
 import * as config from ".";
-import { meJpg, faviconPng, faviconIco, appleTouchIconPng } from "./favicons";
+import { meJpeg, faviconPng, faviconIco, appleTouchIconPng } from "./favicons";
 
 import type { DefaultSeoProps, SocialProfileJsonLdProps, ArticleJsonLdProps } from "next-seo";
 
@@ -17,7 +17,7 @@ export const defaultSeo: DefaultSeoProps = {
     type: "website",
     images: [
       {
-        url: `${process.env.BASE_URL}${meJpg.src}`,
+        url: `${process.env.BASE_URL}${meJpeg.src}`,
         alt: `${config.siteName} – ${config.shortDescription}`,
       },
     ],
@@ -121,5 +121,5 @@ export const socialProfileJsonLd: SocialProfileJsonLdProps = {
 export const articleJsonLd: Pick<ArticleJsonLdProps, "authorName" | "publisherName" | "publisherLogo"> = {
   authorName: [config.authorName],
   publisherName: config.siteName,
-  publisherLogo: `${process.env.BASE_URL}${meJpg.src}`,
+  publisherLogo: `${process.env.BASE_URL}${meJpeg.src}`,
 };
