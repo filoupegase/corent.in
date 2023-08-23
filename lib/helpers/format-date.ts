@@ -4,9 +4,8 @@ import dayjsTimezone from "dayjs/plugin/timezone";
 import dayjsRelativeTime from "dayjs/plugin/relativeTime";
 import dayjsLocalizedFormat from "dayjs/plugin/localizedFormat";
 import dayjsAdvancedFormat from "dayjs/plugin/advancedFormat";
-import "dayjs/locale/fr";
+import "dayjs/locale/en";
 import { timeZone } from "../config";
-
 
 const IsomorphicDayJs = (date?: dayjs.ConfigType): dayjs.Dayjs => {
   // plugins
@@ -16,7 +15,7 @@ const IsomorphicDayJs = (date?: dayjs.ConfigType): dayjs.Dayjs => {
   dayjs.extend(dayjsLocalizedFormat);
   dayjs.extend(dayjsAdvancedFormat);
 
-  return dayjs(date).locale("fr");
+  return dayjs(date).locale("en").tz(timeZone).clone();
 };
 
 // simple wrapper around dayjs.format() to normalize timezone across the site, both server and client side, to prevent

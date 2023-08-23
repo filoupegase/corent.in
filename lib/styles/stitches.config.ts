@@ -23,8 +23,8 @@ export const {
 } = createStitches({
   theme: {
     fonts: {
-      sans: `${ Inter.style.fontFamily }, sans-serif`,
-      mono: `${ SourceCodePro.style.fontFamily }, monospace`,
+      sans: `${Inter.style.fontFamily}, sans-serif`,
+      mono: `${SourceCodePro.style.fontFamily}, monospace`,
     },
 
     colors: {
@@ -86,9 +86,9 @@ export const {
   utils: {
     // sets locally scoped css variable for both light and dark themes' link hover underlines
     setUnderlineColor: ({
-                          color,
-                          alpha = 0.4,
-                        }: {
+      color,
+      alpha = 0.4,
+    }: {
       color: string; // hex value or one of theme tokens above in stitches `$colors$token` format
       alpha?: number;
     }) => ({
@@ -142,7 +142,7 @@ export const globalStyles = globalCss(
     body: {
       fontFamily: theme.fonts.sans,
       backgroundColor: theme.colors.backgroundInner,
-      transition: `background ${ theme.transitions.fade }`,
+      transition: `background ${theme.transitions.fade}`,
     },
 
     "code, kbd, samp, pre": {

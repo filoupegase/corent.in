@@ -1,7 +1,6 @@
 import { HomeIcon, NotesIcon, ProjectsIcon, ContactIcon } from "../../_common/components/Icons";
 import type { MenuItemProps } from "../../_common/components/MenuItem";
 
-
 export const menuItems: MenuItemProps[] = [
   {
     icon: HomeIcon,
