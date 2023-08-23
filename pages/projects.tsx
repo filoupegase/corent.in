@@ -1,16 +1,15 @@
 import { graphql } from "@octokit/graphql";
-import { NextSeo } from 'next-seo';
-import Content from '../_common/components/Content';
-import PageTitle from '../_common/components/PageTitle';
-import Link from '../_common/components/Link';
-import RepositoryCard from '../_common/components/RepositoryCard';
-import { OctocatOcticon } from '../_common/components/Icons';
-import { styled, theme } from '../lib/styles/stitches.config';
+import { NextSeo } from "next-seo";
+import Content from "../_common/components/Content";
+import PageTitle from "../_common/components/PageTitle";
+import Link from "../_common/components/Link";
+import RepositoryCard from "../_common/components/RepositoryCard";
+import { OctocatOcticon } from "../_common/components/Icons";
+import { styled, theme } from "../lib/styles/stitches.config";
 import { authorSocial } from "../lib/config";
-import type { GetStaticProps, InferGetStaticPropsType } from 'next';
-import { User, Repository } from '@octokit/graphql-schema';
-import type { Project } from '../types';
-
+import type { GetStaticProps, InferGetStaticPropsType } from "next";
+import type { User, Repository } from "@octokit/graphql-schema";
+import type { Project } from "../types";
 
 const Wrapper = styled("div", {
   display: "flex",
@@ -19,7 +18,7 @@ const Wrapper = styled("div", {
   alignItems: "flex-start",
   width: "100%",
   fontSize: "1.1em",
-  lineHeight: 1.1
+  lineHeight: 1.1,
 });
 
 const Card = styled(RepositoryCard, {
@@ -28,11 +27,11 @@ const Card = styled(RepositoryCard, {
   width: "370px",
 });
 
-const ViewMore = styled('p', {
-  textAlign: 'center',
+const ViewMore = styled("p", {
+  textAlign: "center",
   marginBottom: 0,
-  fontSize: '1.1em',
-  fontWeight: 500
+  fontSize: "1.1em",
+  fontWeight: 500,
 });
 
 const GitHubLogo = styled(OctocatOcticon, {
@@ -40,35 +39,36 @@ const GitHubLogo = styled(OctocatOcticon, {
   height: "1.2em",
   verticalAlign: "-0.2em",
   margin: "0 0.15em",
-  fill: theme.colors.text
+  fill: theme.colors.text,
 });
 
 const Projects = ({ repos }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
     <>
       <NextSeo
-        title='Projects'
-        openGraph={ {
-          title: "Projects"
-        } }
+        title="Projects"
+        openGraph={{
+          title: "Projects",
+        }}
       />
+
       <PageTitle>💾 Projects</PageTitle>
 
       <Content>
         <Wrapper>
-          { repos.map((repo) => (
-            <Card key={ repo.name } { ...repo } />
-          )) }
+          {repos.map((repo) => (
+            <Card key={repo.name} {...repo} />
+          ))}
         </Wrapper>
 
         <ViewMore>
-          <Link href={ `https://github.com/${ authorSocial.github }` }>
+          <Link href={`https://github.com/${authorSocial.github}`}>
             View more on <GitHubLogo /> GitHub...
           </Link>
         </ViewMore>
       </Content>
     </>
-  )
+  );
 };
 
 export const getStaticProps: GetStaticProps<{
@@ -76,7 +76,7 @@ export const getStaticProps: GetStaticProps<{
 }> = async () => {
   // don't fail the entire site build if the required API key for this page is missing
   if (typeof process.env.GH_PUBLIC_TOKEN === "undefined" || process.env.GH_PUBLIC_TOKEN === "") {
-    console.log(`ERROR: I can't fetch any GitHub projects without "GH_PUBLIC_TOKEN" set! Skipping for now...`);
+    console.warn(`ERROR: I can't fetch any GitHub projects without "GH_PUBLIC_TOKEN" set! Skipping for now...`);
 
     return {
       notFound: true,
@@ -120,7 +120,7 @@ export const getStaticProps: GetStaticProps<{
       limit: 12,
       headers: {
         accept: "application/vnd.github.v3+json",
-        authorization: `token ${ process.env.GH_PUBLIC_TOKEN }`,
+        authorization: `token ${process.env.GH_PUBLIC_TOKEN}`,
       },
     }
   );
@@ -134,16 +134,16 @@ export const getStaticProps: GetStaticProps<{
     updatedAt: repo.pushedAt,
     stars: repo.stargazerCount,
     forks: repo.forkCount,
-    language: repo.primaryLanguage as Project["language"]
+    language: repo.primaryLanguage as Project["language"],
   }));
 
   return {
     props: {
-      repos
+      repos,
     },
     // fetch updated data and update page every 10 minutes (as needed)
     // https://nextjs.org/docs/basic-features/data-fetching#incremental-static-regeneration
-    revalidate: 600
+    revalidate: 600,
   };
 };
 

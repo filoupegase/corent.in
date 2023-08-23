@@ -4,7 +4,6 @@ import useMedia from "../_common/hooks/useMedia";
 import { themeStorageKey } from "../lib/styles/stitches.config";
 import type { Context, PropsWithChildren } from "react";
 
-
 export const ThemeContext: Context<{
   /**
    * If the user's theme preference is unset, this returns whether the system preference resolved to "light" or "dark".
@@ -16,15 +15,14 @@ export const ThemeContext: Context<{
 }> = createContext({
   activeTheme: "",
   // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-empty-function
-  setTheme: (_) => {
-  },
+  setTheme: (_) => {},
 });
 
 // provider used once in _app.tsx to wrap entire app
 export const ThemeProvider = ({
-                                classNames,
-                                children,
-                              }: PropsWithChildren<{
+  classNames,
+  children,
+}: PropsWithChildren<{
   /** Mapping of theme name ("light", "dark") to the corresponding `<html>`'s class names. */
   classNames: {
     [themeName: string]: string;
@@ -90,7 +88,7 @@ export const ThemeProvider = ({
     [changeTheme, preferredTheme, systemTheme, themeNames]
   );
 
-  return <ThemeContext.Provider value={ providerValues }>{ children }</ThemeContext.Provider>;
+  return <ThemeContext.Provider value={providerValues}>{children}</ThemeContext.Provider>;
 };
 
 // debugging help pls
