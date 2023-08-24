@@ -139,12 +139,7 @@ const Index = () => {
 
       <Paragraph>
         I specialize in{" "}
-        <ColorfulLink
-          href="https://fr.reactjs.org/"
-          title="React Official Website"
-          lightColor="#1091b3"
-          darkColor="#6fcbe3"
-        >
+        <ColorfulLink href="https://react.dev/" title="React Official Website" lightColor="#087ea4" darkColor="#6fcbe3">
           React
         </ColorfulLink>{" "}
         and{" "}
