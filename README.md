@@ -1,4 +1,4 @@
-# 🏡&nbsp;&nbsp;[corent.in](https://coco-io-filoupegase.vercel.app/)
+# 🏡&nbsp;&nbsp;[corent.in](https://corent-in.vercel.app/)
 
 [![Vercel deployment](https://img.shields.io/github/deployments/jakejarvis/jarv.is/production?label=vercel&logo=vercel&logoColor=white)](https://vercel.com/filoupegase/coco-io/9fhP19SvLbh2xzbygEsedTkfXpjC)
 [![Next.js version](https://img.shields.io/github/package-json/dependency-version/jakejarvis/jarv.is/next/main?color=ff4088&label=next.js&logo=nextdotjs&logoColor=white)](https://nextjs.org/)

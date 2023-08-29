@@ -40,7 +40,7 @@ const H1 = styled("h1", {
   },
 });
 
-const UnderHeadOne = styled("h3", {
+const UnderHeadOne = styled("h2", {
   margin: "0 0 0.5em -1px",
   fontSize: "1.45em",
   fontWeight: 500,
@@ -52,7 +52,7 @@ const UnderHeadOne = styled("h3", {
   },
 });
 
-const H2 = styled("h2", {
+const H2 = styled("h3", {
   margin: "0.5em 0 0.5em -1px", // misaligned left margin, super nitpicky
   fontSize: "1.35em",
   fontWeight: 400,

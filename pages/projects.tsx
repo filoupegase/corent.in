@@ -23,6 +23,18 @@ const Card = styled(RepositoryCard, {
   width: "370px",
 });
 
+const H1 = styled("h1", {
+  margin: "0 0 0.5em -1px",
+  fontSize: "1.8em",
+  fontWeight: 500,
+  lineHeight: 1.1,
+  color: theme.colors.text,
+
+  "@medium": {
+    fontSize: "1.6em",
+  },
+});
+
 const ViewMore = styled("p", {
   textAlign: "center",
   marginBottom: 0,
@@ -49,6 +61,12 @@ const Projects = () => {
       />
 
       <PageTitle>💾 Projects</PageTitle>
+
+      <Content>
+        <Wrapper>
+          <></>
+        </Wrapper>
+      </Content>
 
       <Content>
         <ViewMore>
