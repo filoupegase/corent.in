@@ -2,7 +2,6 @@ import { NextSeo } from "next-seo";
 import Content from "../_common/components/Content";
 import PageTitle from "../_common/components/PageTitle";
 import Link from "../_common/components/Link";
-import RepositoryCard from "../_common/components/RepositoryCard";
 import { OctocatOcticon } from "../_common/components/Icons";
 import { styled, theme } from "../lib/styles/stitches.config";
 import { authorSocial } from "../lib/config";
@@ -17,23 +16,23 @@ const Wrapper = styled("div", {
   lineHeight: 1.1,
 });
 
-const Card = styled(RepositoryCard, {
-  flexGrow: 1,
-  margin: "0.6em",
-  width: "370px",
-});
+// const Card = styled(RepositoryCard, {
+//   flexGrow: 1,
+//   margin: "0.6em",
+//   width: "370px",
+// });
 
-const H1 = styled("h1", {
-  margin: "0 0 0.5em -1px",
-  fontSize: "1.8em",
-  fontWeight: 500,
-  lineHeight: 1.1,
-  color: theme.colors.text,
-
-  "@medium": {
-    fontSize: "1.6em",
-  },
-});
+// const H1 = styled("h1", {
+//   margin: "0 0 0.5em -1px",
+//   fontSize: "1.8em",
+//   fontWeight: 500,
+//   lineHeight: 1.1,
+//   color: theme.colors.text,
+//
+//   "@medium": {
+//     fontSize: "1.6em",
+//   },
+// });
 
 const ViewMore = styled("p", {
   textAlign: "center",
