@@ -1,21 +1,12 @@
 import { NextSeo } from "next-seo";
 import Content from "../../_common/components/Content";
+import NotesList from "../../_common/components/NotesList";
+import { getAllNotes } from "../../lib/helpers/parse-notes";
 import { authorName } from "../../lib/config";
-import { styled, theme } from "../../lib/styles/stitches.config";
+import type { GetStaticProps, InferGetStaticPropsType } from "next";
+import type { NotesByYear } from "../../types";
 
-const H1 = styled("h1", {
-  margin: "0 0 0.5em -1px",
-  fontSize: "1.8em",
-  fontWeight: 500,
-  lineHeight: 1.1,
-  color: theme.colors.text,
-
-  "@medium": {
-    fontSize: "1.6em",
-  },
-});
-
-const Notes = () => {
+const Notes = ({ notesByYear }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
     <>
       <NextSeo
@@ -27,10 +18,29 @@ const Notes = () => {
       />
 
       <Content>
-        <H1>Coming soon 🥘</H1>
+        <NotesList notesByYear={notesByYear} />
       </Content>
     </>
   );
+};
+
+export const getStaticProps: GetStaticProps<{
+  notesByYear: NotesByYear;
+}> = async () => {
+  // parse the year of each note and group them together
+  const notes = await getAllNotes();
+  const notesByYear: NotesByYear = {};
+
+  notes.forEach((note) => {
+    const year = new Date(note.date).getUTCFullYear();
+    (notesByYear[year] || (notesByYear[year] = [])).push(note);
+  });
+
+  return {
+    props: {
+      notesByYear,
+    },
+  };
 };
 
 export default Notes;
