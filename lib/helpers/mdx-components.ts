@@ -13,12 +13,12 @@ export { default as a } from "../../_common/components/Link";
 
 // ...and these components are technically passed into all posts, but next/dynamic ensures they're loaded only
 // when they're referenced in the individual mdx files.
-// export const IFrame = dynamic(() => import("../../_common/components/IFrame"));
+export const IFrame = dynamic(() => import("../../_common/components/IFrame"));
 // export const Video = dynamic(() => import("../../_common/components/Video"));
 // export const YouTube = dynamic(() => import("../../_common/components/YouTubeEmbed"));
 // export const Tweet = dynamic(() => import("../../_common/components/TweetEmbed"));
 // export const Gist = dynamic(() => import("../../_common/components/GistEmbed"));
-// export const CodePen = dynamic(() => import("../../_common/components/CodePenEmbed"));
+export const CodePen = dynamic(() => import("../../_common/components/CodePenEmbed"));
 
 // One-offs for specific posts:
 // export const OctocatLink = dynamic(() => import("../../_common/components/OctocatLink"));
