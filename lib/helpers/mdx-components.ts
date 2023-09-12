@@ -8,7 +8,7 @@ export { default as Image } from "../../_common/components/Image";
 export { default as a } from "../../_common/components/Link";
 // export { default as code } from "../../_common/components/CodeHybrid";
 // export { default as hr } from "../../_common/components/HorizontalRule";
-// export { H1 as h1, H2 as h2, H3 as h3, H4 as h4, H5 as h5, H6 as h6 } from "../../_common/components/Heading";
+export { H1 as h1, H2 as h2, H3 as h3, H4 as h4, H5 as h5, H6 as h6 } from "../../_common/components/Heading";
 // export { UnorderedList as ul, OrderedList as ol, ListItem as li } from "../../_common/components/List";
 
 // ...and these components are technically passed into all posts, but next/dynamic ensures they're loaded only
