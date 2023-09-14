@@ -1,8 +1,9 @@
 import Link from "../Link";
 import Time from "../Time";
+import { DateIcon, EditIcon, TagIcon } from "../Icons";
 import { styled, theme } from "../../../lib/styles/stitches.config";
+import * as config from "../../../lib/config";
 import type { NoteFrontMatter } from "../../../types";
-import { DateIcon } from "../Icons";
 
 const Wrapper = styled("div", {
   display: "inline-flex",
@@ -29,9 +30,31 @@ const Icon = styled("svg", {
   marginRight: "0.6em",
 });
 
+const TagList = styled("span", {
+  witheSpace: "normal",
+  display: "inline-flex",
+  flexWrap: "wrap",
+});
+
+const Tag = styled("span", {
+  textTransform: "lowercase",
+  whiteSpace: "nowrap",
+  marginRight: "0.75em",
+
+  "&::before": {
+    content: "\\0023",
+    paddingRight: "0.125em",
+    color: theme.colors.light,
+  },
+
+  "&:last-of-type": {
+    marginRight: 0,
+  },
+});
+
 export type NoteMetaProps = Pick<NoteFrontMatter, "slug" | "date" | "title" | "htmlTitle" | "tags">;
 
-const NoteMeta = ({ slug, date, title, htmlTitle, tags }: NoteMetaProps) => {
+const NoteMeta = ({ slug, date, tags, title, htmlTitle }: NoteMetaProps) => {
   return (
     <>
       <Wrapper>
@@ -47,6 +70,31 @@ const NoteMeta = ({ slug, date, title, htmlTitle, tags }: NoteMetaProps) => {
             <Time date={date} format="MMMM D, YYYY" />
           </MetaLink>
         </MetaItem>
+
+        {tags && (
+          <MetaItem>
+            <Icon as={TagIcon} />
+            <TagList>
+              {tags.map((tag) => (
+                <Tag key={tag} title={tag} aria-label={`Tagged with ${tag}`}>
+                  {tag}
+                </Tag>
+              ))}
+            </TagList>
+          </MetaItem>
+        )}
+        <MetaItem>
+          <MetaLink
+            href={`https://github.com/${config.githubRepo}/corent.in/blob/develop/notes/${slug}.mdx`}
+            title={`Edit "${title}" on GitHub`}
+            underline={false}
+          >
+            <Icon as={EditIcon} />
+            <span>Improve This Post</span>
+          </MetaLink>
+        </MetaItem>
+
+        {process.env.NEXT_PUBLIC_VERCEL_ENV === "production" && <h1>salut</h1>}
       </Wrapper>
     </>
   );
