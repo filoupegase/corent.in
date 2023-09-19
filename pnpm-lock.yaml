@@ -167,13 +167,13 @@ dependencies:
 
 optionalDependencies:
   sharp:
-    specifier: ^0.32.5
-    version: 0.32.5
+    specifier: ^0.32.6
+    version: 0.32.6
 
 devDependencies:
   '@jakejarvis/eslint-config':
     specifier: github:jakejarvis/eslint-config
-    version: github.com/jakejarvis/eslint-config/f97840fbd8909298fd2b020980db0c5d2f362263(eslint@8.48.0)
+    version: git/github.com+jakejarvis/eslint-config/f97840fbd8909298fd2b020980db0c5d2f362263(eslint@8.48.0)
   '@svgr/webpack':
     specifier: ^8.1.0
     version: 8.1.0(typescript@5.2.2)
@@ -4957,6 +4957,7 @@ packages:
   /lru-cache@6.0.0:
     resolution: {integrity: sha512-Jo6dJ04CmSjuznwJSS3pUeWmd/H0ffTlkXXgwZi+eq1UCmqQwCh+eLsYOYCwY991i2Fah4h1BEMCx4qThGbsiA==}
     engines: {node: '>=10'}
+    requiresBuild: true
     dependencies:
       yallist: 4.0.0
 
@@ -6610,8 +6611,8 @@ packages:
     dependencies:
       lru-cache: 6.0.0
 
-  /sharp@0.32.5:
-    resolution: {integrity: sha512-0dap3iysgDkNaPOaOL4X/0akdu0ma62GcdC2NBQ+93eqpePdDdr2/LM0sFdDSMmN7yS+odyZtPsb7tx/cYBKnQ==}
+  /sharp@0.32.6:
+    resolution: {integrity: sha512-KyLTWwgcR9Oe4d9HwCwNM2l7+J0dUQwn/yf7S0EnTtb0eVS4RxO0eUSvxPtzT4F3SY+C4K6fqdv/DO27sJ/v/w==}
     engines: {node: '>=14.15.0'}
     requiresBuild: true
     dependencies:
@@ -7594,6 +7595,7 @@ packages:
 
   /yallist@4.0.0:
     resolution: {integrity: sha512-3wdGidZyq5PB084XLES5TpOSRA3wjXAlIWMhum2kRcv/41Sn2emQ0dycQW4uZXLejwKvg6EsvbdlVL+FYEct7A==}
+    requiresBuild: true
 
   /yaml@2.3.1:
     resolution: {integrity: sha512-2eHWfjaoXgTBC2jNM1LRef62VQa0umtvRiDSk6HSzW7RvS5YtkabJrwYLLEKWBc8a5U2PTSCs+dJjUTJdlHsWQ==}
@@ -7617,9 +7619,9 @@ packages:
   /zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
 
-  github.com/jakejarvis/eslint-config/f97840fbd8909298fd2b020980db0c5d2f362263(eslint@8.48.0):
-    resolution: {tarball: https://codeload.github.com/jakejarvis/eslint-config/tar.gz/f97840fbd8909298fd2b020980db0c5d2f362263}
-    id: github.com/jakejarvis/eslint-config/f97840fbd8909298fd2b020980db0c5d2f362263
+  git/github.com+jakejarvis/eslint-config/f97840fbd8909298fd2b020980db0c5d2f362263(eslint@8.48.0):
+    resolution: {commit: f97840fbd8909298fd2b020980db0c5d2f362263, repo: git@github.com:jakejarvis/eslint-config.git, type: git}
+    id: git@github.com+jakejarvis/eslint-config/f97840fbd8909298fd2b020980db0c5d2f362263
     name: '@jakejarvis/eslint-config'
     version: 3.1.0
     peerDependencies:
