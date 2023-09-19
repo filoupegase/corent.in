@@ -21,4 +21,7 @@ optional but I highly recommend it in general!
 
 ## 📜 License
 
-Site content is licensed under the [CC-BY-4.0 license](LICENSE), which means that you can copy...
+Site content is licensed under the [CC-BY-4.0 license](LICENSE), which means that you can copy, redistribute, remix,
+transform, and build upon the content for any purpose as long as you give appropriate credit.
+
+All other code in this repository is licensed under the [MIT license](LICENSE-CODE).
