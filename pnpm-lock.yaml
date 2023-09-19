@@ -173,7 +173,7 @@ optionalDependencies:
 devDependencies:
   '@jakejarvis/eslint-config':
     specifier: github:jakejarvis/eslint-config
-    version: git/github.com+jakejarvis/eslint-config/f97840fbd8909298fd2b020980db0c5d2f362263(eslint@8.49.0)
+    version: github.com/jakejarvis/eslint-config/f97840fbd8909298fd2b020980db0c5d2f362263(eslint@8.49.0)
   '@svgr/webpack':
     specifier: ^8.1.0
     version: 8.1.0(typescript@5.2.2)
@@ -7653,9 +7653,9 @@ packages:
   /zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
 
-  git/github.com+jakejarvis/eslint-config/f97840fbd8909298fd2b020980db0c5d2f362263(eslint@8.49.0):
-    resolution: {commit: f97840fbd8909298fd2b020980db0c5d2f362263, repo: git@github.com:jakejarvis/eslint-config.git, type: git}
-    id: git@github.com+jakejarvis/eslint-config/f97840fbd8909298fd2b020980db0c5d2f362263
+  github.com/jakejarvis/eslint-config/f97840fbd8909298fd2b020980db0c5d2f362263(eslint@8.49.0):
+    resolution: {tarball: https://codeload.github.com/jakejarvis/eslint-config/tar.gz/f97840fbd8909298fd2b020980db0c5d2f362263}
+    id: github.com/jakejarvis/eslint-config/f97840fbd8909298fd2b020980db0c5d2f362263
     name: '@jakejarvis/eslint-config'
     version: 3.1.0
     peerDependencies:
