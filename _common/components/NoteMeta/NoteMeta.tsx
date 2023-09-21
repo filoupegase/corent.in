@@ -1,6 +1,7 @@
 import Link from "../Link";
 import Time from "../Time";
-import { DateIcon, EditIcon, TagIcon } from "../Icons";
+import NoteTitle from "../NoteTitle";
+import { DateIcon, EditIcon, TagIcon, ViewsIcon } from "../Icons";
 import { styled, theme } from "../../../lib/styles/stitches.config";
 import * as config from "../../../lib/config";
 import type { NoteFrontMatter } from "../../../types";
@@ -94,8 +95,20 @@ const NoteMeta = ({ slug, date, tags, title, htmlTitle }: NoteMetaProps) => {
           </MetaLink>
         </MetaItem>
 
-        {process.env.NEXT_PUBLIC_VERCEL_ENV === "production" && <h1>salut</h1>}
+        {process.env.NEXT_PUBLIC_VERCEL_ENV === "production" && (
+          <MetaItem
+            css={{
+              // fix potential layout shift when number of hits loads
+              minWidth: "7em",
+              marginRight: 0,
+            }}
+          >
+            <Icon as={ViewsIcon} />
+          </MetaItem>
+        )}
       </Wrapper>
+
+      <NoteTitle {...{ slug, title, htmlTitle }} />
     </>
   );
 };
