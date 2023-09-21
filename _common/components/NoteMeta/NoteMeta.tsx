@@ -5,6 +5,7 @@ import { DateIcon, EditIcon, TagIcon, ViewsIcon } from "../Icons";
 import { styled, theme } from "../../../lib/styles/stitches.config";
 import * as config from "../../../lib/config";
 import type { NoteFrontMatter } from "../../../types";
+import HitCounter from "../HitCounter";
 
 const Wrapper = styled("div", {
   display: "inline-flex",
@@ -104,6 +105,7 @@ const NoteMeta = ({ slug, date, tags, title, htmlTitle }: NoteMetaProps) => {
             }}
           >
             <Icon as={ViewsIcon} />
+            <HitCounter slug={`notes/${slug}`} />
           </MetaItem>
         )}
       </Wrapper>
