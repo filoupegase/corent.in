@@ -1,23 +1,19 @@
 import { NextSeo } from "next-seo";
-import { styled } from "../lib/styles/stitches.config";
 import Content from "../_common/components/Content";
 import PageTitle from "../_common/components/PageTitle";
-
-const Heading2 = styled("h2", {
-  margin: "0.5em 0 0.5em -1px",
-  fontSize: "1.65em",
-  fontWeight: 400,
-  lineHeight: 1.4,
-  color: "$text",
-  "@medium": {
-    fontSize: "1.25em",
-  },
-});
+import Link from "../_common/components/Link";
+import ContactForm from "../_common/components/ContactForm";
+import { styled } from "../lib/styles/stitches.config";
 
 const Wrapper = styled(Content, {
   maxWidth: "600px",
   margin: "0 auto",
 });
+
+// const PGPKey = styled("code", {
+//   fontSize: "0.925em",
+//   wordSpacing: "-0.25em",
+// });
 
 const Contact = () => {
   return (
@@ -32,7 +28,12 @@ const Contact = () => {
       <PageTitle>📬 Contact Me</PageTitle>
 
       <Wrapper>
-        <Heading2>coming soon 🗂</Heading2>
+        <p>
+          Fill out this quick form and I'll get back to you as soon as I can! You can also{" "}
+          <Link href="mailto:corentindevjs@gmail.com">email me directly</Link>.
+        </p>
+
+        <ContactForm />
       </Wrapper>
     </>
   );
