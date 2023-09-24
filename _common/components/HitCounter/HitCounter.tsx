@@ -17,8 +17,6 @@ const HitCounter = ({ slug }: HitCounterProps) => {
     fetcher
   );
 
-  console.log("data", data);
-
   // fail secretly
   if (error) {
     return null;
@@ -29,7 +27,7 @@ const HitCounter = ({ slug }: HitCounterProps) => {
     return <Loading boxes={3} width={20} />;
   }
 
-  return <span>{slug}</span>;
+  return <span>{3040}</span>;
 };
 
 export default HitCounter;
