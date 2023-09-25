@@ -1,5 +1,6 @@
 import Code from "../Code";
 import { styled, theme } from "../../../lib/styles/stitches.config";
+import CopyButton from "../CopyButton";
 import type { ComponentPropsWithoutRef } from "react";
 
 const Block = styled("div", {
@@ -74,6 +75,18 @@ const Block = styled("div", {
   },
 });
 
+const CornerCopyButton = styled(CopyButton, {
+  position: "absolute",
+  top: 0,
+  right: 0,
+  padding: "0.65em",
+  backgroundColor: theme.colors.backgroundInner,
+  border: `1px solid ${theme.colors.kindaLight}`,
+  borderTopRightRadius: theme.radii.corner,
+  borderBottomLeftRadius: theme.radii.corner,
+  transition: `background ${theme.transitions.fade}, border ${theme.transitions.fade}`,
+});
+
 export type CodeBlockProps = ComponentPropsWithoutRef<typeof Code> & {
   highlight?: boolean;
   withCopyButton?: boolean;
@@ -82,7 +95,7 @@ export type CodeBlockProps = ComponentPropsWithoutRef<typeof Code> & {
 const CodeBlock = ({ highlight, withCopyButton, className, children, ...rest }: CodeBlockProps) => {
   return (
     <Block highlight={highlight}>
-      {withCopyButton && <></>}
+      {withCopyButton && <CornerCopyButton source={children} />}
       <Code className={className?.replace("code-highlight", "").trim()} {...rest}>
         {children}
       </Code>
