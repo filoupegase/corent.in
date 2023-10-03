@@ -1,12 +1,13 @@
-import Link, { LinkProps } from "../_common/components/Link";
+import Link from "../_common/components/Link";
 import { styled, theme, darkTheme, keyframes, stitchesConfig } from "../lib/styles/stitches.config";
+import type { ComponentPropsWithoutRef } from "react";
 
 const ColorfulLink = ({
   lightColor,
   darkColor,
   css,
   ...rest
-}: LinkProps & {
+}: ComponentPropsWithoutRef<typeof Link> & {
   lightColor: string;
   darkColor: string;
 }) => {
