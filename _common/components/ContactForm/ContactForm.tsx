@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Formik, Form, Field, FormikValues } from "formik";
+import { Formik } from "formik";
 
 type FormValues = {
   name: string;
@@ -26,7 +26,7 @@ const ContactForm = ({ className }: ContactFormProps) => {
         message: "",
         "h-captcha-response": "",
       }}
-      validate={(values: FormikValues) => {
+      validate={(values: FormValues) => {
         const errors: Partial<Record<keyof FormValues, boolean>> = {};
 
         errors.name = !values.name;

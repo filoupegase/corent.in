@@ -10,11 +10,6 @@ const Wrapper = styled(Content, {
   margin: "0 auto",
 });
 
-// const PGPKey = styled("code", {
-//   fontSize: "0.925em",
-//   wordSpacing: "-0.25em",
-// });
-
 const Contact = () => {
   return (
     <>
