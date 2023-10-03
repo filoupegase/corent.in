@@ -4,7 +4,7 @@ import Content from "../_common/components/Content";
 import PageTitle from "../_common/components/PageTitle";
 import Link from "../_common/components/Link";
 import RepositoryCard from "../_common/components/RepositoryCard";
-import { OctocatOcticon } from "../_common/components/Icons";
+import { SiGithub } from "react-icons/si";
 import { styled, theme } from "../lib/styles/stitches.config";
 import { authorSocial } from "../lib/config";
 import type { GetStaticProps, InferGetStaticPropsType } from "next";
@@ -34,7 +34,7 @@ const ViewMore = styled("p", {
   fontWeight: 500,
 });
 
-const GitHubLogo = styled(OctocatOcticon, {
+const GitHubLogo = styled(SiGithub, {
   width: "1.2em",
   height: "1.2em",
   verticalAlign: "-0.2em",

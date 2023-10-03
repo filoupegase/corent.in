@@ -7,9 +7,9 @@
 
 ## 🧶 Getting Started
 
-Run `pnpm install` to install the necessary dependencies and `pnpm run dev` to start the local server, and then
-open [http://localhost:3000/](http://localhost:3000/). Pages will live-refresh when source files are
-changed. ([pnpm is required!](https://pnpm.io/installation))
+Run `pnpm install` to install the necessary dependencies and `pnpm dev` to start the local server, and then open [http://localhost:3000/](http://localhost:3000/). Pages will live-refresh when source files are changed.
+
+Most production steps are handled [automatically by Vercel](https://vercel.com/docs/frameworks/nextjs), but running `pnpm build` locally will still generate an unoptimized, less-than-ideal static version which can be served via `pnpm start`.
 
 Most production steps are
 handled [automatically by Vercel](https://vercel.com/docs/concepts/next.js/overview#supported-next.js-features), but
