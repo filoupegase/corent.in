@@ -1,11 +1,11 @@
-import { Source_Code_Pro as SourceCodeProLoader } from "next/font/google";
+import { Inter as InterLoader } from "next/font/google";
 
-const SourceCodePro = SourceCodeProLoader({
+const Inter = InterLoader({
   weight: "variable",
-  style: ["normal", "italic"],
+  axes: ["slnt"], // workaround for lack of italicized Inter on Google Fonts, see: https://github.com/google/fonts/issues/2386#issuecomment-691503098
   subsets: ["latin"],
   display: "fallback",
   preload: true,
 });
 
-export default SourceCodePro;
+export default Inter;
