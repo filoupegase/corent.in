@@ -1,6 +1,5 @@
 import useSWRImmutable from "swr/immutable";
 import fetcher from "../../../lib/helpers/fetcher";
-import type { PageStats } from "../../../types";
 import Loading from "../Loading";
 
 export type HitCounterProps = {
@@ -10,7 +9,7 @@ export type HitCounterProps = {
 const HitCounter = ({ slug }: HitCounterProps) => {
   // use immutable SWR to avoid double (or more) counting views:
   // https://swr.vercel.app/docs/revalidation#disable-automatic-revalidations
-  const { data, error } = useSWRImmutable<PageStats>(
+  const { data, error } = useSWRImmutable(
     `/api/count/?${new URLSearchParams({
       slug,
     })}`,
