@@ -1,15 +1,10 @@
-import type { NoteFrontMatter } from "./note";
+// a silly file, but this ensures that /api/count returns exactly what <HitCounter /> expects.
 
-export type PageStats = {
-  hits: number;
-};
-
-export type DetailedPageStats = PageStats &
-  Pick<NoteFrontMatter, "slug" | "title" | "date"> & {
-    url: string;
-  };
-
-export type SiteStats = {
-  total: PageStats;
-  pages: DetailedPageStats[];
-};
+// import type { hits as Hits } from "@prisma/client";
+//
+// export type PageStats = Pick<Hits, "hits">;
+//
+// export type SiteStats = {
+//   total: PageStats;
+//   pages: Hits[];
+// };
