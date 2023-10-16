@@ -14,7 +14,7 @@ export { H1 as h1, H2 as h2, H3 as h3, H4 as h4, H5 as h5, H6 as h6 } from "../.
 // ...and these components are technically passed into all posts, but next/dynamic ensures they're loaded only
 // when they're referenced in the individual mdx files.
 export const IFrame = dynamic(() => import("../../_common/components/IFrame"));
-// export const Video = dynamic(() => import("../../_common/components/Video"));
+export const Video = dynamic(() => import("../../_common/components/Video"));
 // export const YouTube = dynamic(() => import("../../_common/components/YouTubeEmbed"));
 // export const Tweet = dynamic(() => import("../../_common/components/TweetEmbed"));
 // export const Gist = dynamic(() => import("../../_common/components/GistEmbed"));
