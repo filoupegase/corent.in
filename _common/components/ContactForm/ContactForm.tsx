@@ -3,6 +3,7 @@ import { Formik, Form, Field } from "formik";
 import TextareaAutosize from "react-textarea-autosize";
 import Link from "../Link";
 import Captcha from "../Captcha";
+import { GoCheck, GoX } from "react-icons/go";
 import { SiMarkdown } from "react-icons/si";
 import { styled, css, theme } from "../../../lib/styles/stitches.config";
 import type { FormikHelpers, FormikProps, FieldInputProps, FieldMetaProps } from "formik";
@@ -98,6 +99,36 @@ const SubmitIcon = styled("span", {
   lineHeight: 1,
 });
 
+const Result = styled("div", {
+  fontWeight: 600,
+  lineHeight: 1.5,
+
+  variants: {
+    status: {
+      success: {
+        color: theme.colors.success,
+      },
+      error: {
+        color: theme.colors.error,
+      },
+    },
+
+    hidden: {
+      true: {
+        display: "none",
+      },
+      false: {},
+    },
+  },
+});
+
+const ResultIcon = styled("svg", {
+  width: "1.3em",
+  height: "1.3em",
+  verticalAlign: "-0.3em",
+  fill: "currentColor",
+});
+
 type FormValues = {
   name: string;
   email: string;
@@ -117,6 +148,37 @@ const ContactForm = ({ className }: ContactFormProps) => {
   const handleSubmit = (values: FormValues, { setSubmitting }: FormikHelpers<FormValues>) => {
     // once a user attempts a submission, this is true and stays true whether or not the next attempt(s) are successful
     setSubmitted(true);
+
+    // if we've gotten here then all data is (or should be) valid and ready to post to API
+    fetch("/api/contact/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(values),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success === true) {
+          setSuccess(true);
+          setFeedback("Thanks! You should hear from me soon.");
+        } else {
+          throw new Error(data.message);
+        }
+      })
+      .catch((error) => {
+        setSuccess(false);
+
+        if (error.message === "USER_MISSING_DATA") {
+          setFeedback("Please make sure that all fields are properly filled in.");
+        } else if (error.message === "USER_INVALID_CAPTCHA") {
+          setFeedback("Did you complete the CAPTCHA? (If you're human, that is...)");
+        } else {
+          setFeedback("Internal server error... Try again later or shoot me an old-fashioned email?");
+        }
+      })
+      .finally(() => setSubmitting(false));
   };
 
   return (
@@ -218,7 +280,9 @@ const ContactForm = ({ className }: ContactFormProps) => {
               )}
             </SubmitButton>
 
-            <></>
+            <Result status={success ? "success" : "error"} hidden={!submitted || !feedback || isSubmitting}>
+              <ResultIcon as={success ? GoCheck : GoX} /> {feedback}
+            </Result>
           </ActionRow>
         </Form>
       )}
