@@ -92,6 +92,12 @@ const SubmitButton = styled("button", {
   },
 });
 
+const SubmitIcon = styled("span", {
+  fontSize: "1.3em",
+  marginRight: "0.3em",
+  lineHeight: 1,
+});
+
 type FormValues = {
   name: string;
   email: string;
@@ -202,7 +208,17 @@ const ContactForm = ({ className }: ContactFormProps) => {
               onClick={() => setSubmitted(true)}
               disabled={isSubmitting}
               hidden={success}
-            ></SubmitButton>
+            >
+              {isSubmitting ? (
+                <span>Sending...</span>
+              ) : (
+                <>
+                  <SubmitIcon>📤</SubmitIcon> <span>Send</span>
+                </>
+              )}
+            </SubmitButton>
+            
+            <></>
           </ActionRow>
         </Form>
       )}
