@@ -29,6 +29,7 @@ Make a new directory and change directories into it.
 
 ```bash
 mkcd() {
-    mkdir -p "$@" && cd "$_";
+    mkdir -p -- "$1" &&
+    cd -P -- "$1" || return
 }
 ```
