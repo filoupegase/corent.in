@@ -18,3 +18,21 @@
            ;##########
           ;###########
 ,,,,,,,,,;###########
+
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# HUMAN
+
+    Coco (@filoupegase)
+
+# TECHNOLOGY
+
+- Next.js & React
+  - Vercel
+  - Stitches
+  - Prisma
+  - Neon Postgres
+  - Giscus
+  - Fathom Analytics
+
