@@ -27,8 +27,8 @@ dependencies:
     specifier: ^5.6.0
     version: 5.7.0(@neondatabase/serverless@0.6.0)
   '@prisma/client':
-    specifier: ^5.6.0
-    version: 5.7.0(prisma@5.7.0)
+    specifier: ^5.7.1
+    version: 5.7.1(prisma@5.7.0)
   '@react-spring/web':
     specifier: ^9.7.3
     version: 9.7.3(react-dom@18.2.0)(react@18.2.0)
@@ -858,8 +858,8 @@ packages:
       - supports-color
     dev: false
 
-  /@prisma/client@5.7.0(prisma@5.7.0):
-    resolution: {integrity: sha512-cZmglCrfNbYpzUtz7HscVHl38e9CrUs31nrVoGUK1nIPXGgt8hT4jj2s657UXcNdQ/jBUxDgGmHyu2Nyrq1txg==}
+  /@prisma/client@5.7.1(prisma@5.7.0):
+    resolution: {integrity: sha512-TUSa4nUcC4nf/e7X3jyO1pEd6XcI/TLRCA0KjkA46RDIpxUaRsBYEOqITwXRW2c0bMFyKcCRXrH4f7h4q9oOlg==}
     engines: {node: '>=16.13'}
     requiresBuild: true
     peerDependencies:
