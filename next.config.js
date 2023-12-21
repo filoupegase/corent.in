@@ -20,8 +20,8 @@ const nextConfig = {
       process.env.NEXT_PUBLIC_VERCEL_ENV === "production"
         ? `https://${config.siteDomain}`
         : process.env.NEXT_PUBLIC_VERCEL_URL
-        ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}` // https://vercel.com/docs/concepts/projects/environment-variables#system-environment-variables
-        : `http://localhost:${process.env.PORT || 3000}`, // https://nextjs.org/docs/api-reference/cli#development
+          ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}` // https://vercel.com/docs/concepts/projects/environment-variables#system-environment-variables
+          : `http://localhost:${process.env.PORT || 3000}`, // https://nextjs.org/docs/api-reference/cli#development
     // freeze timestamp at build time for when server-side pages need a "last updated" date. calling Date.now() from
     // pages using getServerSideProps will return the current(ish) time instead, which is usually not what we want.
     RELEASE_DATE: new Date().toISOString(),
@@ -84,29 +84,6 @@ const nextConfig = {
     // NOTE: don't remove this, it ensures de-AMPing the site hasn't offended our google overlords too badly!
     // https://developers.google.com/search/docs/advanced/experience/remove-amp#remove-only-amp
     { source: "/notes/:slug/amp.html", destination: "/notes/:slug/", statusCode: 301 },
-
-    // mastodon via subdomain
-    // https://docs.joinmastodon.org/admin/config/#web_domain
-    {
-      source: "/.well-known/host-meta:path*",
-      destination: "https://fediverse.jarv.is/.well-known/host-meta:path*",
-      statusCode: 301,
-    },
-    {
-      source: "/.well-known/webfinger:path*",
-      destination: "https://fediverse.jarv.is/.well-known/webfinger:path*",
-      statusCode: 301,
-    },
-    {
-      source: "/.well-known/nodeinfo:path*",
-      destination: "https://fediverse.jarv.is/.well-known/nodeinfo:path*",
-      statusCode: 301,
-    },
-    {
-      source: "/@jake/:path*",
-      destination: "https://fediverse.jarv.is/@jake/:path*",
-      statusCode: 301,
-    },
 
     // remnants of previous sites/CMSes:
     { source: "/index.xml", destination: "/feed.xml", permanent: true },

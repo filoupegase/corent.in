@@ -5,7 +5,7 @@
   "homepage": "https://corent-in.vercel.app/",
   "repository": "filoupegase/corent.in",
   "author": {
-    "name": "Filoupegase",
+    "name": "filoupegase",
     "email": "",
     "url": "https://corent-in.vercel.app"
   },
@@ -116,9 +116,9 @@
       "eslint"
     ]
   },
-  "packageManager": "pnpm@8.12.0",
+  "packageManager": "pnpm@8.12.1",
   "volta": {
     "node": "18.19.0",
-    "pnpm": "8.12.0"
+    "pnpm": "8.12.1"
   }
 }
