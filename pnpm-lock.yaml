@@ -223,8 +223,8 @@ devDependencies:
     specifier: ~9.1.0
     version: 9.1.0(eslint@8.55.0)
   eslint-plugin-mdx:
-    specifier: ~2.2.0
-    version: 2.2.0(eslint@8.55.0)
+    specifier: ~2.3.1
+    version: 2.3.1(eslint@8.55.0)
   eslint-plugin-prettier:
     specifier: ~5.0.1
     version: 5.0.1(eslint-config-prettier@9.1.0)(eslint@8.55.0)(prettier@3.1.0)
@@ -2082,8 +2082,8 @@ packages:
       - supports-color
     dev: true
 
-  /eslint-mdx@2.2.0(eslint@8.55.0):
-    resolution: {integrity: sha512-AriN6lCW6KhWQ9GEiXapR1DokKHefOUqKvCmHxnE9puCWYhWiycU2SNKH8jmrasDBreZ+RtJDLi+RcUNLJatjg==}
+  /eslint-mdx@2.3.1(eslint@8.55.0):
+    resolution: {integrity: sha512-BZ2GqIybz3KmcGY0EwJLzmaESnS2sCrQDu3EV6cwPG8UnYlq1k6OmbK8rQHagil+CXOzGkW2jr+Z0BSIobVoQA==}
     engines: {node: ^12.20.0 || ^14.18.0 || >=16.0.0}
     peerDependencies:
       eslint: '>=8.0.0'
@@ -2209,14 +2209,14 @@ packages:
       - supports-color
     dev: true
 
-  /eslint-plugin-mdx@2.2.0(eslint@8.55.0):
-    resolution: {integrity: sha512-OseoMXUIr8iy3E0me+wJLVAxuB0kxHP1plxuYAJDynzorzOj2OKv8Fhr+rIOJ32zfl3bnEWsqFnUiCnyznr1JQ==}
+  /eslint-plugin-mdx@2.3.1(eslint@8.55.0):
+    resolution: {integrity: sha512-nUrL40TWl/lGAqK7B6xu+/Lhf5BRwAwpiQFgQl+GXzN8V7vZb55J3O0+g4FdHEUJz7gB3U0PlsuvyX9BgxBcgw==}
     engines: {node: ^12.20.0 || ^14.18.0 || >=16.0.0}
     peerDependencies:
       eslint: '>=8.0.0'
     dependencies:
       eslint: 8.55.0
-      eslint-mdx: 2.2.0(eslint@8.55.0)
+      eslint-mdx: 2.3.1(eslint@8.55.0)
       eslint-plugin-markdown: 3.0.1(eslint@8.55.0)
       remark-mdx: 2.3.0
       remark-parse: 10.0.2
