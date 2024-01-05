@@ -63,7 +63,7 @@
     "remark-gfm": "^3.0.1",
     "remark-parse": "^10.0.2",
     "remark-rehype": "^10.1.0",
-    "remark-smartypants": "^2.0.0",
+    "remark-smartypants": "^2.1.0",
     "remark-unwrap-images": "^4.0.0",
     "remove-markdown": "^0.5.0",
     "sitemap": "^7.1.1",
