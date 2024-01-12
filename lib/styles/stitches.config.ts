@@ -6,7 +6,7 @@ import { rgba } from "polished";
 import normalizeCss from "stitches-normalize";
 
 // web fonts
-import { Inter, SourceCodePro } from "./fonts";
+import { GeistSans, GeistMono } from "./fonts";
 
 // https://stitches.dev/docs/typescript#type-a-css-object
 export type CSS = Stitches.CSS<typeof stitchesConfig>;
@@ -23,8 +23,8 @@ export const {
 } = createStitches({
   theme: {
     fonts: {
-      sans: `${Inter.style.fontFamily}, sans-serif`,
-      mono: `${SourceCodePro.style.fontFamily}, monospace`,
+      sans: `${GeistSans.style.fontFamily}, sans-serif`,
+      mono: `${GeistMono.style.fontFamily}, monospace`,
     },
 
     colors: {
