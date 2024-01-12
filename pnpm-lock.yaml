@@ -9,8 +9,8 @@ dependencies:
     specifier: ^2.3.0
     version: 2.3.0(react-dom@18.2.0)(react@18.2.0)
   '@hcaptcha/react-hcaptcha':
-    specifier: ^1.9.2
-    version: 1.9.2(react-dom@18.2.0)(react@18.2.0)
+    specifier: ^1.9.3
+    version: 1.9.3(react-dom@18.2.0)(react@18.2.0)
   '@neondatabase/serverless':
     specifier: ^0.6.0
     version: 0.6.0
@@ -342,8 +342,8 @@ packages:
     resolution: {integrity: sha512-YEBXCGNUBpPJUd5UZg64jBU6YMOhDjGdzS6dUCI9P8uIJttuQz3P76wVmK9kdKOuvLUaB7HwVBBmNv/bkAaIEw==}
     dev: false
 
-  /@hcaptcha/react-hcaptcha@1.9.2(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-FKsfxi2PV0UTFp3TvW8L02z2MHZjhBVOvH1OznR4ccxjugCZa8ix4weP/wKRUaLHcKwmCfXSu35Agen41aP1mQ==}
+  /@hcaptcha/react-hcaptcha@1.9.3(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-3aaXKT2tEXr317eWYNXm7JGC9z6FkhuDX46uLSFAevtVB3grxgwVxcVQuZy/Y5p6+TeQ6iDTAD0Ca2xwe4Muvw==}
     peerDependencies:
       react: '>= 16.3.0'
       react-dom: '>= 16.3.0'
