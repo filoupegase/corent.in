@@ -28,8 +28,8 @@ You may have noticed the recent trend of techies [posting their "dotfiles" on Gi
 Make a new directory and change directories into it.
 
 ```bash
-mkcd() {
-    mkdir -p -- "$1" &&
-    cd -P -- "$1" || return
+function mkcd() {
+	mkdir -p "$@" && cd "$_";
 }
+
 ```
