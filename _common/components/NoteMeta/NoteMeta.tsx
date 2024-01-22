@@ -1,3 +1,4 @@
+import { ErrorBoundary } from "react-error-boundary";
 import Link from "../Link";
 import Time from "../Time";
 import NoteTitle from "../NoteTitle";
@@ -104,8 +105,11 @@ const NoteMeta = ({ slug, date, tags, title, htmlTitle }: NoteMetaProps) => {
               marginRight: 0,
             }}
           >
-            <Icon as={FiEye} />
-            <HitCounter slug={`notes/${slug}`} />
+            {/* completely hide this block if anything goes wrong on the backend */}
+            <ErrorBoundary fallback={null}>
+              <Icon as={FiEye} />
+              <HitCounter slug={`notes/${slug}`} />
+            </ErrorBoundary>
           </MetaItem>
         )}
       </Wrapper>
