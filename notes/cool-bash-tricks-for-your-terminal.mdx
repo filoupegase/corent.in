@@ -29,7 +29,9 @@ Make a new directory and change directories into it.
 
 ```bash
 function mkcd() {
-	mkdir -p "$@" && cd "$_";
+    if mkdir -p -- "$1"; then
+      cd -- "$1" || return
+    fi
 }
 
 ```
