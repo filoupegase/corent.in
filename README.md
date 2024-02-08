@@ -5,6 +5,9 @@
 [![Licensed under CC-BY-4.0](https://img.shields.io/badge/license-CC--BY--4.0-fb7828?logo=creative-commons&logoColor=white)](LICENSE)
 [![GitHub repo size](https://img.shields.io/github/repo-size/jakejarvis/jarv.is?color=009cdf&label=repo%20size&logo=git&logoColor=white)](https://github.com/filoupegase/coco.io)
 
+My humble abode on the World Wide Web, created and deployed
+using [Next.js](https://nextjs.org/), [Stitches](https://stitches.dev/), [Prisma](https://www.prisma.io/), [Vercel](https://vercel.com/), [Supabase](https://supabase.com/), [and more](https://jarv.is/humans.txt).
+
 ## 🕹️ Getting Started
 
 Run `pnpm install` to install the necessary dependencies and `pnpm dev` to start the local server, and then
