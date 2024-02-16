@@ -1,7 +1,7 @@
 import { createContext, useCallback, useEffect, useMemo, useState } from "react";
+import Script from "next/script";
 import useLocalStorage from "../_common/hooks/useLocalStorage";
 import useMedia from "../_common/hooks/useMedia";
-import { themeStorageKey } from "../lib/styles/stitches.config";
 import type { Context, PropsWithChildren } from "react";
 
 export const ThemeContext: Context<{
@@ -21,15 +21,18 @@ export const ThemeContext: Context<{
 // provider used once in _app.tsx to wrap entire app
 export const ThemeProvider = ({
   classNames,
+  storageKey = "theme",
   children,
 }: PropsWithChildren<{
   /** Mapping of theme name ("light", "dark") to the corresponding `<html>`'s class names. */
   classNames: {
     [themeName: string]: string;
   };
+  /** Key to use when saving preferred theme to local storage. Defaults to "theme". */
+  storageKey?: string;
 }>) => {
   // keep track of if/when the user has set their theme *on this site*
-  const [preferredTheme, setPreferredTheme] = useLocalStorage(themeStorageKey);
+  const [preferredTheme, setPreferredTheme] = useLocalStorage(storageKey);
   // keep track of changes to the user's OS/browser dark mode setting
   const [systemTheme, setSystemTheme] = useState("");
   // hook into system `prefers-dark-mode` setting
@@ -88,10 +91,21 @@ export const ThemeProvider = ({
     [changeTheme, preferredTheme, systemTheme, themeNames]
   );
 
-  return <ThemeContext.Provider value={providerValues}>{children}</ThemeContext.Provider>;
+  return (
+    <>
+      <Script id="restore-theme" strategy="beforeInteractive">
+        {`(function(){try{var e=document.documentElement,t=e.classList,a=[${Object.values(classNames)
+          .map((cn) => `"${cn}"`)
+          .join(
+            ","
+          )}],o="undefined"!=typeof Storage?window.localStorage.getItem("${storageKey}"):null,c=(o&&"dark"===o)??window.matchMedia("(prefers-color-scheme: dark)").matches?1:0;t.remove(...a),t.add(a[c]||""),e.style.colorScheme=1==c?"dark":"light"}catch(e){}})()`}
+      </Script>
+
+      <ThemeContext.Provider value={providerValues}>{children}</ThemeContext.Provider>
+    </>
+  );
 };
 
-// debugging help pls
 if (process.env.NODE_ENV !== "production") {
   ThemeContext.displayName = "ThemeContext";
 }

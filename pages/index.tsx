@@ -1,4 +1,5 @@
 import Link from "../_common/components/Link";
+import { GoLock } from "react-icons/go";
 import { styled, theme, darkTheme, keyframes, stitchesConfig } from "../lib/styles/stitches.config";
 import type { ComponentPropsWithoutRef } from "react";
 
@@ -103,16 +104,21 @@ const Wave = styled("span", {
   },
 });
 
-// const Sup = styled("sup", {
-//   margin: "0 0.1em",
-//   fontSize: "0.6em",
-// });
+const Sup = styled("sup", {
+  margin: "0 0.1em",
+  fontSize: "0.6em",
+});
 
-// const PGPKey = styled("code", {
-//  margin: "0 0.15em",
-//  letterSpacing: "0.075em",
-//  wordSpacing: "-0.4em",
-// });
+const PGPIcon = styled(GoLock, {
+  verticalAlign: "-0.25em",
+  strokeWidth: 0.5,
+});
+
+const PGPKey = styled("code", {
+  margin: "0 0.15em",
+  letterSpacing: "0.075em",
+  wordSpacing: "-0.4em",
+});
 
 const Quiet = styled("span", {
   color: theme.colors.mediumLight,
@@ -124,7 +130,9 @@ const Index = () => {
       <H1>
         Hi there! I'm Corentin <Wave>👋</Wave>
       </H1>
+
       <UnderHeadOne>Welcome to my humble abode on the World Wide Web 🏡</UnderHeadOne>
+
       <H2>
         I'm a frontend web developer based in{" "}
         <ColorfulLink
@@ -263,8 +271,22 @@ const Index = () => {
         </ColorfulLink>
         . I'm always available to connect over{" "}
         <ColorfulLink href="/contact/" title="Send an email" lightColor="#de0c0c" darkColor="#ff5050">
-          email.
+          email
         </ColorfulLink>
+        , or{" "}
+        <Sup>
+          <ColorfulLink
+            href="/pubkey.asc"
+            rel="pgpkey authn"
+            title="My Public Key"
+            lightColor="#757575"
+            darkColor="#959595"
+            underline={false}
+            openInNewTab
+          >
+            <PGPIcon size="1.25em" /> <PGPKey>2AB5 62FA CED0 D4F2 4D07 310F D90E C481 4942 ED2E</PGPKey>
+          </ColorfulLink>
+        </Sup>{" "}
       </Paragraph>
     </>
   );

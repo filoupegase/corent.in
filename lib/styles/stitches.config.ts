@@ -165,8 +165,8 @@ export const globalStyles = globalCss(
   }
 );
 
-// theme classnames are generated dynamically by stitches, so have ThemeProvider pull them from there
-export const themeClassNames = {
+// theme classnames are generated dynamically by stitches, so have ThemeProvider pull them from here
+export const classNames = {
   light: theme.className,
   dark: darkTheme.className,
 };

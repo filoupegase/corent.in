@@ -40,7 +40,7 @@ module.exports = {
         "mdx/code-blocks": "off",
         "import/no-unresolved": "off",
         "react/jsx-no-undef": "off",
-        "react/jsx-boolean-value": "off", // TODO: causes some inconsistent parser errors in mdx
+        "react/jsx-boolean-value": "off",
       },
     },
   ],
