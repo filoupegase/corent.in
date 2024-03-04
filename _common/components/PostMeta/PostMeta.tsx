@@ -1,11 +1,11 @@
 import { ErrorBoundary } from "react-error-boundary";
 import Link from "../Link";
 import Time from "../Time";
-import NoteTitle from "../NoteTitle";
+import NoteTitle from "../PostTitle";
 import { FiCalendar, FiTag, FiEdit, FiEye } from "react-icons/fi";
 import { styled, theme } from "../../../lib/styles/stitches.config";
 import * as config from "../../../lib/config";
-import type { NoteFrontMatter } from "../../../types";
+import type { PostFrontMatter } from "../../../types";
 import HitCounter from "../HitCounter";
 
 const Wrapper = styled("div", {
@@ -55,9 +55,9 @@ const Tag = styled("span", {
   },
 });
 
-export type NoteMetaProps = Pick<NoteFrontMatter, "slug" | "date" | "title" | "htmlTitle" | "tags">;
+export type NoteMetaProps = Pick<PostFrontMatter, "slug" | "date" | "title" | "htmlTitle" | "tags">;
 
-const NoteMeta = ({ slug, date, tags, title, htmlTitle }: NoteMetaProps) => {
+const PostMeta = ({ slug, date, tags, title, htmlTitle }: NoteMetaProps) => {
   return (
     <>
       <Wrapper>
@@ -119,4 +119,4 @@ const NoteMeta = ({ slug, date, tags, title, htmlTitle }: NoteMetaProps) => {
   );
 };
 
-export default NoteMeta;
+export default PostMeta;

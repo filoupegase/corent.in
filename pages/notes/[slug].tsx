@@ -2,16 +2,15 @@ import { InView } from "react-intersection-observer";
 import { NextSeo, ArticleJsonLd } from "next-seo";
 import { MDXRemote, MDXRemoteProps } from "next-mdx-remote";
 import Comments from "../../_common/components/Comments";
-import NoteMeta from "../../_common/components/NoteMeta";
+import PostMeta from "../../_common/components/PostMeta";
 import * as mdxComponents from "../../lib/helpers/mdx-components";
 import Content from "../../_common/components/Content";
-import { getNoteSlugs } from "../../lib/helpers/parse-notes";
-import { compileNote } from "../../lib/helpers/compile-note";
 import * as config from "../../lib/config";
 import { articleJsonLd } from "../../lib/config/seo";
+import { getPostSlugs, compilePost } from "../../lib/helpers/posts";
 import { meJpeg } from "../../lib/config/favicons";
 import type { GetStaticProps, GetStaticPaths, InferGetStaticPropsType } from "next";
-import type { NoteWithSource, NoteFrontMatter } from "../../types";
+import type { PostWithSource, PostFrontMatter } from "../../types";
 
 const Note = ({ frontMatter, source }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
@@ -32,7 +31,7 @@ const Note = ({ frontMatter, source }: InferGetStaticPropsType<typeof getStaticP
           },
           images: [
             {
-              url: `${process.env.BASE_URL}${frontMatter.image || meJpeg.src}`,
+              url: `${process.env.NEXT_PUBLIC_BASE_URL || ""}${frontMatter.image || meJpeg.src}`,
               alt: frontMatter.title,
             },
           ],
@@ -47,11 +46,11 @@ const Note = ({ frontMatter, source }: InferGetStaticPropsType<typeof getStaticP
         description={frontMatter.description || config.longDescription}
         datePublished={frontMatter.date}
         dateModified={frontMatter.date}
-        images={[`${process.env.BASE_URL}${frontMatter.image || meJpeg.src}`]}
+        images={[`${process.env.NEXT_PUBLIC_BASE_URL || ""}${frontMatter.image || meJpeg.src}`]}
         {...articleJsonLd}
       />
 
-      <NoteMeta {...frontMatter} />
+      <PostMeta {...frontMatter} />
 
       <Content>
         <MDXRemote {...source} components={{ ...(mdxComponents as MDXRemoteProps["components"]) }} />
@@ -70,14 +69,14 @@ const Note = ({ frontMatter, source }: InferGetStaticPropsType<typeof getStaticP
   );
 };
 
-export const getStaticProps: GetStaticProps<NoteWithSource, Pick<NoteFrontMatter, "slug">> = async ({ params }) => {
+export const getStaticProps: GetStaticProps<PostWithSource, Pick<PostFrontMatter, "slug">> = async ({ params }) => {
   if (!params?.slug) {
     return {
       notFound: true,
     };
   }
 
-  const { frontMatter, source } = await compileNote(params.slug);
+  const { frontMatter, source } = await compilePost(params.slug);
 
   return {
     props: {
@@ -88,7 +87,10 @@ export const getStaticProps: GetStaticProps<NoteWithSource, Pick<NoteFrontMatter
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const slugs = await getNoteSlugs();
+  // get the slug of each .mdx file in /notes
+  const slugs = await getPostSlugs();
+
+  // map slugs into a static paths object required by next.js
   const paths = slugs.map((slug) => ({ params: { slug } }));
 
   return {

@@ -1,10 +1,12 @@
-import { SitemapStream, SitemapItemLoose, EnumChangefreq } from "sitemap";
-import { getAllNotes } from "../lib/helpers/parse-notes";
+import { SitemapStream, EnumChangefreq } from "sitemap";
+import { getAllPosts } from "../lib/helpers/posts";
+import { siteDomain } from "../lib/config";
 import type { GetServerSideProps } from "next";
+import type { SitemapItemLoose } from "sitemap";
 
 export const getServerSideProps: GetServerSideProps<Record<string, never>> = async (context) => {
   const { res } = context;
-  const stream = new SitemapStream({ hostname: process.env.BASE_URL });
+  const stream = new SitemapStream({ hostname: process.env.NEXT_PUBLIC_BASE_URL || `https://${siteDomain}` });
 
   // cache on edge for 12 hours
   res.setHeader("cache-control", "public, max-age=0, s-maxage=43200, stale-while-revalidate");
@@ -26,20 +28,20 @@ export const getServerSideProps: GetServerSideProps<Record<string, never>> = asy
     { url: "/projects/", changefreq: EnumChangefreq.DAILY },
   ];
 
-  // push notes separately and use their metadata
-  const notes = await getAllNotes();
-  notes.forEach((note) => {
+  // push posts separately and use their metadata
+  const posts = await getAllPosts();
+  posts.forEach((post) => {
     pages.push({
-      url: `/notes/${note.slug}/`,
+      url: `/notes/${post.slug}/`,
       // pull lastMod from front matter date
-      lastmod: note.date,
+      lastmod: post.date,
     });
   });
 
   // set lastmod of /notes/ page to most recent post's date
   pages.push({
     url: `/notes/`,
-    lastmod: notes[0].date,
+    lastmod: posts[0].date,
   });
 
   // sort alphabetically by URL

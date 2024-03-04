@@ -1,7 +1,7 @@
 import Time from "../Time";
 import Link from "../Link";
 import type { ReactElement } from "react";
-import type { NotesByYear } from "../../../types";
+import type { PostsByYear } from "../../../types";
 import { styled, theme } from "../../../lib/styles/stitches.config";
 
 const Section = styled("section", {
@@ -56,10 +56,10 @@ const PostDate = styled(Time, {
 });
 
 export type NotesListProps = {
-  notesByYear: NotesByYear;
+  notesByYear: PostsByYear;
 };
 
-const NotesList = ({ notesByYear }: NotesListProps) => {
+const PostsList = ({ notesByYear }: NotesListProps) => {
   const sections: ReactElement[] = [];
 
   Object.entries(notesByYear).forEach(([year, notes]) => {
@@ -92,4 +92,4 @@ const NotesList = ({ notesByYear }: NotesListProps) => {
   return <>{reversed}</>;
 };
 
-export default NotesList;
+export default PostsList;

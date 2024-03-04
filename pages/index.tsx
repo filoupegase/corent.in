@@ -284,9 +284,10 @@ const Index = () => {
             underline={false}
             openInNewTab
           >
-            <PGPIcon size="1.25em" /> <PGPKey>2AB5 62FA CED0 D4F2 4D07 310F D90E C481 4942 ED2E</PGPKey>
+            <PGPIcon size="1.25em" /> <PGPKey>2AB5 62FA CED0 D4F2</PGPKey>
           </ColorfulLink>
-        </Sup>{" "}
+        </Sup>
+        .{" "}
       </Paragraph>
     </>
   );

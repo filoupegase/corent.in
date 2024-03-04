@@ -1,7 +1,8 @@
 import * as config from ".";
 import { meJpeg, faviconPng, faviconIco, appleTouchIconPng } from "./favicons";
-
 import type { DefaultSeoProps, SocialProfileJsonLdProps, ArticleJsonLdProps } from "next-seo";
+
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || `https://${config.siteDomain}`;
 
 // Most of this file simply takes the data already defined in ./config.js and translates it into objects that are
 // compatible with next-seo's props:
@@ -17,7 +18,7 @@ export const defaultSeo: DefaultSeoProps = {
     type: "website",
     images: [
       {
-        url: `${process.env.BASE_URL}${meJpeg.src}`,
+        url: `${baseUrl}${meJpeg.src}`,
         alt: `${config.siteName} – ${config.shortDescription}`,
       },
     ],
@@ -95,9 +96,9 @@ export const defaultSeo: DefaultSeoProps = {
 export const socialProfileJsonLd: SocialProfileJsonLdProps = {
   type: "Person",
   name: config.authorName,
-  url: `${process.env.BASE_URL}/`,
+  url: `${baseUrl}/`,
   sameAs: [
-    `${process.env.BASE_URL}/`,
+    `${baseUrl}/`,
     `https://github.com/${config.authorSocial?.github}`,
     `https://keybase.io/${config.authorSocial?.keybase}`,
     `https://twitter.com/${config.authorSocial?.twitter}`,
@@ -113,8 +114,8 @@ export const socialProfileJsonLd: SocialProfileJsonLdProps = {
 export const articleJsonLd: Pick<ArticleJsonLdProps, "authorName" | "publisherName" | "publisherLogo"> = {
   authorName: {
     name: config.authorName,
-    url: `${process.env.BASE_URL}/`,
+    url: `${baseUrl}/`,
   },
   publisherName: config.siteName,
-  publisherLogo: `${process.env.BASE_URL}${meJpeg.src}`,
+  publisherLogo: `${baseUrl}${meJpeg.src}`,
 };
