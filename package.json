@@ -111,10 +111,10 @@
     ".next/cache"
   ],
   "simple-git-hooks": {
-    "pre-commit": "npx lint-staged"
+    "pre-commit": "pnpm exec lint-staged"
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx,md,mdx}": [
+    "*.{js,jsx,mjs,ts,tsx,md,mdx}": [
       "eslint"
     ]
   },
