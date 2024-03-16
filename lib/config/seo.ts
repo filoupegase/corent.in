@@ -1,4 +1,4 @@
-import * as config from ".";
+import config from ".";
 import { meJpeg, faviconPng, faviconIco, appleTouchIconPng } from "./favicons";
 import type { DefaultSeoProps, SocialProfileJsonLdProps, ArticleJsonLdProps } from "next-seo";
 

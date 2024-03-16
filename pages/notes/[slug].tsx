@@ -5,7 +5,7 @@ import Comments from "../../_common/components/Comments";
 import PostMeta from "../../_common/components/PostMeta";
 import * as mdxComponents from "../../lib/helpers/mdx-components";
 import Content from "../../_common/components/Content";
-import * as config from "../../lib/config";
+import config from "../../lib/config";
 import { articleJsonLd } from "../../lib/config/seo";
 import { getPostSlugs, compilePost } from "../../lib/helpers/posts";
 import { meJpeg } from "../../lib/config/favicons";

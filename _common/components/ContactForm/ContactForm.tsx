@@ -170,9 +170,9 @@ const ContactForm = ({ className }: ContactFormProps) => {
       .catch((error) => {
         setSuccess(false);
 
-        if (error.message === "USER_MISSING_DATA") {
+        if (error.message === "missing_data") {
           setFeedback("Please make sure that all fields are properly filled in.");
-        } else if (error.message === "USER_INVALID_CAPTCHA") {
+        } else if (error.message === "invalid_captcha") {
           setFeedback("Did you complete the CAPTCHA? (If you're human, that is...)");
         } else {
           setFeedback("Internal server error... Try again later or shoot me an old-fashioned email?");

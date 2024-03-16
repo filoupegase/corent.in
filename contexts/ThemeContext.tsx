@@ -93,6 +93,7 @@ export const ThemeProvider = ({
 
   return (
     <>
+      {/* eslint-disable-next-line @next/next/no-before-interactive-script-outside-document */}
       <Script id="restore-theme" strategy="beforeInteractive">
         {`(function(){try{var e=document.documentElement,t=e.classList,a=[${Object.values(classNames)
           .map((cn) => `"${cn}"`)
@@ -106,6 +107,7 @@ export const ThemeProvider = ({
   );
 };
 
+// debugging help pls
 if (process.env.NODE_ENV !== "production") {
   ThemeContext.displayName = "ThemeContext";
 }

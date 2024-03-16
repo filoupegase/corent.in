@@ -30,7 +30,7 @@ module.exports = {
         return: "parens-new-line",
       },
     ],
-    "prettier/prettier": ["error", {}, { usePrettierrc: true }],
+    "prettier/prettier": ["error", {}, {usePrettierrc: true}],
   },
   overrides: [
     {

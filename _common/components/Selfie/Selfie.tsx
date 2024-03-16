@@ -1,7 +1,7 @@
 import Link from "../Link";
 import Image from "../Image";
 import { styled, theme } from "../../../lib/styles/stitches.config";
-import { authorName } from "../../../lib/config";
+import config from "../../../lib/config";
 import type { ComponentPropsWithoutRef } from "react";
 
 import selfieJpeg from "../../../public/static/images/me.jpeg";
@@ -52,10 +52,10 @@ export type SelfieProps = Omit<ComponentPropsWithoutRef<typeof Link>, "href">;
 
 const Selfie = ({ ...rest }: SelfieProps) => {
   return (
-    <SelfieLink href="/" rel="author" title={authorName} underline={false} {...rest}>
+    <SelfieLink href="/" rel="author" title={config.authorName} underline={false} {...rest}>
       <CircleImage
         src={selfieJpeg}
-        alt={`Photo of ${authorName}`}
+        alt={`Photo of ${config.authorName}`}
         width={70}
         height={70}
         quality={60}
@@ -63,7 +63,7 @@ const Selfie = ({ ...rest }: SelfieProps) => {
         inline
         priority
       />
-      <Name>{authorName}</Name>
+      <Name>{config.authorName}</Name>
     </SelfieLink>
   );
 };

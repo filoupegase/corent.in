@@ -1,24 +1,24 @@
 import { NextResponse } from "next/server";
 import queryString from "query-string";
+import config from "../../lib/config";
 import type { NextRequest } from "next/server";
-import { siteDomain, hcaptchaSiteKey } from "../../lib/config";
 
 // fallback to dummy secret for testing: https://docs.hcaptcha.com/#integration-testing-test-keys
-const HCAPTCHA_SITE_KEY = hcaptchaSiteKey || "10000000-ffff-ffff-ffff-000000000001";
+const HCAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_HCAPTCHA_SITE_KEY || "10000000-ffff-ffff-ffff-000000000001";
 const HCAPTCHA_SECRET_KEY = process.env.HCAPTCHA_SECRET_KEY || "0x0000000000000000000000000000000000000000";
 const HCAPTCHA_API_ENDPOINT = "https://hcaptcha.com/siteverify";
 
 const { AIRTABLE_API_KEY, AIRTABLE_BASE } = process.env;
 const AIRTABLE_API_ENDPOINT = "https://api.airtable.com/v0/";
 
-export const config = {
+export const conf = {
   runtime: "edge",
 };
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default async (req: NextRequest) => {
   if (req.method === "GET") {
-    return NextResponse.redirect(`${process.env.NEXT_PUBLIC_BASE_URL || `https://${siteDomain}`}/contact/`);
+    return NextResponse.redirect(`${process.env.NEXT_PUBLIC_BASE_URL || `https://${config.siteDomain}`}/contact/`);
   }
 
   const data = await req.json();
@@ -42,7 +42,7 @@ export default async (req: NextRequest) => {
   });
 
   // throw an internal error, not user's fault
-  if (airtableResult !== true) {
+  if (!airtableResult) {
     throw new Error("AIRTABLE_API_ERROR");
   }
 

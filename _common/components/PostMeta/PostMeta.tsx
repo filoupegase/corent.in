@@ -4,7 +4,7 @@ import Time from "../Time";
 import NoteTitle from "../PostTitle";
 import { FiCalendar, FiTag, FiEdit, FiEye } from "react-icons/fi";
 import { styled, theme } from "../../../lib/styles/stitches.config";
-import * as config from "../../../lib/config";
+import config from "../../../lib/config";
 import type { PostFrontMatter } from "../../../types";
 import HitCounter from "../HitCounter";
 
