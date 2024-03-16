@@ -4,7 +4,7 @@
 import config from "./lib/config/index.js";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export default (phase, {defaultConfig}) => {
+export default (phase, { defaultConfig }) => {
   /**
    * @type {import('next').NextConfig}
    */
@@ -26,8 +26,8 @@ export default (phase, {defaultConfig}) => {
       deviceSizes: [640, 750, 828, 1080, 1200, 1920],
       formats: ["image/avif", "image/webp"],
       remotePatterns: [
-        {protocol: "https", hostname: "pbs.twimg.com"},
-        {protocol: "https", hostname: "abs.twimg.com"},
+        { protocol: "https", hostname: "pbs.twimg.com" },
+        { protocol: "https", hostname: "abs.twimg.com" },
       ],
     },
     experimental: {
@@ -66,10 +66,10 @@ export default (phase, {defaultConfig}) => {
     ],
     rewrites: async () => ({
       beforeFiles: [
-        {source: "/favicon.ico", destination: "/static/favicons/favicon.ico"},
-        {source: "/favicon.png", destination: "/static/favicons/favicon.png"},
-        {source: "/apple-touch-icon.png", destination: "/static/favicons/apple-touch-icon.png"},
-        {source: "/apple-touch-icon-precomposed.png", destination: "/static/favicons/apple-touch-icon.png"},
+        { source: "/favicon.ico", destination: "/static/favicons/favicon.ico" },
+        { source: "/favicon.png", destination: "/static/favicons/favicon.png" },
+        { source: "/apple-touch-icon.png", destination: "/static/favicons/apple-touch-icon.png" },
+        { source: "/apple-touch-icon-precomposed.png", destination: "/static/favicons/apple-touch-icon.png" },
       ],
       afterFiles: [
         {
@@ -90,7 +90,7 @@ export default (phase, {defaultConfig}) => {
 
       // NOTE: don't remove this, it ensures de-AMPing the site hasn't offended our google overlords too badly!
       // https://developers.google.com/search/docs/advanced/experience/remove-amp#remove-only-amp
-      {source: "/notes/:slug/amp.html", destination: "/notes/:slug/", permanent: true},
+      { source: "/notes/:slug/amp.html", destination: "/notes/:slug/", permanent: true },
 
       // mastodon via subdomain:
       // https://docs.joinmastodon.org/admin/config/#web_domain
@@ -111,17 +111,16 @@ export default (phase, {defaultConfig}) => {
       },
 
       // google search console has tons of 404s for images prefixed with /public... why? no clue.
-      {source: "/public/static/:path*", destination: "/static/:path*", permanent: true},
+      { source: "/public/static/:path*", destination: "/static/:path*", permanent: true },
 
       // remnants of previous sites/CMSes:
-      {source: "/index.xml", destination: "/feed.xml", permanent: true},
-      {source: "/feed", destination: "/feed.xml", permanent: true},
-      {source: "/rss", destination: "/feed.xml", permanent: true},
-      {source: "/blog/:path*", destination: "/notes/", permanent: true},
-      {source: "/archives/:path*", destination: "/notes/", permanent: true},
-      {source: "/resume", destination: "/static/resume.pdf", permanent: false},
-      {source: "/resume.pdf", destination: "/static/resume.pdf", permanent: false},
-
+      { source: "/index.xml", destination: "/feed.xml", permanent: true },
+      { source: "/feed", destination: "/feed.xml", permanent: true },
+      { source: "/rss", destination: "/feed.xml", permanent: true },
+      { source: "/blog/:path*", destination: "/notes/", permanent: true },
+      { source: "/archives/:path*", destination: "/notes/", permanent: true },
+      { source: "/resume", destination: "/static/resume.pdf", permanent: false },
+      { source: "/resume.pdf", destination: "/static/resume.pdf", permanent: false },
 
       // WordPress permalinks:
       {
