@@ -19,7 +19,6 @@ export type CommentsProps = ComponentPropsWithoutRef<typeof Wrapper> & {
 const Comments = ({ title, ...rest }: CommentsProps) => {
   const { activeTheme } = useTheme();
 
-  // TODO: use custom `<Loading />` spinner component during suspense
   return (
     <Wrapper {...rest}>
       <Giscus
@@ -29,7 +28,7 @@ const Comments = ({ title, ...rest }: CommentsProps) => {
         reactionsEnabled="1"
         emitMetadata="0"
         inputPosition="top"
-        loading="eager" // still lazily loaded with react-intersection-observer
+        loading="eager"
         theme={activeTheme === "dark" ? activeTheme : "light"}
       />
     </Wrapper>
