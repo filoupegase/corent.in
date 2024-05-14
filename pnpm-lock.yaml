@@ -27,11 +27,11 @@ importers:
         specifier: ^15.3.0
         version: 15.3.0
       '@prisma/adapter-libsql':
-        specifier: ^5.11.0
-        version: 5.12.1(@libsql/client@0.6.0)
+        specifier: ^5.13.0
+        version: 5.13.0(@libsql/client@0.6.0)
       '@prisma/client':
-        specifier: ^5.11.0
-        version: 5.11.0(prisma@5.11.0)
+        specifier: ^5.13.0
+        version: 5.13.0(prisma@5.13.0)
       '@react-spring/web':
         specifier: ^9.7.3
         version: 9.7.3(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
@@ -239,8 +239,8 @@ importers:
         specifier: ^3.2.5
         version: 3.2.5
       prisma:
-        specifier: ^5.11.0
-        version: 5.11.0
+        specifier: ^5.13.0
+        version: 5.13.0
       simple-git-hooks:
         specifier: ^2.11.1
         version: 2.11.1
@@ -630,13 +630,13 @@ packages:
     resolution: {integrity: sha512-cq8o4cWH0ibXh9VGi5P20Tu9XF/0fFXl9EUinr9QfTM7a7p0oTA4iJRCQWppXR1Pg8dSM0UCItCkPwsk9qWWYA==}
     engines: {node: ^12.20.0 || ^14.18.0 || >=16.0.0}
 
-  '@prisma/adapter-libsql@5.12.1':
-    resolution: {integrity: sha512-tbXcgzS/xS8fD8gI1g6DJ483viNx4oWyk4vB2Ls9YYEyrZR25cSRCzFhNf5Tpg4+1C4WtHj9XoE9ZHk5km0dTg==}
+  '@prisma/adapter-libsql@5.13.0':
+    resolution: {integrity: sha512-vKzTtRwscsPRbhRb++hiJ8dXWxLELo3js7jKgJgiPzD10ybZEGgSTP4WYmivU5azVvnyN6JErgDtu4oBQZRvMA==}
     peerDependencies:
       '@libsql/client': ^0.3.5 || ^0.4.0 || ^0.5.0 || ^0.6.0
 
-  '@prisma/client@5.11.0':
-    resolution: {integrity: sha512-SWshvS5FDXvgJKM/a0y9nDC1rqd7KG0Q6ZVzd+U7ZXK5soe73DJxJJgbNBt2GNXOa+ysWB4suTpdK5zfFPhwiw==}
+  '@prisma/client@5.13.0':
+    resolution: {integrity: sha512-uYdfpPncbZ/syJyiYBwGZS8Gt1PTNoErNYMuqHDa2r30rNSFtgTA/LXsSk55R7pdRTMi5pHkeP9B14K6nHmwkg==}
     engines: {node: '>=16.13'}
     peerDependencies:
       prisma: '*'
@@ -644,26 +644,23 @@ packages:
       prisma:
         optional: true
 
-  '@prisma/debug@5.11.0':
-    resolution: {integrity: sha512-N6yYr3AbQqaiUg+OgjkdPp3KPW1vMTAgtKX6+BiB/qB2i1TjLYCrweKcUjzOoRM5BriA4idrkTej9A9QqTfl3A==}
+  '@prisma/debug@5.13.0':
+    resolution: {integrity: sha512-699iqlEvzyCj9ETrXhs8o8wQc/eVW+FigSsHpiskSFydhjVuwTJEfj/nIYqTaWFYuxiWQRfm3r01meuW97SZaQ==}
 
-  '@prisma/debug@5.12.1':
-    resolution: {integrity: sha512-kd/wNsR0klrv79o1ITsbWxYyh4QWuBidvxsXSParPsYSu0ircUmNk3q4ojsgNc3/81b0ozg76iastOG43tbf8A==}
+  '@prisma/driver-adapter-utils@5.13.0':
+    resolution: {integrity: sha512-SaimwvGuvXJTsWH+FOfl7PlkZZlPiRGeMEchC0kvB08Xw9B3CLYo/Q7zaY5Fp+u5D8asrpcFQmCjXEgDvOmPkg==}
 
-  '@prisma/driver-adapter-utils@5.12.1':
-    resolution: {integrity: sha512-s5EHANHIyWID/3WLNYn3wy1SUGC2OFH2thYriq+sKo4GZxEduX9oraOVlPruZZBt/roN9ojZcph4R2oecWzfXg==}
+  '@prisma/engines-version@5.13.0-23.b9a39a7ee606c28e3455d0fd60e78c3ba82b1a2b':
+    resolution: {integrity: sha512-AyUuhahTINGn8auyqYdmxsN+qn0mw3eg+uhkp8zwknXYIqoT3bChG4RqNY/nfDkPvzWAPBa9mrDyBeOnWSgO6A==}
 
-  '@prisma/engines-version@5.11.0-15.efd2449663b3d73d637ea1fd226bafbcf45b3102':
-    resolution: {integrity: sha512-WXCuyoymvrS4zLz4wQagSsc3/nE6CHy8znyiMv8RKazKymOMd5o9FP5RGwGHAtgoxd+aB/BWqxuP/Ckfu7/3MA==}
+  '@prisma/engines@5.13.0':
+    resolution: {integrity: sha512-hIFLm4H1boj6CBZx55P4xKby9jgDTeDG0Jj3iXtwaaHmlD5JmiDkZhh8+DYWkTGchu+rRF36AVROLnk0oaqhHw==}
 
-  '@prisma/engines@5.11.0':
-    resolution: {integrity: sha512-gbrpQoBTYWXDRqD+iTYMirDlF9MMlQdxskQXbhARhG6A/uFQjB7DZMYocMQLoiZXO/IskfDOZpPoZE8TBQKtEw==}
+  '@prisma/fetch-engine@5.13.0':
+    resolution: {integrity: sha512-Yh4W+t6YKyqgcSEB3odBXt7QyVSm0OQlBSldQF2SNXtmOgMX8D7PF/fvH6E6qBCpjB/yeJLy/FfwfFijoHI6sA==}
 
-  '@prisma/fetch-engine@5.11.0':
-    resolution: {integrity: sha512-994viazmHTJ1ymzvWugXod7dZ42T2ROeFuH6zHPcUfp/69+6cl5r9u3NFb6bW8lLdNjwLYEVPeu3hWzxpZeC0w==}
-
-  '@prisma/get-platform@5.11.0':
-    resolution: {integrity: sha512-rxtHpMLxNTHxqWuGOLzR2QOyQi79rK1u1XYAVLZxDGTLz/A+uoDnjz9veBFlicrpWjwuieM4N6jcnjj/DDoidw==}
+  '@prisma/get-platform@5.13.0':
+    resolution: {integrity: sha512-B/WrQwYTzwr7qCLifQzYOmQhZcFmIFhR81xC45gweInSUn2hTEbfKUPd2keAog+y5WI5xLAFNJ3wkXplvSVkSw==}
 
   '@react-spring/animated@9.7.3':
     resolution: {integrity: sha512-5CWeNJt9pNgyvuSzQH+uy2pvTg8Y4/OisoscZIR8/ZNLIOI+CatFBhGZpDGTF/OzdNFsAoGk3wiUYTwoJ0YIvw==}
@@ -2633,8 +2630,8 @@ packages:
     engines: {node: '>=14'}
     hasBin: true
 
-  prisma@5.11.0:
-    resolution: {integrity: sha512-KCLiug2cs0Je7kGkQBN9jDWoZ90ogE/kvZTUTgz2h94FEo8pczCkPH7fPNXkD1sGU7Yh65risGGD1HQ5DF3r3g==}
+  prisma@5.13.0:
+    resolution: {integrity: sha512-kGtcJaElNRAdAGsCNykFSZ7dBKpL14Cbs+VaQ8cECxQlRPDjBlMHNFYeYt0SKovAVy2Y65JXQwB3A5+zIQwnTg==}
     engines: {node: '>=16.13'}
     hasBin: true
 
@@ -3723,42 +3720,40 @@ snapshots:
 
   '@pkgr/core@0.1.1': {}
 
-  '@prisma/adapter-libsql@5.12.1(@libsql/client@0.6.0)':
+  '@prisma/adapter-libsql@5.13.0(@libsql/client@0.6.0)':
     dependencies:
       '@libsql/client': 0.6.0
-      '@prisma/driver-adapter-utils': 5.12.1
+      '@prisma/driver-adapter-utils': 5.13.0
       async-mutex: 0.5.0
 
-  '@prisma/client@5.11.0(prisma@5.11.0)':
+  '@prisma/client@5.13.0(prisma@5.13.0)':
     optionalDependencies:
-      prisma: 5.11.0
+      prisma: 5.13.0
 
-  '@prisma/debug@5.11.0': {}
+  '@prisma/debug@5.13.0': {}
 
-  '@prisma/debug@5.12.1': {}
-
-  '@prisma/driver-adapter-utils@5.12.1':
+  '@prisma/driver-adapter-utils@5.13.0':
     dependencies:
-      '@prisma/debug': 5.12.1
+      '@prisma/debug': 5.13.0
 
-  '@prisma/engines-version@5.11.0-15.efd2449663b3d73d637ea1fd226bafbcf45b3102': {}
+  '@prisma/engines-version@5.13.0-23.b9a39a7ee606c28e3455d0fd60e78c3ba82b1a2b': {}
 
-  '@prisma/engines@5.11.0':
+  '@prisma/engines@5.13.0':
     dependencies:
-      '@prisma/debug': 5.11.0
-      '@prisma/engines-version': 5.11.0-15.efd2449663b3d73d637ea1fd226bafbcf45b3102
-      '@prisma/fetch-engine': 5.11.0
-      '@prisma/get-platform': 5.11.0
+      '@prisma/debug': 5.13.0
+      '@prisma/engines-version': 5.13.0-23.b9a39a7ee606c28e3455d0fd60e78c3ba82b1a2b
+      '@prisma/fetch-engine': 5.13.0
+      '@prisma/get-platform': 5.13.0
 
-  '@prisma/fetch-engine@5.11.0':
+  '@prisma/fetch-engine@5.13.0':
     dependencies:
-      '@prisma/debug': 5.11.0
-      '@prisma/engines-version': 5.11.0-15.efd2449663b3d73d637ea1fd226bafbcf45b3102
-      '@prisma/get-platform': 5.11.0
+      '@prisma/debug': 5.13.0
+      '@prisma/engines-version': 5.13.0-23.b9a39a7ee606c28e3455d0fd60e78c3ba82b1a2b
+      '@prisma/get-platform': 5.13.0
 
-  '@prisma/get-platform@5.11.0':
+  '@prisma/get-platform@5.13.0':
     dependencies:
-      '@prisma/debug': 5.11.0
+      '@prisma/debug': 5.13.0
 
   '@react-spring/animated@9.7.3(react@18.2.0)':
     dependencies:
@@ -6503,9 +6498,9 @@ snapshots:
 
   prettier@3.2.5: {}
 
-  prisma@5.11.0:
+  prisma@5.13.0:
     dependencies:
-      '@prisma/engines': 5.11.0
+      '@prisma/engines': 5.13.0
 
   proc-log@3.0.0: {}
 
