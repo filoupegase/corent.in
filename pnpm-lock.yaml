@@ -15,8 +15,8 @@ importers:
         specifier: ^1.10.1
         version: 1.10.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@libsql/client':
-        specifier: ^0.6.0
-        version: 0.6.0
+        specifier: ^0.6.2
+        version: 0.6.2
       '@novnc/novnc':
         specifier: 1.4.0
         version: 1.4.0
@@ -28,7 +28,7 @@ importers:
         version: 15.3.0
       '@prisma/adapter-libsql':
         specifier: ^5.11.0
-        version: 5.12.1(@libsql/client@0.6.0)
+        version: 5.12.1(@libsql/client@0.6.2)
       '@prisma/client':
         specifier: ^5.11.0
         version: 5.11.0(prisma@5.11.0)
@@ -443,11 +443,11 @@ packages:
     peerDependencies:
       eslint: ^7 || >=8
 
-  '@libsql/client@0.6.0':
-    resolution: {integrity: sha512-qhQzTG/y2IEVbL3+9PULDvlQFWJ/RnjFXECr/Nc3nRngGiiMysDaOV5VUzYk7DulUX98EA4wi+z3FspKrUplUA==}
+  '@libsql/client@0.6.2':
+    resolution: {integrity: sha512-xRNfRLv/dOCbV4qd+M0baQwGmvuZpMd2wG2UAPs8XmcdaPvu5ErkcaeITkxlm3hDEJVabQM1cFhMBxsugWW9fQ==}
 
-  '@libsql/core@0.6.0':
-    resolution: {integrity: sha512-affAB8vSqQwqI9NBDJ5uJCVaHoOAS2pOpbv1kWConh1SBbmJBnHHd4KG73RAJ2sgd2+NbT9WA+XJBqxgp28YSw==}
+  '@libsql/core@0.6.2':
+    resolution: {integrity: sha512-c2P4M+4u/4b2L02A0KjggO3UW51rGkhxr/7fzJO0fEAqsqrWGxuNj2YtRkina/oxfYvAof6xjp8RucNoIV/Odw==}
 
   '@libsql/darwin-arm64@0.3.11':
     resolution: {integrity: sha512-eTO2UZFxp/kmp31OApCpXJYpZQ1iJ/Qg6fA3sYGHFHBVE9ALTvm+QMHsuMh1LL2HT6CnfS3kDA9dCCE52qVqFQ==}
@@ -3527,9 +3527,9 @@ snapshots:
     dependencies:
       eslint: 9.1.0
 
-  '@libsql/client@0.6.0':
+  '@libsql/client@0.6.2':
     dependencies:
-      '@libsql/core': 0.6.0
+      '@libsql/core': 0.6.2
       '@libsql/hrana-client': 0.6.0
       js-base64: 3.7.7
       libsql: 0.3.11
@@ -3537,7 +3537,7 @@ snapshots:
       - bufferutil
       - utf-8-validate
 
-  '@libsql/core@0.6.0':
+  '@libsql/core@0.6.2':
     dependencies:
       js-base64: 3.7.7
 
@@ -3723,9 +3723,9 @@ snapshots:
 
   '@pkgr/core@0.1.1': {}
 
-  '@prisma/adapter-libsql@5.12.1(@libsql/client@0.6.0)':
+  '@prisma/adapter-libsql@5.12.1(@libsql/client@0.6.2)':
     dependencies:
-      '@libsql/client': 0.6.0
+      '@libsql/client': 0.6.2
       '@prisma/driver-adapter-utils': 5.12.1
       async-mutex: 0.5.0
 
