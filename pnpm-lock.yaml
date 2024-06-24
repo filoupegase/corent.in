@@ -24,8 +24,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1
       '@octokit/graphql-schema':
-        specifier: ^15.3.0
-        version: 15.3.0
+        specifier: ^15.22.0
+        version: 15.22.0
       '@prisma/adapter-libsql':
         specifier: ^5.11.0
         version: 5.12.1(@libsql/client@0.6.0)
@@ -309,6 +309,7 @@ packages:
   '@humanwhocodes/config-array@0.13.0':
     resolution: {integrity: sha512-DZLEEqFWQFiyK6h5YIeynKx7JlvCYWL0cImfSRXZ9l4Sg2efkFGTuFf6vzXjK1cq6IYkU+Eg/JizXw+TD2vRNw==}
     engines: {node: '>=10.10.0'}
+    deprecated: Use @eslint/config-array instead
 
   '@humanwhocodes/module-importer@1.0.1':
     resolution: {integrity: sha512-bxveV4V8v5Yb4ncFTT3rPSgZBOpCkjfK0y4oVVVJwIuDVBRMDXrPyXRL988i5ap9m9bnyEEjWfm5WkBmtffLfA==}
@@ -316,6 +317,7 @@ packages:
 
   '@humanwhocodes/object-schema@2.0.3':
     resolution: {integrity: sha512-93zYdMES/c1D69yZiKDBj0V24vqNzB/koF26KPaagAfd3P/4gUlh3Dys5ogAK+Exi9QyzlD8x/08Zt7wIKcDcA==}
+    deprecated: Use @eslint/object-schema instead
 
   '@humanwhocodes/retry@0.2.3':
     resolution: {integrity: sha512-X38nUbachlb01YMlvPFojKoiXq+LzZvuSce70KPMPdeM1Rj03k4dR7lDslhbqXn3Ang4EU3+EAmwEAsbrjHW3g==}
@@ -601,8 +603,8 @@ packages:
     resolution: {integrity: sha512-emBcNDxBdC1y3+knJonS5zhUB/CG6TihubxM2U1/pG/Z1y3a4oV0Gzz3lmkCvWWQI6h3tqBAX9MgCBFp+M68Jw==}
     engines: {node: '>= 18'}
 
-  '@octokit/graphql-schema@15.3.0':
-    resolution: {integrity: sha512-yGj0haNZY1/4DZO72KpJdOzvKQFYPUkD5d6PdntPSbekABUoOdStAtEsOtuwZz52cPrbQEEoZ0wN7aemA1y8PA==}
+  '@octokit/graphql-schema@15.22.0':
+    resolution: {integrity: sha512-73A0q7SbonBiTq1lyYmXQDV9AZLuYGnosbZVpbJSh0nhIMp2Vp6ZYRAShDNVmZD7bFH8EPYPgO+QH5O50vs4Eg==}
 
   '@octokit/graphql@8.0.1':
     resolution: {integrity: sha512-lLDb6LhC1gBj2CxEDa5Xk10+H/boonhs+3Mi6jpRyetskDKNHe6crMeKmUE2efoLofMP8ruannLlCUgpTFmVzQ==}
@@ -3690,7 +3692,7 @@ snapshots:
       '@octokit/types': 12.6.0
       universal-user-agent: 7.0.2
 
-  '@octokit/graphql-schema@15.3.0':
+  '@octokit/graphql-schema@15.22.0':
     dependencies:
       graphql: 16.8.1
       graphql-tag: 2.12.6(graphql@16.8.1)
