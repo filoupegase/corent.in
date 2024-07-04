@@ -24,8 +24,8 @@ importers:
         specifier: ^8.1.1
         version: 8.1.1
       '@octokit/graphql-schema':
-        specifier: ^15.22.0
-        version: 15.22.0
+        specifier: ^15.24.0
+        version: 15.24.0
       '@prisma/adapter-libsql':
         specifier: ^5.15.1
         version: 5.16.1(@libsql/client@0.6.2)
@@ -600,8 +600,8 @@ packages:
     resolution: {integrity: sha512-emBcNDxBdC1y3+knJonS5zhUB/CG6TihubxM2U1/pG/Z1y3a4oV0Gzz3lmkCvWWQI6h3tqBAX9MgCBFp+M68Jw==}
     engines: {node: '>= 18'}
 
-  '@octokit/graphql-schema@15.22.0':
-    resolution: {integrity: sha512-73A0q7SbonBiTq1lyYmXQDV9AZLuYGnosbZVpbJSh0nhIMp2Vp6ZYRAShDNVmZD7bFH8EPYPgO+QH5O50vs4Eg==}
+  '@octokit/graphql-schema@15.24.0':
+    resolution: {integrity: sha512-6Z9UzA7X3d9ehSsHqP+2iat3iMBv5pqXybuyOfZKbE7a95hSEhHDnQCIqJ8ROnD4c8tMnxWzx03v5o5svsVkXg==}
 
   '@octokit/graphql@8.1.1':
     resolution: {integrity: sha512-ukiRmuHTi6ebQx/HFRCXKbDlOh/7xEV6QUXaE7MJEKGNAncGI/STSbOkl12qVXZrfZdpXctx5O9X1AIaebiDBg==}
@@ -2024,6 +2024,7 @@ packages:
 
   libsql@0.3.11:
     resolution: {integrity: sha512-lgXUHvZcy+4foNrjCBB85jBjB4djGRDZLha+lXGxcvMg4oFFUbx2s8k5bzxIIPAhCrRuCarunGc0qvd27Vi7UA==}
+    cpu: [x64, arm64, wasm32]
     os: [darwin, linux, win32]
 
   lilconfig@3.1.2:
@@ -3579,7 +3580,7 @@ snapshots:
       '@octokit/types': 12.6.0
       universal-user-agent: 7.0.2
 
-  '@octokit/graphql-schema@15.22.0':
+  '@octokit/graphql-schema@15.24.0':
     dependencies:
       graphql: 16.8.1
       graphql-tag: 2.12.6(graphql@16.8.1)
