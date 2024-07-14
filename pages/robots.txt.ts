@@ -28,6 +28,7 @@ User-agent: FacebookBot
 User-agent: FriendlyCrawler
 User-agent: Google-Extended
 User-agent: GPTBot
+User-agent: ImagesiftBot
 User-agent: img2dataset
 User-agent: omgili
 User-agent: omgilibot
