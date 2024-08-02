@@ -35,6 +35,5 @@
   - Turso
   - Giscus
   - Resend
-  - Fathom Analytics
   - ...and more
 
