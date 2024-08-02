@@ -19,11 +19,19 @@ export type CommentsProps = ComponentPropsWithoutRef<typeof Wrapper> & {
 const Comments = ({ title, ...rest }: CommentsProps) => {
   const { activeTheme } = useTheme();
 
+  if (!config.giscusConfig) {
+    console.warn("Giscus isn't configured in lib/config/index.js.");
+    return null;
+  }
+
   return (
     <Wrapper {...rest}>
       <Giscus
-        {...(config.giscusConfig as GiscusProps)}
+        repo={config.githubRepo as GiscusProps["repo"]}
+        repoId={config.giscusConfig.repoId}
         term={title}
+        category="Comments"
+        categoryId={config.giscusConfig.categoryId}
         mapping="specific"
         reactionsEnabled="1"
         emitMetadata="0"
