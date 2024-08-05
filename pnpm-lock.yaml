@@ -12,8 +12,8 @@ importers:
         specifier: ^3.0.0
         version: 3.0.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@hcaptcha/react-hcaptcha':
-        specifier: ^1.10.1
-        version: 1.10.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: ^1.10.2
+        version: 1.10.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@libsql/client':
         specifier: ^0.6.2
         version: 0.6.2
@@ -300,8 +300,8 @@ packages:
   '@hcaptcha/loader@1.2.3':
     resolution: {integrity: sha512-tJVkPpvWZ9kIXMAFeH/7B8iIDNN+kpFLBVgtJQgtWa1cAN0bUve2VPuc/UTVa0NUh7tsmd6oAg/C0VUplMt2UQ==}
 
-  '@hcaptcha/react-hcaptcha@1.10.1':
-    resolution: {integrity: sha512-P0en4gEZAecah7Pt3WIaJO2gFlaLZKkI0+Tfdg8fNqsDxqT9VytZWSkH4WAkiPRULK1QcGgUZK+J56MXYmPifw==}
+  '@hcaptcha/react-hcaptcha@1.10.2':
+    resolution: {integrity: sha512-dLmuk0LTHixvx6mW562QUaJUzj97B1p+a468UV81vVsKR7Kmf8SY/8X2VYMoYUfop4r1lU9ycosGtpIobsYlmw==}
     peerDependencies:
       react: '>= 16.3.0'
       react-dom: '>= 16.3.0'
@@ -2061,6 +2061,7 @@ packages:
 
   libsql@0.3.11:
     resolution: {integrity: sha512-lgXUHvZcy+4foNrjCBB85jBjB4djGRDZLha+lXGxcvMg4oFFUbx2s8k5bzxIIPAhCrRuCarunGc0qvd27Vi7UA==}
+    cpu: [x64, arm64, wasm32]
     os: [darwin, linux, win32]
 
   lilconfig@3.1.2:
@@ -3346,7 +3347,7 @@ snapshots:
 
   '@hcaptcha/loader@1.2.3': {}
 
-  '@hcaptcha/react-hcaptcha@1.10.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@hcaptcha/react-hcaptcha@1.10.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@babel/runtime': 7.24.0
       '@hcaptcha/loader': 1.2.3
