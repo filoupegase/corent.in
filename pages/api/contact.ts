@@ -1,94 +1,105 @@
-import { NextResponse } from "next/server";
-import queryString from "query-string";
+import nodemailer from "nodemailer";
+import fetcher from "../../lib/helpers/fetcher";
 import config from "../../lib/config";
-import type { NextRequest } from "next/server";
+import type { NextApiHandler } from "next";
 
-// fallback to dummy secret for testing: https://docs.hcaptcha.com/#integration-testing-test-keys
-const HCAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_HCAPTCHA_SITE_KEY || "10000000-ffff-ffff-ffff-000000000001";
-const HCAPTCHA_SECRET_KEY = process.env.HCAPTCHA_SECRET_KEY || "0x0000000000000000000000000000000000000000";
-const HCAPTCHA_API_ENDPOINT = "https://hcaptcha.com/siteverify";
-
-const { AIRTABLE_API_KEY, AIRTABLE_BASE } = process.env;
-const AIRTABLE_API_ENDPOINT = "https://api.airtable.com/v0/";
-
-export const conf = {
-  runtime: "edge",
-};
-
-// eslint-disable-next-line import/no-anonymous-default-export
-export default async (req: NextRequest) => {
-  if (req.method === "GET") {
-    return NextResponse.redirect(`${process.env.NEXT_PUBLIC_BASE_URL || `https://${config.siteDomain}`}/contact/`);
+const handler: NextApiHandler<
+  {
+    success?: boolean;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    error?: any;
+  } | null
+> = async (req, res) => {
+  // only allow POST requests, otherwise return a 405 Method Not Allowed
+  if (req.method !== "POST") {
+    return res.status(405).send(null);
   }
 
-  const data = await req.json();
+  try {
+    // possible weirdness? https://github.com/orgs/vercel/discussions/78#discussioncomment-5089059
+    const data = req.body;
 
-  // these are both backups to client-side validations just in case someone squeezes through without them. the codes
-  // are identical so they're caught in the same fashion.
-  if (!data.name || !data.email || !data.message) {
-    // all fields are required
-    throw new Error("MISSING_DATA");
-  }
-  if (!data["h-captcha-response"] || !(await validateCaptcha(data["h-captcha-response"]))) {
-    // either the captcha is wrong or completely missing
-    throw new Error("INVALID_CAPTCHA");
-  }
-
-  // sent directly to airtable
-  const airtableResult = await sendToAirtable({
-    Name: data.name,
-    Email: data.email,
-    Message: data.message,
-  });
-
-  // throw an internal error, not user's fault
-  if (!airtableResult) {
-    throw new Error("AIRTABLE_API_ERROR");
-  }
-
-  // success! let the client know
-  return NextResponse.json(
-    { success: true },
-    {
-      status: 201,
-      headers: {
-        // disable caching on both ends. see:
-        // https://vercel.com/docs/concepts/functions/edge-functions/edge-caching
-        "Cache-Control": "private, no-cache, no-store, must-revalidate",
-      },
+    // these are both backups to client-side validations just in case someone squeezes through without them. the codes
+    // are identical so they're caught in the same fashion.
+    if (!data.name || !data.email || !data.message) {
+      // all fields are required
+      throw new Error("missing_data");
     }
-  );
+    if (
+      !data["cf-turnstile-response"] ||
+      !(await validateCaptcha(
+        data["cf-turnstile-response"],
+        (req.headers["x-forwarded-for"] as string) || (req.headers["x-real-ip"] as string) || ""
+      ))
+    ) {
+      // either the captcha is wrong or completely missing
+      throw new Error("invalid_captcha");
+    }
+
+    // throw an internal error, not user's fault
+    if (!(await sendMessage(data))) {
+      throw new Error("nodemailer_error");
+    }
+
+    // disable caching on both ends. see:
+    // https://vercel.com/docs/concepts/functions/edge-functions/edge-caching
+    res.setHeader("Cache-Control", "private, no-cache, no-store, must-revalidate");
+
+    // success! let the client know
+    return res.status(201).json({ success: true });
+  } catch (
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    error: any
+  ) {
+    return res.status(400).json({ error: error.message ?? "Bad request." });
+  }
 };
 
-const validateCaptcha = async (formResponse: unknown): Promise<unknown> => {
-  const response = await fetch(HCAPTCHA_API_ENDPOINT, {
+const validateCaptcha = async (formResponse: unknown, ip: string): Promise<unknown> => {
+  const response = await fetcher("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
     method: "POST",
     headers: {
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
-    body: queryString.stringify({
-      response: formResponse,
-      sitekey: HCAPTCHA_SITE_KEY,
-      secret: HCAPTCHA_SECRET_KEY,
-    }),
-  });
-
-  const result = await response.json();
-
-  return result.success;
-};
-
-const sendToAirtable = async (data: unknown): Promise<boolean> => {
-  const response = await fetch(`${AIRTABLE_API_ENDPOINT}${AIRTABLE_BASE}/Projets`, {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${AIRTABLE_API_KEY}`,
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      fields: data,
+      // fallback to dummy secret for testing: https://developers.cloudflare.com/turnstile/troubleshooting/testing/
+      secret: process.env.TURNSTILE_SECRET_KEY || "1x0000000000000000000000000000000AA",
+      response: formResponse,
+      remoteip: ip,
     }),
   });
 
-  return response.ok;
+  return response?.success;
 };
+
+const sendMessage = async (data: Record<string, unknown>): Promise<boolean> => {
+  try {
+    const transporter = nodemailer.createTransport({
+      // https://resend.com/docs/send-with-nodemailer-smtp
+      host: "smtp.resend.com",
+      secure: true,
+      port: 465,
+      auth: {
+        user: "resend",
+        pass: process.env.RESEND_API_KEY,
+      },
+    });
+
+    await transporter.sendMail({
+      from: `${data.name} <${process.env.RESEND_DOMAIN ? `noreply@${process.env.RESEND_DOMAIN}` : "onboarding@resend.dev"}>`,
+      sender: `nodemailer <${process.env.RESEND_DOMAIN ? `noreply@${process.env.RESEND_DOMAIN}` : "onboarding@resend.dev"}>`,
+      replyTo: `${data.name} <${data.email}>`,
+      to: `<${config.authorEmail}>`,
+      subject: `[${config.siteDomain}] Contact Form Submission`,
+      // TODO: add markdown parsing as promised on the form.
+      text: `${data.message}`,
+    });
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+
+  return true;
+};
+
+export default handler;
