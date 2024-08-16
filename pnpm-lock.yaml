@@ -15,8 +15,8 @@ importers:
         specifier: ^0.6.2
         version: 0.6.2
       '@novnc/novnc':
-        specifier: 1.4.0
-        version: 1.4.0
+        specifier: 1.5.0
+        version: 1.5.0
       '@octokit/graphql':
         specifier: ^8.1.1
         version: 8.1.1
@@ -191,8 +191,8 @@ importers:
         specifier: ^6.4.15
         version: 6.4.15
       '@types/novnc__novnc':
-        specifier: 1.3.4
-        version: 1.3.4
+        specifier: 1.5.0
+        version: 1.5.0
       '@types/prop-types':
         specifier: ^15.7.12
         version: 15.7.12
@@ -572,8 +572,8 @@ packages:
     resolution: {integrity: sha512-oGB+UxlgWcgQkgwo8GcEGwemoTFt3FIO9ababBmaGwXIoBKZ+GTy0pP185beGg7Llih/NSHSV2XAs1lnznocSg==}
     engines: {node: '>= 8'}
 
-  '@novnc/novnc@1.4.0':
-    resolution: {integrity: sha512-kW6ALMc5BuH08e/ond/I1naYcfjc19JYMN1EdtmgjjjzPGCjW8fMtVM3MwM6q7YLRjPlQ3orEvoKMgSS7RkEVQ==}
+  '@novnc/novnc@1.5.0':
+    resolution: {integrity: sha512-4yGHOtUCnEJUCsgEt/L78eeJu00kthurLBWXFiaXfonNx0pzbs6R/3gJb1byZe6iAE8V9MF0syQb0xIL8MSOtQ==}
 
   '@npmcli/config@8.2.0':
     resolution: {integrity: sha512-YoEYZFg0hRSRP/Chmq+J4FvULFvji6SORUYWQc10FiJ+ReAnViXcDCENg6kM6dID04bAoKNUygrby798+gYBbQ==}
@@ -762,8 +762,8 @@ packages:
   '@types/nodemailer@6.4.15':
     resolution: {integrity: sha512-0EBJxawVNjPkng1zm2vopRctuWVCxk34JcIlRuXSf54habUWdz1FB7wHDqOqvDa8Mtpt0Q3LTXQkAs2LNyK5jQ==}
 
-  '@types/novnc__novnc@1.3.4':
-    resolution: {integrity: sha512-JseVFIc9bm6IV2TkHi/oL4tr3anYeOw2BXX44HgqdRnRCaimz/nfZDWCyylK/OsJIfLzcchLLf2pxevYMNXFbQ==}
+  '@types/novnc__novnc@1.5.0':
+    resolution: {integrity: sha512-9DrDJK1hUT6Cbp4t03IsU/DsR6ndnIrDgZVrzITvspldHQ7n81F3wUDfq89zmPM3wg4GErH11IQa0QuTgLMf+w==}
 
   '@types/prismjs@1.26.3':
     resolution: {integrity: sha512-A0D0aTXvjlqJ5ZILMz3rNfDBOx9hHxLZYv2by47Sm/pqW35zzjusrZTryatjN/Rf8Us2gZrJD+KeHbUSTux1Cw==}
@@ -2052,6 +2052,7 @@ packages:
 
   libsql@0.3.11:
     resolution: {integrity: sha512-lgXUHvZcy+4foNrjCBB85jBjB4djGRDZLha+lXGxcvMg4oFFUbx2s8k5bzxIIPAhCrRuCarunGc0qvd27Vi7UA==}
+    cpu: [x64, arm64, wasm32]
     os: [darwin, linux, win32]
 
   lilconfig@3.1.2:
@@ -3583,7 +3584,7 @@ snapshots:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.17.1
 
-  '@novnc/novnc@1.4.0': {}
+  '@novnc/novnc@1.5.0': {}
 
   '@npmcli/config@8.2.0':
     dependencies:
@@ -3800,7 +3801,7 @@ snapshots:
     dependencies:
       '@types/node': 22.1.0
 
-  '@types/novnc__novnc@1.3.4': {}
+  '@types/novnc__novnc@1.5.0': {}
 
   '@types/prismjs@1.26.3': {}
 
