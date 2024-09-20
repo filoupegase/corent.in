@@ -4,6 +4,7 @@ import { styled, theme, stitchesConfig } from "../../../lib/styles/stitches.conf
 import type { ComponentPropsWithoutRef } from "react";
 
 const StyledLink = styled(NextLink, {
+  display: "inline",
   color: theme.colors.link,
   textDecoration: "none",
 
