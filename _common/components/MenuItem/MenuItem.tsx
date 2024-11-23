@@ -40,7 +40,7 @@ const Label = styled("span", {
   fontSize: "0.925em",
   fontWeight: 500,
   marginLeft: "0.7em",
-  letterSpacing: "0.02em",
+  letterSpacing: "0.025em",
 
   "@medium": {
     display: "none",
