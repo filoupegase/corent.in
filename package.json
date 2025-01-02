@@ -117,9 +117,9 @@
       "eslint"
     ]
   },
-  "packageManager": "pnpm@9.14.2",
+  "packageManager": "pnpm@9.15.2",
   "volta": {
     "node": "20.18.1",
-    "pnpm": "9.14.2"
+    "pnpm": "9.15.2"
   }
 }
