@@ -24,11 +24,11 @@ importers:
         specifier: ^15.25.0
         version: 15.25.0
       '@prisma/adapter-libsql':
-        specifier: ^5.22.0
-        version: 5.22.0(@libsql/client@0.8.1)
+        specifier: ^6.1.0
+        version: 6.1.0(@libsql/client@0.8.1)
       '@prisma/client':
-        specifier: ^5.22.0
-        version: 5.22.0(prisma@5.22.0)
+        specifier: ^6.1.0
+        version: 6.1.0(prisma@6.1.0)
       '@react-spring/web':
         specifier: ^9.7.5
         version: 9.7.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -233,8 +233,8 @@ importers:
         specifier: ^3.3.3
         version: 3.3.3
       prisma:
-        specifier: ^5.22.0
-        version: 5.22.0
+        specifier: ^6.1.0
+        version: 6.1.0
       simple-git-hooks:
         specifier: ^2.11.1
         version: 2.11.1
@@ -607,37 +607,37 @@ packages:
     resolution: {integrity: sha512-cq8o4cWH0ibXh9VGi5P20Tu9XF/0fFXl9EUinr9QfTM7a7p0oTA4iJRCQWppXR1Pg8dSM0UCItCkPwsk9qWWYA==}
     engines: {node: ^12.20.0 || ^14.18.0 || >=16.0.0}
 
-  '@prisma/adapter-libsql@5.22.0':
-    resolution: {integrity: sha512-6Lox7JqNfMdnpb6CblZ/DcuU5OmP2lRBGIPkdnMq0wGqC7fq7DQURZGpDSAZL/mI9sbR/aUKyeo31FLqg97dsw==}
+  '@prisma/adapter-libsql@6.1.0':
+    resolution: {integrity: sha512-F6UVdAvG1ojSyr3mL+DYgSt8iAwYROBKM2SDWRrlAJs4V323Dn7IpLnJSNLXk+lh1VyDNjoajijFknAOJHl0kA==}
     peerDependencies:
       '@libsql/client': ^0.3.5 || ^0.4.0 || ^0.5.0 || ^0.6.0 || ^0.7.0 || ^0.8.0
 
-  '@prisma/client@5.22.0':
-    resolution: {integrity: sha512-M0SVXfyHnQREBKxCgyo7sffrKttwE6R8PMq330MIUF0pTwjUhLbW84pFDlf06B27XyCR++VtjugEnIHdr07SVA==}
-    engines: {node: '>=16.13'}
+  '@prisma/client@6.1.0':
+    resolution: {integrity: sha512-AbQYc5+EJKm1Ydfq3KxwcGiy7wIbm4/QbjCKWWoNROtvy7d6a3gmAGkKjK0iUCzh+rHV8xDhD5Cge8ke/kiy5Q==}
+    engines: {node: '>=18.18'}
     peerDependencies:
       prisma: '*'
     peerDependenciesMeta:
       prisma:
         optional: true
 
-  '@prisma/debug@5.22.0':
-    resolution: {integrity: sha512-AUt44v3YJeggO2ZU5BkXI7M4hu9BF2zzH2iF2V5pyXT/lRTyWiElZ7It+bRH1EshoMRxHgpYg4VB6rCM+mG5jQ==}
+  '@prisma/debug@6.1.0':
+    resolution: {integrity: sha512-0himsvcM4DGBTtvXkd2Tggv6sl2JyUYLzEGXXleFY+7Kp6rZeSS3hiTW9mwtUlXrwYbJP6pwlVNB7jYElrjWUg==}
 
-  '@prisma/driver-adapter-utils@5.22.0':
-    resolution: {integrity: sha512-Y8msGZl9unmVflXoqdxTejv99UD02Gp4VoIvkyw+YxNUIj7nRz35O7yf5D87qNmTiPMGCS1WjUucG9ZuNq8+tw==}
+  '@prisma/driver-adapter-utils@6.1.0':
+    resolution: {integrity: sha512-+4MefY+kjWDRRbC986A9X+JM4Dqc/8jqBbbiqmOwtFAD2Ttf87WeBSO2Ef6/rUqqhGQE8YHl86yCik8CF+QlEQ==}
 
-  '@prisma/engines-version@5.22.0-44.605197351a3c8bdd595af2d2a9bc3025bca48ea2':
-    resolution: {integrity: sha512-2PTmxFR2yHW/eB3uqWtcgRcgAbG1rwG9ZriSvQw+nnb7c4uCr3RAcGMb6/zfE88SKlC1Nj2ziUvc96Z379mHgQ==}
+  '@prisma/engines-version@6.1.0-21.11f085a2012c0f4778414c8db2651556ee0ef959':
+    resolution: {integrity: sha512-PdJqmYM2Fd8K0weOOtQThWylwjsDlTig+8Pcg47/jszMuLL9iLIaygC3cjWJLda69siRW4STlCTMSgOjZzvKPQ==}
 
-  '@prisma/engines@5.22.0':
-    resolution: {integrity: sha512-UNjfslWhAt06kVL3CjkuYpHAWSO6L4kDCVPegV6itt7nD1kSJavd3vhgAEhjglLJJKEdJ7oIqDJ+yHk6qO8gPA==}
+  '@prisma/engines@6.1.0':
+    resolution: {integrity: sha512-GnYJbCiep3Vyr1P/415ReYrgJUjP79fBNc1wCo7NP6Eia0CzL2Ot9vK7Infczv3oK7JLrCcawOSAxFxNFsAERQ==}
 
-  '@prisma/fetch-engine@5.22.0':
-    resolution: {integrity: sha512-bkrD/Mc2fSvkQBV5EpoFcZ87AvOgDxbG99488a5cexp5Ccny+UM6MAe/UFkUC0wLYD9+9befNOqGiIJhhq+HbA==}
+  '@prisma/fetch-engine@6.1.0':
+    resolution: {integrity: sha512-asdFi7TvPlEZ8CzSZ/+Du5wZ27q6OJbRSXh+S8ISZguu+S9KtS/gP7NeXceZyb1Jv1SM1S5YfiCv+STDsG6rrg==}
 
-  '@prisma/get-platform@5.22.0':
-    resolution: {integrity: sha512-pHhpQdr1UPFpt+zFfnPazhulaZYCUqeIcPpJViYoq9R+D/yw4fjE+CtnsnKzPYm0ddUbeXUzjGVGIRVgPDCk4Q==}
+  '@prisma/get-platform@6.1.0':
+    resolution: {integrity: sha512-ia8bNjboBoHkmKGGaWtqtlgQOhCi7+f85aOkPJKgNwWvYrT6l78KgojLekE8zMhVk0R9lWcifV0Pf8l3/15V0Q==}
 
   '@react-spring/animated@9.7.5':
     resolution: {integrity: sha512-Tqrwz7pIlsSDITzxoLS3n/v/YCUHQdOIKtOJf4yL6kYVSDTSmVK1LI1Q3M/uu2Sx4X3pIWF3xLUhlsA6SPNTNg==}
@@ -2039,6 +2039,7 @@ packages:
 
   libsql@0.3.19:
     resolution: {integrity: sha512-Aj5cQ5uk/6fHdmeW0TiXK42FqUlwx7ytmMLPSaUQPin5HKKKuUPD62MAbN4OEweGBBI7q1BekoEN4gPUEL6MZA==}
+    cpu: [x64, arm64, wasm32]
     os: [darwin, linux, win32]
 
   lilconfig@3.1.2:
@@ -2543,9 +2544,9 @@ packages:
     engines: {node: '>=14'}
     hasBin: true
 
-  prisma@5.22.0:
-    resolution: {integrity: sha512-vtpjW3XuYCSnMsNVBjLMNkTj6OZbudcPPTPYHqX0CJfpcdWciI1dM8uHETwmDxxiqEwCIE6WvXucWUetJgfu/A==}
-    engines: {node: '>=16.13'}
+  prisma@6.1.0:
+    resolution: {integrity: sha512-aFI3Yi+ApUxkwCJJwyQSwpyzUX7YX3ihzuHNHOyv4GJg3X5tQsmRaJEnZ+ZyfHpMtnyahhmXVfbTZ+lS8ZtfKw==}
+    engines: {node: '>=18.18'}
     hasBin: true
 
   proc-log@3.0.0:
@@ -3043,6 +3044,9 @@ packages:
   tslib@2.6.2:
     resolution: {integrity: sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==}
 
+  tslib@2.8.1:
+    resolution: {integrity: sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==}
+
   type-check@0.4.0:
     resolution: {integrity: sha512-XleUoc9uwGXqjWwXaUTZAmzMcFZ5858QA2vvx1Ur5xIcixXIP+8LnFDgRplU30us6teqdlskFfu+ae4K79Ooew==}
     engines: {node: '>= 0.8.0'}
@@ -3316,7 +3320,7 @@ snapshots:
 
   '@emnapi/runtime@1.2.0':
     dependencies:
-      tslib: 2.6.2
+      tslib: 2.8.1
     optional: true
 
   '@eslint-community/eslint-utils@4.4.0(eslint@8.57.1)':
@@ -3654,40 +3658,40 @@ snapshots:
 
   '@pkgr/core@0.1.1': {}
 
-  '@prisma/adapter-libsql@5.22.0(@libsql/client@0.8.1)':
+  '@prisma/adapter-libsql@6.1.0(@libsql/client@0.8.1)':
     dependencies:
       '@libsql/client': 0.8.1
-      '@prisma/driver-adapter-utils': 5.22.0
+      '@prisma/driver-adapter-utils': 6.1.0
       async-mutex: 0.5.0
 
-  '@prisma/client@5.22.0(prisma@5.22.0)':
+  '@prisma/client@6.1.0(prisma@6.1.0)':
     optionalDependencies:
-      prisma: 5.22.0
+      prisma: 6.1.0
 
-  '@prisma/debug@5.22.0': {}
+  '@prisma/debug@6.1.0': {}
 
-  '@prisma/driver-adapter-utils@5.22.0':
+  '@prisma/driver-adapter-utils@6.1.0':
     dependencies:
-      '@prisma/debug': 5.22.0
+      '@prisma/debug': 6.1.0
 
-  '@prisma/engines-version@5.22.0-44.605197351a3c8bdd595af2d2a9bc3025bca48ea2': {}
+  '@prisma/engines-version@6.1.0-21.11f085a2012c0f4778414c8db2651556ee0ef959': {}
 
-  '@prisma/engines@5.22.0':
+  '@prisma/engines@6.1.0':
     dependencies:
-      '@prisma/debug': 5.22.0
-      '@prisma/engines-version': 5.22.0-44.605197351a3c8bdd595af2d2a9bc3025bca48ea2
-      '@prisma/fetch-engine': 5.22.0
-      '@prisma/get-platform': 5.22.0
+      '@prisma/debug': 6.1.0
+      '@prisma/engines-version': 6.1.0-21.11f085a2012c0f4778414c8db2651556ee0ef959
+      '@prisma/fetch-engine': 6.1.0
+      '@prisma/get-platform': 6.1.0
 
-  '@prisma/fetch-engine@5.22.0':
+  '@prisma/fetch-engine@6.1.0':
     dependencies:
-      '@prisma/debug': 5.22.0
-      '@prisma/engines-version': 5.22.0-44.605197351a3c8bdd595af2d2a9bc3025bca48ea2
-      '@prisma/get-platform': 5.22.0
+      '@prisma/debug': 6.1.0
+      '@prisma/engines-version': 6.1.0-21.11f085a2012c0f4778414c8db2651556ee0ef959
+      '@prisma/get-platform': 6.1.0
 
-  '@prisma/get-platform@5.22.0':
+  '@prisma/get-platform@6.1.0':
     dependencies:
-      '@prisma/debug': 5.22.0
+      '@prisma/debug': 6.1.0
 
   '@react-spring/animated@9.7.5(react@18.3.1)':
     dependencies:
@@ -4048,7 +4052,7 @@ snapshots:
 
   async-mutex@0.5.0:
     dependencies:
-      tslib: 2.6.2
+      tslib: 2.8.1
 
   available-typed-arrays@1.0.7:
     dependencies:
@@ -6197,9 +6201,9 @@ snapshots:
 
   prettier@3.3.3: {}
 
-  prisma@5.22.0:
+  prisma@6.1.0:
     dependencies:
-      '@prisma/engines': 5.22.0
+      '@prisma/engines': 6.1.0
     optionalDependencies:
       fsevents: 2.3.3
 
@@ -6818,6 +6822,8 @@ snapshots:
       strip-bom: 3.0.0
 
   tslib@2.6.2: {}
+
+  tslib@2.8.1: {}
 
   type-check@0.4.0:
     dependencies:
