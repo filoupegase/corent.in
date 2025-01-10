@@ -21,12 +21,12 @@
   },
   "dependencies": {
     "@giscus/react": "^3.0.0",
-    "@libsql/client": "^0.8.1",
+    "@libsql/client": "^0.14.0",
     "@novnc/novnc": "1.4.0",
     "@octokit/graphql": "^8.1.1",
     "@octokit/graphql-schema": "^15.25.0",
-    "@prisma/adapter-libsql": "^5.22.0",
-    "@prisma/client": "^5.22.0",
+    "@prisma/adapter-libsql": "^6.2.1",
+    "@prisma/client": "^6.2.1",
     "@react-spring/web": "^9.7.5",
     "@stitches/react": "1.3.1-1",
     "@vercel/analytics": "^1.4.1",
@@ -95,7 +95,7 @@
     "eslint-plugin-prettier": "~5.2.1",
     "lint-staged": "^15.2.10",
     "prettier": "^3.3.3",
-    "prisma": "^5.22.0",
+    "prisma": "^6.2.1",
     "simple-git-hooks": "^2.11.1",
     "typescript": "^5.6.3"
   },
@@ -117,9 +117,9 @@
       "eslint"
     ]
   },
-  "packageManager": "pnpm@9.15.2",
+  "packageManager": "pnpm@9.15.3",
   "volta": {
     "node": "20.18.1",
-    "pnpm": "9.15.2"
+    "pnpm": "9.15.3"
   }
 }

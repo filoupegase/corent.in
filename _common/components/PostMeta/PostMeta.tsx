@@ -89,7 +89,7 @@ const PostMeta = ({ slug, date, tags, title, htmlTitle }: NoteMetaProps) => {
         )}
         <MetaItem>
           <MetaLink
-            href={`https://github.com/${config.githubRepo}/corent.in/blob/develop/notes/${slug}.mdx`}
+            href={`https://github.com/${config.githubRepo}/blob/develop/notes/${slug}.mdx`}
             title={`Edit "${title}" on GitHub`}
             underline={false}
           >
@@ -98,6 +98,7 @@ const PostMeta = ({ slug, date, tags, title, htmlTitle }: NoteMetaProps) => {
           </MetaLink>
         </MetaItem>
 
+        {/* only count hits on production site */}
         {process.env.NEXT_PUBLIC_VERCEL_ENV === "production" && (
           <MetaItem
             css={{
