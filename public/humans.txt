@@ -28,12 +28,14 @@
 
 # TECHNOLOGY
 
-  - Next.js & React
+  - Next.js
   - Vercel
-  - Stitches
+  - Neon Postgres
   - Prisma
-  - Turso
   - Giscus
   - Resend
   - ...and more
+
+# LICENSE
+
 

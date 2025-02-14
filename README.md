@@ -6,16 +6,19 @@
 [![GitHub repo size](https://img.shields.io/github/repo-size/jakejarvis/jarv.is?color=009cdf&label=repo%20size&logo=git&logoColor=white)](https://github.com/filoupegase/coco.io)
 
 My humble abode on the World Wide Web, created and deployed
-using [Next.js](https://nextjs.org/), [Stitches](https://stitches.dev/), [Prisma](https://www.prisma.io/), [Vercel](https://vercel.com/), [Turso](https://turso.tech/), [and more](https://jarv.is/humans.txt).
+using [Next.js](https://nextjs.org/), [Vercel](https://vercel.com/), [Neon Postgres](https://neon.tech/), [Prisma](https://www.prisma.io/postgres), [and more](https://corent-in.vercel.app/humans.txt).
 
 ## 🕹️ Getting Started
 
 Run `pnpm install` to install the necessary dependencies and `pnpm dev` to start the local server, and then
 open [http://localhost:3000/](http://localhost:3000/). Pages will live-refresh when source files are changed.
 
-Most production steps are handled [automatically by Vercel](https://vercel.com/docs/frameworks/nextjs), but
-running `pnpm build` locally will still generate an unoptimized, less-than-ideal static version which can be served
-via `pnpm start`.
+Most production steps are handled [automatically by Vercel](https://vercel.com/docs/frameworks/nextjs), but running
+`pnpm build` locally will still generate an unoptimized, less-than-ideal static version which can be served via
+`pnpm start`.
+
+**☝️ Note:** [pnpm](https://pnpm.io/installation#using-corepack) is highly recommended (
+for [many reasons!](https://pnpm.io/benchmarks)) but this project should also work just fine with NPM or Yarn.
 
 **⚡ Bonus tip:** [Volta](https://volta.sh/), a magical, blazing-fast alternative
 to [nvm](https://github.com/nvm-sh/nvm), is used to pin the exact Node.js version used for development. It's completely
