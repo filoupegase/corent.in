@@ -1,0 +1,35 @@
+{
+  "name": "Node.js",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:22-bookworm",
+  "postCreateCommand": "bash -i -c 'rm -rf node_modules && nvm install $(cat .node-version) -y && nvm use $(cat .node-version) && npm install -g corepack@latest && corepack enable && CI=true pnpm install'",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "typescript.tsdk": "node_modules/typescript/lib",
+        "telemetry.enableTelemetry": false
+      },
+      "extensions": [
+        "EditorConfig.EditorConfig",
+        "dbaeumer.vscode-eslint",
+        "prisma.prisma",
+        "unifiedjs.vscode-mdx",
+        "wix.vscode-import-cost"
+      ]
+    }
+  },
+  "forwardPorts": [
+    3000
+  ],
+  "portsAttributes": {
+    "3000": {
+      "label": "next dev",
+      "onAutoForward": "notify"
+    }
+  },
+  "otherPortsAttributes": {
+    "onAutoForward": "silent"
+  },
+  "containerEnv": {
+    "NEXT_TELEMETRY_DISABLED": "1"
+  }
+}
