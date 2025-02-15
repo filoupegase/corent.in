@@ -24,7 +24,7 @@ export default function Page() {
       <PageTitle>📬 Contact Me</PageTitle>
 
       <Content
-        css={{
+        style={{
           maxWidth: "600px",
           margin: "0 auto",
         }}

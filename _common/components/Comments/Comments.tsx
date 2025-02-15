@@ -1,31 +1,29 @@
+"use client";
+
 import Giscus from "@giscus/react";
+import clsx from "clsx";
 import useTheme from "../../hooks/useTheme";
-import { styled, theme } from "../../../lib/styles/stitches.config";
 import config from "../../../lib/config";
 import type { ComponentPropsWithoutRef } from "react";
 import type { GiscusProps } from "@giscus/react";
 
-const Wrapper = styled("div", {
-  marginTop: "2em",
-  paddingTop: "2em",
-  borderTop: `2px solid ${theme.colors.light}`,
-  minHeight: "360px",
-});
+import styles from "./Comments.module.css";
 
-export type CommentsProps = ComponentPropsWithoutRef<typeof Wrapper> & {
+export type CommentsProps = ComponentPropsWithoutRef<"div"> & {
   title: string;
 };
 
-const Comments = ({ title, ...rest }: CommentsProps) => {
+const Comments = ({ title, className, ...rest }: CommentsProps) => {
   const { activeTheme } = useTheme();
 
+  // fail silently if giscus isn't configured
   if (!config.giscusConfig) {
     console.warn("Giscus isn't configured in lib/config/index.js.");
     return null;
   }
 
   return (
-    <Wrapper {...rest}>
+    <div className={clsx(styles.comments, className)} {...rest}>
       <Giscus
         repo={config.githubRepo as GiscusProps["repo"]}
         repoId={config.giscusConfig.repoId}
@@ -36,10 +34,10 @@ const Comments = ({ title, ...rest }: CommentsProps) => {
         reactionsEnabled="1"
         emitMetadata="0"
         inputPosition="top"
-        loading="eager"
+        loading="lazy" // carreful here
         theme={activeTheme === "dark" ? activeTheme : "light"}
       />
-    </Wrapper>
+    </div>
   );
 };
 
