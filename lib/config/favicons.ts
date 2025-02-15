@@ -1,7 +1,7 @@
 // here we simply import some common image files and re-export them as StaticImageData.
 
 // favicons
-export { default as faviconIco } from "../../public/static/favicons/favicon.ico";
+export { default as faviconIco } from "../../app/favicon.ico";
 export { default as faviconPng } from "../../public/static/favicons/favicon.png";
 export { default as appleTouchIconPng } from "../../public/static/favicons/apple-touch-icon.png";
 export { default as chrome512Png } from "../../public/static/favicons/android-chrome-512x512.png";
