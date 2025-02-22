@@ -13,7 +13,7 @@ import type { User, Repository } from "@octokit/graphql-schema";
 
 import styles from "./page.module.css";
 
-export const revalidate = 600; // 10 minutes
+export const revalidate = 600;
 
 export const metadata: Metadata = {
   title: "Projects",

@@ -25,21 +25,32 @@ You may have noticed the recent trend of techies [posting their "dotfiles" on Gi
 
 ---
 
-Make a new directory and change directories into it.
-
-```bash
-function mkcd() {
-    if mkdir -p -- "$1"; then
-      cd -- "$1" || return
-    fi
-}
-
-```
-
 Check your current local IP address:
 
 ```bash
 alias iplocal="ipconfig getifaddr en0"
+```
+
+Make a new directory and change directories into it.
+
+```bash
+mkcd() {
+  mkdir -p "$1" && cd "$1"
+}
+```
+
+Quickly open a Bash prompt in a running Docker container:
+
+```bash
+docker-bash() {
+    docker exec -ti $1 /bin/bash
+}
+```
+
+Pull updates for all Docker images with the tag "latest":
+
+```bash
+alias docker-latest="docker images --format '{{.Repository}}:{{.Tag}}' | grep :latest | xargs -L1 docker pull"
 ```
 
 This odd hack is needed to run any of these aliases as sudo:

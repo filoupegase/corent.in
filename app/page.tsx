@@ -126,7 +126,7 @@ export default function Page() {
       <p>
         I fell in love with{" "}
         <ColorfulLink
-          href="/previously"
+          href="/"
           title="My Terrible, Horrible, No Good, Very Bad First Websites"
           lightColor="#4169e1"
           darkColor="#8ca9ff"
@@ -144,7 +144,7 @@ export default function Page() {
         </ColorfulLink>{" "}
         when my only source of income was{" "}
         <ColorfulLink
-          href="/birthday"
+          href="/"
           title="🎉 Cranky Birthday Boy"
           lightColor="#e40088"
           darkColor="#fd40b1"

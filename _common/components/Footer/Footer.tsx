@@ -15,11 +15,11 @@ const Footer = ({ className, ...rest }: FooterProps) => {
       <div className={styles.row}>
         <div>
           Content{" "}
-          <Link href="/license" title={config.license} underline={false} className={styles.link}>
+          <Link href="/" title={config.license} underline={false} className={styles.link}>
             licensed under {config.licenseAbbr}
           </Link>
           ,{" "}
-          <Link href="/previously" title="Previously on..." underline={false} className={styles.link}>
+          <Link href="/" title="Previously on..." underline={false} className={styles.link}>
             {config.copyrightYearStart}
           </Link>{" "}
           – {new Date(process.env.RELEASE_DATE || Date.now()).getUTCFullYear()}.
