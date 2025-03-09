@@ -1,10 +1,14 @@
-// @ts-check
-
-const config = {
+const constants = {
   // Site info
   siteName: "Corentin",
   siteDomain: "corent-in.vercel.app",
   siteLocale: "fr",
+  baseUrl:
+    process.env.NEXT_PUBLIC_VERCEL_ENV === "production" && process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL
+      ? `https://${process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL}`
+      : process.env.NEXT_PUBLIC_VERCEL_ENV === "preview" && process.env.NEXT_PUBLIC_VERCEL_URL
+        ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
+        : `http://localhost:${process.env.PORT || 3000}`,
   timeZone: "Europe/Paris", // https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List
   onionDomain: "",
   shortDescription: "Front-End Web Developer in Paris",
@@ -36,4 +40,4 @@ const config = {
   },
 };
 
-export default config;
+export default constants;
