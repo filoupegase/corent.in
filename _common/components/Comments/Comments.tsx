@@ -1,43 +1,37 @@
 "use client";
 
 import Giscus from "@giscus/react";
-import clsx from "clsx";
-import useTheme from "../../hooks/useTheme";
-import config from "../../../lib/config";
-import type { ComponentPropsWithoutRef } from "react";
+import config from "../../../lib/config/constants";
 import type { GiscusProps } from "@giscus/react";
 
-import styles from "./Comments.module.css";
-
-export type CommentsProps = ComponentPropsWithoutRef<"div"> & {
+export type CommentsProps = {
   title: string;
 };
 
-const Comments = ({ title, className, ...rest }: CommentsProps) => {
-  const { activeTheme } = useTheme();
-
+const Comments = ({ title }: CommentsProps) => {
   // fail silently if giscus isn't configured
-  if (!config.giscusConfig) {
-    console.warn("Giscus isn't configured in lib/config/index.js.");
+  if (!process.env.NEXT_PUBLIC_GISCUS_REPO_ID || !process.env.NEXT_PUBLIC_GISCUS_CATEGORY_ID) {
+    console.warn(
+      "[giscus] not configured, ensure 'NEXT_PUBLIC_GISCUS_REPO_ID' and 'NEXT_PUBLIC_GISCUS_CATEGORY_ID' environment variables are set."
+    );
+
     return null;
   }
 
   return (
-    <div className={clsx(styles.comments, className)} {...rest}>
-      <Giscus
-        repo={config.githubRepo as GiscusProps["repo"]}
-        repoId={config.giscusConfig.repoId}
-        term={title}
-        category="Comments"
-        categoryId={config.giscusConfig.categoryId}
-        mapping="specific"
-        reactionsEnabled="1"
-        emitMetadata="0"
-        inputPosition="top"
-        loading="lazy" // carreful here
-        theme={activeTheme === "dark" ? activeTheme : "light"}
-      />
-    </div>
+    <Giscus
+      repo={config.githubRepo as GiscusProps["repo"]}
+      repoId={process.env.NEXT_PUBLIC_GISCUS_REPO_ID}
+      term={title}
+      category="Comments"
+      categoryId={process.env.NEXT_PUBLIC_GISCUS_CATEGORY_ID}
+      mapping="specific"
+      reactionsEnabled="1"
+      emitMetadata="0"
+      inputPosition="top"
+      theme="preferred_color_scheme"
+      loading="lazy"
+    />
   );
 };
 

@@ -18,11 +18,6 @@ const constants = {
   licenseUrl: "https://creativecommons.org/licenses/by/4.0/",
   copyrightYearStart: 2001,
   githubRepo: "filoupegase/corent.in",
-  giscusConfig: {
-    // https://github.com/giscus/giscus-component/tree/main
-    repoId: "R_kgDOKJ_VIg",
-    categoryId: "DIC_kwDOKJ_VIs4Cen2l",
-  },
 
   // Me info
   authorName: "Corentin",

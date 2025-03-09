@@ -1,16 +1,10 @@
-import clsx from "clsx";
-import IFrame from "../IFrame";
-
-import styles from "./CodePen.module.css";
-
-export type CodePenEmbedProps = {
+export type CodePenProps = {
   username: string;
   id: string;
   height?: number;
   defaultTab?: string;
   preview?: boolean;
   editable?: boolean;
-  className?: string;
 };
 
 const CodePen = ({
@@ -20,21 +14,18 @@ const CodePen = ({
   defaultTab = "html",
   preview = true,
   editable = false,
-  className,
-}: CodePenEmbedProps) => {
+}: CodePenProps) => {
   return (
-    <div className={clsx(styles.wrapper, className)} style={{ height }}>
-      <IFrame
-        src={`https://codepen.io/${username}/embed/${id}/?${new URLSearchParams({
-          "default-tab": `${defaultTab},result`,
-          preview: `${!!preview}`,
-          editable: `${!!editable}`,
-        })}`}
-        height={height}
-        allowScripts
-        noScroll
-      />
-    </div>
+    <iframe
+      src={`https://codepen.io/${username}/embed/${id}/?${new URLSearchParams({
+        "default-tab": `${defaultTab},result`,
+        preview: `${!!preview}`,
+        editable: `${!!editable}`,
+      })}`}
+      scrolling="no"
+      sandbox="allow-same-origin allow-scripts allow-popups allow-top-navigation-by-user-activation"
+      style={{ height: `${height}px`, width: "100%", border: "0" }}
+    />
   );
 };
 
