@@ -1,19 +1,21 @@
 import clsx from "clsx";
 import Link from "../Link";
-import type { IconType } from "react-icons";
 import type { Route } from "next";
+import type { IconType } from "react-icons";
+import type { ComponentPropsWithoutRef } from "react";
 
 import styles from "./MenuItem.module.css";
 
-export type MenuItemProps = {
-  Icon?: IconType;
+export type MenuItemProps = Omit<ComponentPropsWithoutRef<typeof Link>, "href"> & {
   text?: string;
   href?: Route;
+  icon?: IconType;
   current?: boolean;
-  className?: string;
 };
 
-const MenuItem = ({ Icon, text, href, current, className }: MenuItemProps) => {
+const MenuItem = ({ text, href, icon, current, className, ...rest }: MenuItemProps) => {
+  const Icon = icon;
+
   const item = (
     <>
       {Icon && <Icon className={styles.icon} />}
@@ -28,8 +30,9 @@ const MenuItem = ({ Icon, text, href, current, className }: MenuItemProps) => {
         href={href}
         className={clsx(styles.link, current && styles.current, className)}
         title={text}
-        underline={false}
+        plain
         aria-label={text}
+        {...rest}
       >
         {item}
       </Link>

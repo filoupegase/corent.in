@@ -1,28 +1,26 @@
 import { Feed } from "feed";
 import { getAllPosts } from "./posts";
-import config from "../config";
-import { meJpeg } from "../config/favicons";
-import { metadata } from "../../app/layout";
+import config from "../config/constants";
 
-export const buildFeed = async (options: { type: "rss" | "atom" | "json" }): Promise<string> => {
-  const baseUrl = metadata.metadataBase?.href || `https://${config.siteDomain}/`;
+import meJpeg from "../../app/me.jpeg";
 
+export const buildFeed = async (): Promise<Feed> => {
   // https://github.com/jpmonette/feed#example
   const feed = new Feed({
-    id: baseUrl,
-    link: baseUrl,
+    id: config.baseUrl,
+    link: config.baseUrl,
     title: config.siteName,
     description: config.longDescription,
     copyright: config.licenseUrl,
     updated: new Date(process.env.RELEASE_DATE || Date.now()),
-    image: new URL(meJpeg.src, baseUrl).href,
+    image: `${config.baseUrl}${meJpeg.src}`,
     feedLinks: {
-      rss: new URL("feed.xml", baseUrl).href,
-      atom: new URL("feed.atom", baseUrl).href,
+      rss: `${config.baseUrl}/feed.xml`,
+      atom: `${config.baseUrl}/feed.atom`,
     },
     author: {
       name: config.authorName,
-      link: baseUrl,
+      link: config.baseUrl,
       email: config.authorEmail,
     },
   });
@@ -38,22 +36,12 @@ export const buildFeed = async (options: { type: "rss" | "atom" | "json" }): Pro
       author: [
         {
           name: config.authorName,
-          link: baseUrl,
+          link: config.baseUrl,
         },
       ],
       date: new Date(post.date),
     });
   });
 
-  if (options.type === "rss") {
-    return feed.rss2();
-  } else if (options.type === "atom") {
-    return feed.atom1();
-  } else if (options.type === "json") {
-    // rare but including as an option because why not...
-    // https://www.jsonfeed.org/
-    return feed.json1();
-  } else {
-    throw new TypeError(`Invalid feed type "${options.type}", must be "rss", "atom", or "json".`);
-  }
+  return feed;
 };
