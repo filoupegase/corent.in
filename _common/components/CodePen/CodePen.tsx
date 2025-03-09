@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import IFrame from "../IFrame";
 
-import styles from "./CodePenEmbed.module.css";
+import styles from "./CodePen.module.css";
 
 export type CodePenEmbedProps = {
   username: string;
@@ -13,7 +13,7 @@ export type CodePenEmbedProps = {
   className?: string;
 };
 
-const CodePenEmbed = ({
+const CodePen = ({
   username,
   id,
   height = 500,
@@ -38,4 +38,4 @@ const CodePenEmbed = ({
   );
 };
 
-export default CodePenEmbed;
+export default CodePen;

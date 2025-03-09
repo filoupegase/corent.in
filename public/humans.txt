@@ -36,6 +36,13 @@
   - Resend
   - ...and more
 
+# VIEW SOURCE
+
+    https://github.com/filoupegase/corent.in
+
 # LICENSE
+
+    All content is licensed under CC-BY-4.0, an
+    open & permissive Creative Commons license:
 
 

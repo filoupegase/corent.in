@@ -10,6 +10,8 @@ using [Next.js](https://nextjs.org/), [Vercel](https://vercel.com/), [Neon Postg
 
 ## 🕹️ Getting Started
 
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new/filoupegase/corent.in)
+
 Run `pnpm install` to install the necessary dependencies and `pnpm dev` to start the local server, and then
 open [http://localhost:3000/](http://localhost:3000/). Pages will live-refresh when source files are changed.
 

@@ -12,4 +12,4 @@ export { H1 as h1, H2 as h2, H3 as h3, H4 as h4, H5 as h5, H6 as h6 } from "../.
 // when they're referenced in the individual mdx files.
 export const IFrame = dynamic(() => import("../../_common/components/IFrame"));
 export const Video = dynamic(() => import("../../_common/components/Video"));
-export const CodePen = dynamic(() => import("../../_common/components/CodePenEmbed"));
+export const CodePen = dynamic(() => import("../../_common/components/CodePen/CodePen"));

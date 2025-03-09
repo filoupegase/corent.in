@@ -1,20 +1,25 @@
+/* eslint-disable import/no-anonymous-default-export */
+
 import { FlatCompat } from "@eslint/eslintrc";
 import js from "@eslint/js";
-import prettierRecommended from "eslint-plugin-prettier/recommended";
-import customConfig from "@jakejarvis/eslint-config";
-import * as mdx from "eslint-plugin-mdx";
+import * as eslintPluginMdx from "eslint-plugin-mdx";
+import eslintPluginPrettierRecommended from "eslint-plugin-prettier/recommended";
+import eslintCustomConfig from "@jakejarvis/eslint-config";
 
+/** @type {import("@eslint/eslintrc").FlatCompat} */
 const compat = new FlatCompat({
   baseDirectory: import.meta.dirname,
+  recommendedConfig: js.configs.recommended,
 });
 
-// eslint-disable-next-line import/no-anonymous-default-export
+/** @type {import("eslint").Linter.Config[]} */
 export default [
   { ignores: ["README.md", ".next", ".vercel", "node_modules"] },
-  js.configs.recommended,
-  ...compat.extends("next/core-web-vitals", "next/typescript"),
-  prettierRecommended,
-  ...customConfig,
+  ...compat.config({
+    extends: ["eslint:recommended", "next/core-web-vitals", "next/typescript"],
+  }),
+  ...eslintCustomConfig,
+  eslintPluginPrettierRecommended,
   {
     rules: {
       "prettier/prettier": [
@@ -49,18 +54,15 @@ export default [
     },
   },
   {
-    ...mdx.flat,
-    processor: mdx.createRemarkProcessor({
+    ...eslintPluginMdx.flat,
+    processor: eslintPluginMdx.createRemarkProcessor({
       lintCodeBlocks: false,
     }),
     rules: {
       "mdx/remark": "warn",
       "mdx/code-blocks": "off",
       "react/jsx-no-undef": "off",
-      "react/jsx-boolean-value": "off",
       "react/no-unescaped-entities": "off",
-      "max-len": "off",
-      semi: "off",
     },
   },
 ];
