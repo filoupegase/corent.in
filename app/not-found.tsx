@@ -4,16 +4,18 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "404 Not Found",
+  description: null,
+  openGraph: {},
+  alternates: {
+    canonical: null,
+  },
 };
 
-const FourOhFour = () => {
+export default async function Page() {
   return (
     <div style={{ textAlign: "center" }}>
       <Video
-        src={{
-          webm: "/static/images/angry-panda.webm",
-          mp4: "/static/images/angry-panda.mp4",
-        }}
+        src={["/static/not-found/angry-panda.webm", "/static/not-found/angry-panda.mp4"]}
         autoplay
         responsive={false}
         style={{
@@ -26,6 +28,4 @@ const FourOhFour = () => {
       <Link href="/">Go home?</Link>
     </div>
   );
-};
-
-export default FourOhFour;
+}

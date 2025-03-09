@@ -1,8 +1,10 @@
 import clsx from "clsx";
-import { Analytics } from "@vercel/analytics/react";
+import { Analytics } from "@vercel/analytics/next";
 import { ThemeProvider } from "../contexts/ThemeContext";
-import Layout from "../_common/components/Layout";
-import config from "../lib/config";
+import Header from "../_common/components/Header";
+import Footer from "../_common/components/Footer";
+import { SkipToContentLink, SkipToContentTarget } from "../_common/components/SkipToContent";
+import config from "../lib/config/constants";
 import type { Metadata } from "next";
 import type { Person, WithContext } from "schema-dts";
 
@@ -11,11 +13,12 @@ import "modern-normalize/modern-normalize.css"; // https://github.com/sindresorh
 import "./themes.css";
 import "./global.css";
 
-import { meJpeg } from "../lib/config/favicons";
-import { PropsWithChildren } from "react";
+import styles from "./layout.module.css";
+
+import meJpeg from "./me.jpeg";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || `https://${config.siteDomain}`),
+  metadataBase: new URL(config.baseUrl),
   title: {
     template: `%s – ${config.siteName}`,
     default: `${config.siteName} – ${config.shortDescription}`,
@@ -24,7 +27,7 @@ export const metadata: Metadata = {
   openGraph: {
     siteName: config.siteName,
     title: {
-      template: `%s – ${config.siteName}`,
+      template: "%s",
       default: `${config.siteName} – ${config.shortDescription}`,
     },
     url: "/",
@@ -38,11 +41,21 @@ export const metadata: Metadata = {
     ],
   },
   alternates: {
-    types: {
-      "application/rss+xml": "/feed.xml",
-      "application/atom+xml": "/feed.atom",
-    },
     canonical: "/",
+    types: {
+      "application/rss+xml": [
+        {
+          title: `${config.siteName} (RSS)`,
+          url: "/feed.xml",
+        },
+      ],
+      "application/atom+xml": [
+        {
+          title: `${config.siteName} (Atom)`,
+          url: "/feed.atom",
+        },
+      ],
+    },
   },
   other: {
     humans: "/humans.txt",
@@ -54,10 +67,10 @@ const jsonLd: WithContext<Person> = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: config.authorName,
-  url: metadata.metadataBase?.href || `https://${config.siteDomain}/`,
-  image: new URL(meJpeg.src, metadata.metadataBase || `https://${config.siteDomain}`).href,
+  url: config.baseUrl,
+  image: `${config.baseUrl}${meJpeg.src}`,
   sameAs: [
-    metadata.metadataBase?.href || `https://${config.siteDomain}/`,
+    config.baseUrl,
     `https://github.com/${config.authorSocial?.github}`,
     `https://keybase.io/${config.authorSocial?.keybase}`,
     `https://twitter.com/${config.authorSocial?.twitter}`,
@@ -70,23 +83,27 @@ const jsonLd: WithContext<Person> = {
   ],
 };
 
-export default function RootLayout({ children }: PropsWithChildren<object>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang={config.siteLocale} suppressHydrationWarning>
       <head>
-        <script
-          // unminified: https://gist.github.com/jakejarvis/79b0ec8506bc843023546d0d29861bf0
-          dangerouslySetInnerHTML={{
-            __html: `(()=>{try{const e=document.documentElement,t="undefined"!=typeof Storage?window.localStorage.getItem("theme"):null,a=(t&&"dark"===t)??window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";e.dataset.theme=a,e.style.colorScheme=a}catch(e){}})()`,
-          }}
-        />
-
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       </head>
 
       <body className={clsx(GeistMono.variable, GeistSans.variable)}>
         <ThemeProvider>
-          <Layout>{children}</Layout>
+          <SkipToContentLink />
+
+          <div className={styles.flex}>
+            <Header />
+
+            <main className={styles.default}>
+              <SkipToContentTarget />
+              <div className={styles.container}>{children}</div>
+            </main>
+
+            <Footer />
+          </div>
         </ThemeProvider>
 
         <Analytics />
