@@ -1,7 +1,7 @@
 import path from "path";
 import glob from "fast-glob";
 import { getAllPosts } from "../lib/helpers/posts";
-import { metadata } from "./layout";
+import config from "../lib/config/constants";
 import type { MetadataRoute } from "next";
 
 export const dynamic = "force-static";
@@ -11,35 +11,28 @@ const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
   const routes: MetadataRoute.Sitemap = [
     {
       // homepage
-      url: "/",
+      url: `${config.baseUrl}/`,
       priority: 1.0,
-      changeFrequency: "weekly",
       lastModified: new Date(process.env.RELEASE_DATE || Date.now()), // timestamp frozen when a new build is deployed
-    },
-    {
-      url: "/tweets/",
-      changeFrequency: "yearly",
     },
   ];
 
   // add each directory in the app folder as a route (excluding special routes)
+  const appDir = path.resolve(process.cwd(), "app");
   (
-    await glob("*", {
-      cwd: path.join(process.cwd(), "app"),
-      deep: 0,
-      onlyDirectories: true,
-      markDirectories: true,
+    await glob("**/page.{tsx,mdx}", {
+      cwd: appDir,
       ignore: [
-        // don't include special routes, see: https://nextjs.org/docs/app/api-reference/file-conventions/metadata
-        "api",
-        "feed.atom",
-        "feed.xml",
+        // homepage already included manually above
+        "page.tsx",
+        // don't include dynamic routes
+        "notes/[slug]/page.tsx",
       ],
     })
   ).forEach((route) => {
     routes.push({
-      // make all URLs absolute
-      url: route,
+      // remove matching page.(tsx|mdx) file and make all URLs absolute
+      url: `${config.baseUrl}/${route.replace(/page\.(tsx|mdx)$/, "")}`,
     });
   });
 
@@ -51,10 +44,10 @@ const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
     });
   });
 
-  // make all URLs absolute
-  routes.forEach((page) => (page.url = new URL(page.url, metadata.metadataBase || "").href));
+  // sort alphabetically by URL, sometimes fast-glob returns results in a different order
+  routes.sort((a, b) => (a.url < b.url ? -1 : 1));
 
-  return routes;
+  return [...routes];
 };
 
 export default sitemap;

@@ -1,5 +1,4 @@
-import config from "../lib/config";
-import { metadata } from "./layout";
+import config from "../lib/config/constants";
 import type { MetadataRoute } from "next";
 
 export const dynamic = "force-static";
@@ -7,6 +6,7 @@ export const dynamic = "force-static";
 const robots = (): MetadataRoute.Robots => {
   // I'm already _so_ over this shit...
   // https://github.com/ai-robots-txt/ai.robots.txt/blob/main/robots.txt
+  // TODO: dynamically fetch this list from the above repo.
   const naughtySpiders = [
     "AI2Bot",
     "Ai2Bot-Dolma",
@@ -14,6 +14,7 @@ const robots = (): MetadataRoute.Robots => {
     "anthropic-ai",
     "Applebot",
     "Applebot-Extended",
+    "Brightbot 1.0",
     "Bytespider",
     "CCBot",
     "ChatGPT-User",
@@ -73,7 +74,7 @@ const robots = (): MetadataRoute.Robots => {
         disallow: "/",
       },
     ],
-    sitemap: new URL("sitemap.xml", metadata.metadataBase?.href || `https://${config.siteDomain}`).href,
+    sitemap: `${config.baseUrl}/sitemap.xml`,
   };
 };
 
