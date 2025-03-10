@@ -4,7 +4,7 @@ import PageTitle from "../../_common/components/PageTitle";
 import Link from "../../_common/components/Link";
 import RelativeTime from "../../_common/components/RelativeTime";
 import commaNumber from "comma-number";
-import config from "../../lib/config";
+import config from "../../lib/config/constants";
 import { metadata as defaultMetadata } from "../layout";
 import { GoStar, GoRepoForked } from "react-icons/go";
 import { SiGithub } from "react-icons/si";

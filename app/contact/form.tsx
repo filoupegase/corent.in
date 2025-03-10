@@ -5,7 +5,6 @@ import TextareaAutosize from "react-textarea-autosize";
 import Turnstile from "react-turnstile";
 import clsx from "clsx";
 import Link from "../../_common/components/Link";
-import useTheme from "../../_common/hooks/useTheme";
 import { sendMessage } from "./actions";
 import { GoCheck, GoX } from "react-icons/go";
 import { SiMarkdown } from "react-icons/si";
@@ -13,11 +12,10 @@ import { SiMarkdown } from "react-icons/si";
 import styles from "./form.module.css";
 
 const ContactForm = () => {
-  const { activeTheme } = useTheme();
-  const [formState, formAction, pending] = useActionState<
-    Partial<{ success: boolean; message: string; payload: FormData }>,
-    FormData
-  >(sendMessage, {});
+  const [formState, formAction, pending] = useActionState<Awaited<ReturnType<typeof sendMessage>>, FormData>(
+    sendMessage,
+    { success: false, message: "" }
+  );
 
   return (
     <form action={formAction}>
@@ -26,9 +24,9 @@ const ContactForm = () => {
         name="name"
         placeholder="Name"
         required
-        className={styles.input}
-        defaultValue={(formState.payload?.get("name") || "") as string}
-        disabled={formState.success}
+        className={clsx(styles.input, formState?.errors?.name && styles.invalid)}
+        defaultValue={(formState?.payload?.get("name") || "") as string}
+        disabled={formState?.success}
       />
 
       <input
@@ -37,9 +35,9 @@ const ContactForm = () => {
         placeholder="Email"
         required
         inputMode="email"
-        className={styles.input}
-        defaultValue={(formState.payload?.get("email") || "") as string}
-        disabled={formState.success}
+        className={clsx(styles.input, formState?.errors?.email && styles.invalid)}
+        defaultValue={(formState?.payload?.get("email") || "") as string}
+        disabled={formState?.success}
       />
 
       <TextareaAutosize
@@ -47,9 +45,9 @@ const ContactForm = () => {
         placeholder="Write something..."
         minRows={5}
         required
-        className={styles.input}
-        defaultValue={(formState.payload?.get("message") || "") as string}
-        disabled={formState.success}
+        className={clsx(styles.input, styles.textarea, formState?.errors?.message && styles.invalid)}
+        defaultValue={(formState?.payload?.get("message") || "") as string}
+        disabled={formState?.success}
       />
 
       <div
@@ -72,21 +70,18 @@ const ContactForm = () => {
           Markdown syntax
         </Link>{" "}
         is allowed here, e.g.: <strong>**bold**</strong>, <em>_italics_</em>, [
-        <Link href="https://corent-in.vercel.app" underline={false} openInNewTab>
+        <Link href="https://corent-in.vercel.app" plain>
           links
         </Link>
         ](https://corent-in.vercel.app), and <code>`code`</code>.
       </div>
 
-      <Turnstile
-        sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || "1x00000000000000000000AA"}
-        style={{ margin: "1em 0" }}
-        theme={activeTheme === "dark" ? activeTheme : "light"}
-        fixedSize
-      />
+      <div style={{ margin: "1em 0" }}>
+        <Turnstile sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || "1x00000000000000000000AA"} fixedSize />
+      </div>
 
       <div className={styles.actionRow}>
-        {!formState.success && (
+        {!formState?.success && (
           <button type="submit" disabled={pending} className={styles.submitButton}>
             {pending ? (
               <span>Sending...</span>
@@ -98,10 +93,10 @@ const ContactForm = () => {
           </button>
         )}
 
-        {formState.message && (
-          <div className={clsx(styles.result, formState.success ? styles.success : styles.error)}>
-            {formState.success ? <GoCheck className={styles.resultIcon} /> : <GoX className={styles.resultIcon} />}{" "}
-            {formState.message}
+        {formState?.message && (
+          <div className={clsx(styles.result, formState?.success ? styles.success : styles.error)}>
+            {formState?.success ? <GoCheck className={styles.resultIcon} /> : <GoX className={styles.resultIcon} />}{" "}
+            {formState?.message}
           </div>
         )}
       </div>

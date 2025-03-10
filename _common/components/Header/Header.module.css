@@ -4,9 +4,11 @@
   padding: 0.7em 1.5em;
   border-bottom: 1px solid var(--colors-kindaLight);
   background-color: var(--colors-backgroundHeader);
-  transition: background var(--transitions-fade),
-  border var(--transitions-fade);
-  z-index: 9999px;
+
+  /* make sticky */
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 
   /* blurry glass-like background effect (except on firefox...?) */
   backdrop-filter: saturate(180%) blur(5px);

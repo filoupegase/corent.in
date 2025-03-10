@@ -2,12 +2,12 @@ import clsx from "clsx";
 import Link from "../Link";
 import Image from "../Image";
 import Menu from "../Menu";
-import config from "../../../lib/config";
+import config from "../../../lib/config/constants";
 import type { ComponentPropsWithoutRef } from "react";
 
 import styles from "./Header.module.css";
 
-import meJpeg from "../../../app/me.jpeg";
+import meJpeg from "./me.jpeg";
 
 export type HeaderProps = ComponentPropsWithoutRef<"header">;
 
@@ -15,7 +15,7 @@ const Header = ({ className, ...rest }: HeaderProps) => {
   return (
     <header className={clsx(styles.header, className)} {...rest}>
       <nav className={styles.nav}>
-        <Link href="/" rel="author" title={config.authorName} underline={false} className={styles.selfieLink}>
+        <Link href="/" rel="author" title={config.authorName} plain className={styles.selfieLink}>
           <Image
             src={meJpeg}
             alt={`Photo of ${config.authorName}`}

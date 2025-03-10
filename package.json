@@ -16,20 +16,19 @@
     "start": "next start",
     "lint": "next lint --no-cache",
     "typecheck": "tsc",
-    "postinstall": "prisma generate"
+    "postinstall": "prisma generate --no-hints"
   },
   "dependencies": {
     "@emotion/hash": "^0.9.2",
     "@giscus/react": "^3.1.0",
     "@mdx-js/loader": "^3.1.0",
     "@mdx-js/react": "^3.1.0",
-    "@next/bundle-analyzer": "15.2.2-canary.5",
-    "@next/mdx": "15.2.2-canary.5",
-    "@next/third-parties": "15.2.2-canary.5",
+    "@next/bundle-analyzer": "15.2.2-canary.6",
+    "@next/mdx": "15.2.2-canary.6",
+    "@next/third-parties": "15.2.2-canary.6",
     "@octokit/graphql": "^8.2.1",
     "@octokit/graphql-schema": "^15.26.0",
     "@prisma/client": "^6.4.1",
-    "@vercel/analytics": "^1.5.0",
     "clsx": "^2.1.1",
     "comma-number": "^2.1.0",
     "copy-to-clipboard": "^3.3.3",
@@ -37,7 +36,7 @@
     "fast-glob": "^3.3.3",
     "feed": "^4.2.2",
     "modern-normalize": "^3.0.1",
-    "next": "15.2.2-canary.5",
+    "next": "15.2.2-canary.6",
     "obj-str": "^1.1.0",
     "p-map": "^7.0.3",
     "p-memoize": "^7.1.1",
@@ -79,7 +78,7 @@
     "@types/react-is": "^19.0.0",
     "cross-env": "^7.0.3",
     "eslint": "^9.22.0",
-    "eslint-config-next": "15.2.2-canary.5",
+    "eslint-config-next": "15.2.2-canary.6",
     "eslint-config-prettier": "^10.1.1",
     "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-jsx-a11y": "^6.10.2",
@@ -115,24 +114,25 @@
       "prettier --check"
     ]
   },
-  "packageManager": "pnpm@10.6.1",
+  "packageManager": "pnpm@10.6.2",
   "volta": {
     "node": "22.14.0",
-    "pnpm": "10.6.1"
+    "pnpm": "10.6.2"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
       "@prisma/client",
       "@prisma/engines",
+      "esbuild",
       "prisma",
       "sharp",
       "simple-git-hooks"
-    ]
-  },
-  "peerDependencyRules": {
-    "allowedVersions": {
-      "react": "^19",
-      "react-dom": "^19"
+    ],
+    "peerDependencyRules": {
+      "allowedVersions": {
+        "react": "^19",
+        "react-dom": "^19"
+      }
     }
   }
 }

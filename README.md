@@ -6,7 +6,7 @@
 [![GitHub repo size](https://img.shields.io/github/repo-size/jakejarvis/jarv.is?color=009cdf&label=repo%20size&logo=git&logoColor=white)](https://github.com/filoupegase/coco.io)
 
 My humble abode on the World Wide Web, created and deployed
-using [Next.js](https://nextjs.org/), [Vercel](https://vercel.com/), [Neon Postgres](https://neon.tech/), [Prisma](https://www.prisma.io/postgres), [and more](https://corent-in.vercel.app/humans.txt).
+using [Next.js](https://nextjs.org/), [Vercel](https://vercel.com/), [Neon Postgres](https://neon.tech/), [Prisma](https://www.prisma.io/postgres), [Umami](https://umami.is/), [and more](https://corent-in.vercel.app/humans.txt).
 
 ## 🕹️ Getting Started
 

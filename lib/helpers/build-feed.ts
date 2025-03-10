@@ -2,7 +2,7 @@ import { Feed } from "feed";
 import { getAllPosts } from "./posts";
 import config from "../config/constants";
 
-import meJpeg from "../../app/me.jpeg";
+import meJpeg from "../../_common/components/Header/me.jpeg";
 
 export const buildFeed = async (): Promise<Feed> => {
   // https://github.com/jpmonette/feed#example

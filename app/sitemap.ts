@@ -11,7 +11,7 @@ const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
   const routes: MetadataRoute.Sitemap = [
     {
       // homepage
-      url: `${config.baseUrl}/`,
+      url: config.baseUrl,
       priority: 1.0,
       lastModified: new Date(process.env.RELEASE_DATE || Date.now()), // timestamp frozen when a new build is deployed
     },
@@ -29,10 +29,10 @@ const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
         "notes/[slug]/page.tsx",
       ],
     })
-  ).forEach((route) => {
+  ).forEach((route: string) => {
     routes.push({
       // remove matching page.(tsx|mdx) file and make all URLs absolute
-      url: `${config.baseUrl}/${route.replace(/page\.(tsx|mdx)$/, "")}`,
+      url: `${config.baseUrl}/${route.replace(/\/page\.(tsx|mdx)$/, "")}`,
     });
   });
 

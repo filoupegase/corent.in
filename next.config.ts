@@ -39,7 +39,13 @@ const nextConfig: NextConfig = {
     },
   ],
   rewrites: async () => ({
-    beforeFiles: [],
+    beforeFiles: [
+      {
+        // https://umami.is/docs/guides/running-on-vercel#proxy-umami-analytics-via-vercel
+        source: "/_stream/u/:path*",
+        destination: `${process.env.NEXT_PUBLIC_UMAMI_HOST || "https://cloud.umami.is"}/:path*`,
+      },
+    ],
     afterFiles: [
       {
         // access security.txt, etc at both /security.txt and /.well-known/security.txt
@@ -51,6 +57,12 @@ const nextConfig: NextConfig = {
   }),
   redirects: async () => [
     { source: "/y2k", destination: "https://y2k.pages.dev", permanent: false },
+    // TODO :
+    // {
+    //   source: "/stats",
+    //   destination: "https://umami-wine-eight.vercel.app",
+    //   permanent: false,
+    // },
 
     // NOTE: don't remove this, it ensures de-AMPing the site hasn't offended our google overlords too badly!
     // https://developers.google.com/search/docs/advanced/experience/remove-amp#remove-only-amp

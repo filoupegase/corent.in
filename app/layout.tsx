@@ -1,5 +1,6 @@
 import clsx from "clsx";
-import { Analytics } from "@vercel/analytics/next";
+import Analytics from "./analytics";
+import React, { PropsWithChildren } from "react";
 import { ThemeProvider } from "../contexts/ThemeContext";
 import Header from "../_common/components/Header";
 import Footer from "../_common/components/Footer";
@@ -73,17 +74,12 @@ const jsonLd: WithContext<Person> = {
     config.baseUrl,
     `https://github.com/${config.authorSocial?.github}`,
     `https://keybase.io/${config.authorSocial?.keybase}`,
-    `https://twitter.com/${config.authorSocial?.twitter}`,
-    `https://medium.com/@${config.authorSocial?.medium}`,
-    `https://www.linkedin.com/in/${config.authorSocial?.linkedin}/`,
-    `https://www.facebook.com/${config.authorSocial?.facebook}`,
-    `https://www.instagram.com/${config.authorSocial?.instagram}/`,
-    `https://${config.authorSocial?.mastodon}`,
-    `https://bsky.app/profile/${config.authorSocial?.bluesky}`,
   ],
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+type Props = PropsWithChildren;
+
+export default function RootLayout({ children }: Props) {
   return (
     <html lang={config.siteLocale} suppressHydrationWarning>
       <head>
