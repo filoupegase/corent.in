@@ -1,8 +1,7 @@
-import Content from "../../_common/components/Content";
 import Link from "../../_common/components/Link";
 import Time from "../../_common/components/Time";
 import { getAllPosts } from "../../lib/helpers/posts";
-import config from "../../lib/config";
+import config from "../../lib/config/constants";
 import { metadata as defaultMetadata } from "../layout";
 import type { ReactElement } from "react";
 import type { Metadata, Route } from "next";
@@ -47,11 +46,7 @@ export default async function Page() {
             <li className={styles.post} key={slug}>
               <Time date={date} format="MMM D" className={styles.postDate} />
               <span>
-                <Link
-                  href={`/notes/${slug}` as Route}
-                  prefetch={null}
-                  dangerouslySetInnerHTML={{ __html: htmlTitle || title }}
-                />
+                <Link href={`/notes/${slug}` as Route} dangerouslySetInnerHTML={{ __html: htmlTitle || title }} />
               </span>
             </li>
           ))}
@@ -63,9 +58,5 @@ export default async function Page() {
   // grouped posts enter this component ordered chronologically -- we want reverse chronological
   const reversed = sections.reverse();
 
-  return (
-    <>
-      <Content>{reversed}</Content>
-    </>
-  );
+  return <>{reversed}</>;
 }
