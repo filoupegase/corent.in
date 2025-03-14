@@ -5,7 +5,6 @@ import * as mdxPlugins from "./lib/helpers/remark-rehype-plugins";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
-  trailingSlash: true,
   productionBrowserSourceMaps: true,
   env: {
     // freeze timestamp at build time for when server-side pages need a "last updated" date. calling Date.now() from
@@ -18,6 +17,13 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       { protocol: "https", hostname: "pbs.twimg.com" },
       { protocol: "https", hostname: "abs.twimg.com" },
+    ],
+  },
+  outputFileTracingIncludes: {
+    "/notes/[slug]/opengraph-image": [
+      "./notes/**/*",
+      "./app/opengraph-image.jpg",
+      "./node_modules/geist/dist/fonts/geist-sans/Geist-SemiBold.ttf",
     ],
   },
   experimental: {
