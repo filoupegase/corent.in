@@ -16,7 +16,8 @@ const compat = new FlatCompat({
 export default [
   { ignores: ["README.md", ".next", ".vercel", "node_modules"] },
   ...compat.config({
-    extends: ["eslint:recommended", "next/core-web-vitals", "next/typescript"],
+    plugins: ["react-compiler", "css-modules"],
+    extends: ["eslint:recommended", "next/core-web-vitals", "next/typescript", "plugin:css-modules/recommended"],
   }),
   ...eslintCustomConfig,
   eslintPluginPrettierRecommended,
@@ -34,23 +35,9 @@ export default [
   {
     files: ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx"],
     rules: {
-      camelcase: "off",
       "@typescript-eslint/ban-ts-comment": "off",
       "@typescript-eslint/no-explicit-any": "warn",
-      "react/no-unescaped-entities": "off",
-      "react/jsx-boolean-value": "error",
-      "react/jsx-wrap-multilines": [
-        "error",
-        {
-          arrow: "parens-new-line",
-          assignment: "parens-new-line",
-          condition: "parens-new-line",
-          declaration: "parens-new-line",
-          logical: "parens-new-line",
-          prop: "ignore",
-          return: "parens-new-line",
-        },
-      ],
+      "react-compiler/react-compiler": "error",
     },
   },
   {
@@ -62,7 +49,6 @@ export default [
       "mdx/remark": "warn",
       "mdx/code-blocks": "off",
       "react/jsx-no-undef": "off",
-      "react/no-unescaped-entities": "off",
     },
   },
 ];

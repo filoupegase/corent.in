@@ -1,6 +1,6 @@
 import type { NextConfig } from "next";
-import createMDX from "@next/mdx";
-import createBundleAnalyzer from "@next/bundle-analyzer";
+import withBundleAnalyzer from "@next/bundle-analyzer";
+import withMDX from "@next/mdx";
 import * as mdxPlugins from "./lib/helpers/remark-rehype-plugins";
 
 const nextConfig: NextConfig = {
@@ -15,6 +15,7 @@ const nextConfig: NextConfig = {
   images: {
     formats: ["image/avif", "image/webp"],
     remotePatterns: [
+      { protocol: "https", hostname: "bcm6wnmyyzj1p5ls.public.blob.vercel-storage.com" },
       { protocol: "https", hostname: "pbs.twimg.com" },
       { protocol: "https", hostname: "abs.twimg.com" },
     ],
@@ -27,7 +28,9 @@ const nextConfig: NextConfig = {
     ],
   },
   experimental: {
+    reactCompiler: true, // https://react.dev/learn/react-compiler
     ppr: "incremental", // https://nextjs.org/docs/app/building-your-application/rendering/partial-prerendering#using-partial-prerendering
+    serverSourceMaps: true,
   },
   eslint: {
     // https://nextjs.org/docs/basic-features/eslint#linting-custom-directories-and-files
@@ -44,38 +47,18 @@ const nextConfig: NextConfig = {
       ],
     },
   ],
-  rewrites: async () => ({
-    beforeFiles: [
-      {
-        // https://umami.is/docs/guides/running-on-vercel#proxy-umami-analytics-via-vercel
-        source: "/_stream/u/:path*",
-        destination: `${process.env.NEXT_PUBLIC_UMAMI_HOST || "https://cloud.umami.is"}/:path*`,
-      },
-    ],
-    afterFiles: [
-      {
-        // access security.txt, etc at both /security.txt and /.well-known/security.txt
-        source: "/.well-known/:slug.txt",
-        destination: "/:slug.txt",
-      },
-    ],
-    fallback: [],
-  }),
   redirects: async () => [
     { source: "/y2k", destination: "https://y2k.pages.dev", permanent: false },
     // TODO :
     // {
     //   source: "/stats",
-    //   destination: "https://umami-wine-eight.vercel.app",
+    //   destination: "",
     //   permanent: false,
     // },
 
     // NOTE: don't remove this, it ensures de-AMPing the site hasn't offended our google overlords too badly!
     // https://developers.google.com/search/docs/advanced/experience/remove-amp#remove-only-amp
-    { source: "/notes/:slug/amp.html", destination: "/notes/:slug/", permanent: true },
-
-    // google search console has tons of 404s for images prefixed with /public... why? no clue.
-    { source: "/public/static/:path*", destination: "/static/:path*", permanent: true },
+    { source: "/notes/:slug/amp.html", destination: "/notes/:slug", permanent: true },
 
     // remnants of previous sites/CMSes:
     { source: "/index.xml", destination: "/feed.xml", permanent: true },
@@ -105,31 +88,50 @@ const nextConfig: NextConfig = {
   ],
 };
 
-const withBundleAnalyzer = createBundleAnalyzer({
-  enabled: process.env.ANALYZE === "true",
-});
-
-const withMDX = createMDX({
-  options: {
-    remarkPlugins: [
-      [mdxPlugins.remarkGfm, { singleTilde: false }],
-      [
-        mdxPlugins.remarkSmartypants,
-        {
-          quotes: true,
-          dashes: "oldschool",
-          backticks: false,
-          ellipses: false,
-        },
+const nextPlugins = [
+  withBundleAnalyzer({
+    enabled: process.env.ANALYZE === "true",
+  }),
+  withMDX({
+    options: {
+      remarkPlugins: [
+        mdxPlugins.remarkFrontmatter,
+        mdxPlugins.remarkMdxFrontmatter,
+        [mdxPlugins.remarkGfm, { singleTilde: false }],
+        [
+          mdxPlugins.remarkSmartypants,
+          {
+            quotes: true,
+            dashes: "oldschool",
+            backticks: false,
+            ellipses: false,
+          },
+        ],
       ],
-    ],
-    rehypePlugins: [
-      mdxPlugins.rehypeUnwrapImages,
-      mdxPlugins.rehypeSlug,
-      [mdxPlugins.rehypePrism, { ignoreMissing: true }],
-      mdxPlugins.rehypeMdxImportMedia,
-    ],
-  },
-});
+      rehypePlugins: [
+        mdxPlugins.rehypeUnwrapImages,
+        mdxPlugins.rehypeSlug,
+        [
+          mdxPlugins.rehypePrettyCode,
+          {
+            theme: {
+              light: "material-theme-lighter",
+              dark: "material-theme-darker",
+            },
+            bypassInlineCode: true,
+            defaultLang: "plaintext",
+            grid: false,
+            keepBackground: false,
+          },
+        ],
+        mdxPlugins.rehypeMdxImportMedia,
+      ],
+    },
+  }),
+];
 
-export default withBundleAnalyzer(withMDX(nextConfig));
+// my own macgyvered version of next-compose-plugins (RIP)
+// eslint-disable-next-line import/no-anonymous-default-export
+export default () => {
+  return nextPlugins.reduce((acc, plugin) => plugin(acc), { ...nextConfig });
+};
