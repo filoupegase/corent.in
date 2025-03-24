@@ -69,8 +69,8 @@
     "zod": "^3.24.2"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3.3.0",
-    "@eslint/js": "^9.22.0",
+    "@eslint/eslintrc": "^3.3.1",
+    "@eslint/js": "^9.23.0",
     "@jakejarvis/eslint-config": "^4.0.7",
     "@types/comma-number": "^2.1.2",
     "@types/mdx": "^2.0.13",
@@ -81,7 +81,7 @@
     "@types/react-is": "^19.0.0",
     "babel-plugin-react-compiler": "19.0.0-beta-3229e95-20250315",
     "cross-env": "^7.0.3",
-    "eslint": "^9.22.0",
+    "eslint": "^9.23.0",
     "eslint-config-next": "15.3.0-canary.15",
     "eslint-config-prettier": "^10.1.1",
     "eslint-plugin-css-modules": "^2.12.0",
