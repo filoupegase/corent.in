@@ -79,7 +79,7 @@
     "@types/react": "^19.0.12",
     "@types/react-dom": "^19.0.4",
     "@types/react-is": "^19.0.0",
-    "babel-plugin-react-compiler": "19.0.0-beta-3229e95-20250315",
+    "babel-plugin-react-compiler": "19.0.0-beta-714736e-20250131",
     "cross-env": "^7.0.3",
     "eslint": "^9.22.0",
     "eslint-config-next": "15.3.0-canary.15",
