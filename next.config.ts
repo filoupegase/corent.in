@@ -1,7 +1,13 @@
-import type { NextConfig } from "next";
-import withBundleAnalyzer from "@next/bundle-analyzer";
-import withMDX from "@next/mdx";
+/* eslint-disable @typescript-eslint/no-require-imports, import/no-anonymous-default-export */
+
+import path from "path";
+import { visit } from "unist-util-visit";
 import * as mdxPlugins from "./lib/helpers/remark-rehype-plugins";
+import type { NextConfig } from "next";
+
+// check environment variables at build time
+// https://env.t3.gg/docs/nextjs#validate-schema-on-build-(recommended)
+import "./lib/env";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
@@ -64,49 +70,45 @@ const nextConfig: NextConfig = {
     { source: "/index.xml", destination: "/feed.xml", permanent: true },
     { source: "/feed", destination: "/feed.xml", permanent: true },
     { source: "/rss", destination: "/feed.xml", permanent: true },
-    { source: "/blog/:path*", destination: "/notes/", permanent: true },
-    { source: "/archives/:path*", destination: "/notes/", permanent: true },
+    { source: "/blog/(.*)", destination: "/notes", permanent: true },
+    { source: "/archives/(.*)", destination: "/notes", permanent: true },
     { source: "/resume", destination: "/static/resume.pdf", permanent: false },
     { source: "/resume.pdf", destination: "/static/resume.pdf", permanent: false },
-
-    // WordPress permalinks:
-    {
-      source: "/2016/02/28/millenial-with-hillary-clinton",
-      destination: "/notes/millenial-with-hillary-clinton/",
-      permanent: true,
-    },
-    {
-      source: "/2018/12/04/how-to-shrink-linux-virtual-disk-vmware",
-      destination: "/notes/how-to-shrink-linux-virtual-disk-vmware/",
-      permanent: true,
-    },
-    {
-      source: "/2018/12/10/cool-bash-tricks-for-your-terminal-dotfiles",
-      destination: "/notes/cool-bash-tricks-for-your-terminal-dotfiles/",
-      permanent: true,
-    },
   ],
 };
 
-const nextPlugins = [
-  withBundleAnalyzer({
-    enabled: process.env.ANALYZE === "true",
+// my own macgyvered version of next-compose-plugins (RIP)
+const nextPlugins: Array<
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  (config: NextConfig) => NextConfig | [(config: NextConfig) => NextConfig, any]
+> = [
+  require("@next/bundle-analyzer")({
+    enabled: !!process.env.ANALYZE,
   }),
-  withMDX({
+  require("@next/mdx")({
     options: {
       remarkPlugins: [
         mdxPlugins.remarkFrontmatter,
         mdxPlugins.remarkMdxFrontmatter,
-        [mdxPlugins.remarkGfm, { singleTilde: false }],
-        [
-          mdxPlugins.remarkSmartypants,
-          {
-            quotes: true,
-            dashes: "oldschool",
-            backticks: false,
-            ellipses: false,
-          },
-        ],
+        mdxPlugins.remarkGfm,
+        mdxPlugins.remarkSmartypants,
+        // workaround for rehype-mdx-import-media not applying to `<video>` tags:
+        // https://github.com/Chailotl/remark-videos/blob/851c332993210e6f091453f7ed887be24492bcee/index.js
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        () => (tree: any) => {
+          visit(tree, "image", (node) => {
+            if (node.url.match(/\.(mp4|webm)$/i)) {
+              node.type = "element";
+              node.data = {
+                hName: "video",
+                hProperties: {
+                  src: node.url,
+                  // TODO: make this even hackier and pass an autoplay option in the alt text or something
+                },
+              };
+            }
+          });
+        },
       ],
       rehypePlugins: [
         mdxPlugins.rehypeUnwrapImages,
@@ -130,8 +132,5 @@ const nextPlugins = [
   }),
 ];
 
-// my own macgyvered version of next-compose-plugins (RIP)
-// eslint-disable-next-line import/no-anonymous-default-export
-export default () => {
-  return nextPlugins.reduce((acc, plugin) => plugin(acc), { ...nextConfig });
-};
+export default (): NextConfig =>
+  nextPlugins.reduce((acc, plugin) => (Array.isArray(plugin) ? plugin[0](acc, plugin[1]) : plugin(acc)), nextConfig);

@@ -7,11 +7,10 @@ import Blockquote from "./_common/components/Blockquote";
 import HorizontalRule from "./_common/components/HorizontalRule";
 import * as Heading from "./_common/components/Heading";
 import * as List from "./_common/components/List";
-import Figure from "./_common/components/Figure";
 import Video from "./_common/components/Video";
 import CodePen from "./_common/components/CodePen";
 
-export function useMDXComponents(components: MDXComponents): MDXComponents {
+export const useMDXComponents = (components: MDXComponents): MDXComponents => {
   return {
     ...components,
 
@@ -20,6 +19,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     a: Link,
     code: Code,
     blockquote: Blockquote,
+    video: Video,
     hr: HorizontalRule,
     h1: Heading.H1,
     h2: Heading.H2,
@@ -31,11 +31,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     ol: List.OrderedList,
     li: List.ListItem,
 
-    // html components with custom props:
-    Figure,
-    Video,
-
     // third-party embeds:
     CodePen,
   };
-}
+};

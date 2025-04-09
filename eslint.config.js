@@ -23,6 +23,12 @@ export default [
   eslintPluginPrettierRecommended,
   {
     rules: {
+      camelcase: [
+        "error",
+        {
+          allow: ["^experimental_", "^unstable_"],
+        },
+      ],
       "prettier/prettier": [
         "error",
         {},
@@ -48,7 +54,7 @@ export default [
     rules: {
       "mdx/remark": "warn",
       "mdx/code-blocks": "off",
-      "react/jsx-no-undef": "off",
+      "react/jsx-no-undef": "off", // components are injected automatically from mdx-components.ts
     },
   },
 ];
