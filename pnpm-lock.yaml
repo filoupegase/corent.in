@@ -102,8 +102,8 @@ importers:
         specifier: ^8.5.9
         version: 8.5.9(@types/react@19.1.0)(react@19.1.0)
       react-timeago:
-        specifier: ^8.0.0
-        version: 8.0.0(react@19.1.0)
+        specifier: ^8.1.0
+        version: 8.1.0(react@19.1.0)
       react-turnstile:
         specifier: ^1.1.4
         version: 1.1.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -2886,8 +2886,8 @@ packages:
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
 
-  react-timeago@8.0.0:
-    resolution: {integrity: sha512-I/Lsewkw87xryZVXU8mv8o2lsnxTd7uHBJF9fl76vRx/GkAFNctgSg9q0hOKvgv9V6cTXmDiuXJJYyblD4kGRA==}
+  react-timeago@8.1.0:
+    resolution: {integrity: sha512-3BBzB4W9N+T037FIpUBaKgH7QYdg9pIjz/hDPobOX6uiBRtHXHdceEtx0SnggoJJ4bYy3z4RmnnHLVxOkmqbmw==}
     peerDependencies:
       react: ^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
 
@@ -6920,7 +6920,7 @@ snapshots:
     transitivePeerDependencies:
       - '@types/react'
 
-  react-timeago@8.0.0(react@19.1.0):
+  react-timeago@8.1.0(react@19.1.0):
     dependencies:
       react: 19.1.0
 
