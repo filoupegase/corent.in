@@ -8,7 +8,9 @@ pnpm-lock.yaml
 .vercel/
 
 # other
+lib/db/migrations/
 public/
 .devcontainer/devcontainer.json
 
+# JetBrains
 .idea/

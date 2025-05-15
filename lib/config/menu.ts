@@ -1,7 +1,12 @@
-import { CodeIcon, HomeIcon, MailIcon, PencilLineIcon } from "lucide-react";
-import type { MenuItemProps } from "../../_common/components/MenuItem";
+import { HomeIcon, PencilLineIcon, CodeXmlIcon, MailIcon, type LucideIcon } from "lucide-react";
 
-export const menuItems: MenuItemProps[] = [
+export type MenuItemConfig = {
+  text?: string;
+  href?: `/${string}`;
+  icon?: LucideIcon;
+};
+
+export const menuItems: MenuItemConfig[] = [
   {
     text: "Home",
     href: "/",
@@ -15,7 +20,7 @@ export const menuItems: MenuItemProps[] = [
   {
     text: "Projects",
     href: "/projects",
-    icon: CodeIcon,
+    icon: CodeXmlIcon,
   },
   {
     text: "Contact",
