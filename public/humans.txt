@@ -30,9 +30,10 @@
 
   - Next.js
   - Vercel
+  - Tailwind CSS
   - Neon Postgres
-  - Prisma
-  - Giscus
+  - Drizzle ORM
+  - Better Auth
   - Resend
   - ...and more
 
