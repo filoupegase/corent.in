@@ -14,16 +14,10 @@ const compat = new FlatCompat({
 
 /** @type {import("eslint").Linter.Config[]} */
 export default [
-  { ignores: ["README.md", ".next", ".vercel", "node_modules", "lib/db/migrations"] },
+  { ignores: ["README.md", ".next", ".vercel", "node_modules"] },
   ...compat.config({
     plugins: ["react-compiler", "css-modules"],
-    extends: [
-      "eslint:recommended",
-      "next/core-web-vitals",
-      "next/typescript",
-      "plugin:css-modules/recommended",
-      "plugin:drizzle/recommended",
-    ],
+    extends: ["eslint:recommended", "next/core-web-vitals", "next/typescript", "plugin:css-modules/recommended"],
   }),
   ...eslintCustomConfig,
   eslintPluginPrettierRecommended,
@@ -61,7 +55,10 @@ export default [
       "mdx/remark": "warn",
       "mdx/code-blocks": "off",
       "react/jsx-no-undef": "off", // components are injected automatically from mdx-components.ts
+<<<<<<<< HEAD:eslint.config.js
+========
       "react/no-unescaped-entities": "off",
+>>>>>>>> 96e0013 (feat(core): bump pnpm and manage node version):eslint.config.mjs
     },
   },
 ];
