@@ -123,8 +123,8 @@
       }
     },
     "ignoredOptionalDependencies": [
-      "prisma",
-      "@prisma/client"
+      "@prisma/client",
+      "prisma"
     ],
     "ignoredBuiltDependencies": [
       "@vercel/speed-insights",
