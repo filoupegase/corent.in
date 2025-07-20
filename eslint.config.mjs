@@ -1,5 +1,4 @@
 /* eslint-disable import/no-anonymous-default-export */
-
 import { FlatCompat } from "@eslint/eslintrc";
 import js from "@eslint/js";
 import * as eslintPluginMdx from "eslint-plugin-mdx";
@@ -14,10 +13,16 @@ const compat = new FlatCompat({
 
 /** @type {import("eslint").Linter.Config[]} */
 export default [
-  { ignores: ["README.md", ".next", ".vercel", "node_modules"] },
+  { ignores: ["README.md", ".next", ".vercel", "node_modules", "lib/db/migrations"] },
   ...compat.config({
     plugins: ["react-compiler", "css-modules"],
-    extends: ["eslint:recommended", "next/core-web-vitals", "next/typescript", "plugin:css-modules/recommended"],
+    extends: [
+      "eslint:recommended",
+      "next/core-web-vitals",
+      "next/typescript",
+      "plugin:css-modules/recommended",
+      "plugin:drizzle/recommended",
+    ],
   }),
   ...eslintCustomConfig,
   eslintPluginPrettierRecommended,
@@ -55,10 +60,7 @@ export default [
       "mdx/remark": "warn",
       "mdx/code-blocks": "off",
       "react/jsx-no-undef": "off", // components are injected automatically from mdx-components.ts
-<<<<<<<< HEAD:eslint.config.js
-========
       "react/no-unescaped-entities": "off",
->>>>>>>> 96e0013 (feat(core): bump pnpm and manage node version):eslint.config.mjs
     },
   },
 ];

@@ -11,5 +11,4 @@ pnpm-lock.yaml
 lib/db/migrations/
 public/
 .devcontainer/devcontainer.json
-.vscode/
 .idea/
