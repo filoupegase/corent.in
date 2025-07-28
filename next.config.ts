@@ -1,66 +1,105 @@
-/* eslint-disable @typescript-eslint/no-require-imports, import/no-anonymous-default-export */
-
-import path from "path";
-import { visit } from "unist-util-visit";
-import * as mdxPlugins from "./lib/helpers/remark-rehype-plugins";
+import * as remarkPlugins from "@/lib/remark";
+import * as rehypePlugins from "@/lib/rehype";
 import type { NextConfig } from "next";
 
 // check environment variables at build time
 // https://env.t3.gg/docs/nextjs#validate-schema-on-build-(recommended)
-import "./lib/env";
+import "@/lib/env";
 
-const nextConfig: NextConfig = {
+const nextConfig = {
   reactStrictMode: true,
-  productionBrowserSourceMaps: true,
-  env: {
-    // freeze timestamp at build time for when server-side pages need a "last updated" date. calling Date.now() from
-    // pages using getServerSideProps will return the current(ish) time instead, which is usually not what we want.
-    RELEASE_DATE: new Date().toISOString(),
-  },
   pageExtensions: ["js", "jsx", "ts", "tsx", "md", "mdx"],
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
   images: {
-    formats: ["image/avif", "image/webp"],
     remotePatterns: [
-      { protocol: "https", hostname: "bcm6wnmyyzj1p5ls.public.blob.vercel-storage.com" },
-      { protocol: "https", hostname: "pbs.twimg.com" },
-      { protocol: "https", hostname: "abs.twimg.com" },
+      {
+        protocol: "https",
+        hostname: "ijyxfbpcm3itvdly.public.blob.vercel-storage.com",
+      },
+      {
+        protocol: "https",
+        hostname: "avatars.githubusercontent.com",
+      },
     ],
   },
   outputFileTracingIncludes: {
     "/notes/[slug]/opengraph-image": [
       "./notes/**/*",
       "./app/opengraph-image.jpg",
+      "./node_modules/geist/dist/fonts/geist-sans/Geist-Regular.ttf",
       "./node_modules/geist/dist/fonts/geist-sans/Geist-SemiBold.ttf",
     ],
   },
+  productionBrowserSourceMaps: true,
   experimental: {
-    reactCompiler: true, // https://react.dev/learn/react-compiler
-    ppr: "incremental", // https://nextjs.org/docs/app/building-your-application/rendering/partial-prerendering#using-partial-prerendering
-    serverSourceMaps: true,
-  },
-  eslint: {
-    // https://nextjs.org/docs/basic-features/eslint#linting-custom-directories-and-files
-    dirs: ["app", "components", "contexts", "hooks", "lib", "notes"],
+    reactCompiler: true,
+    ppr: "incremental",
+    dynamicOnHover: true,
+    inlineCss: true,
+    serverActions: {
+      // fix CSRF errors from tor reverse proxy
+      allowedOrigins: [
+        "corent-in.vercel.app",
+        ...(process.env.NEXT_PUBLIC_ONION_DOMAIN ? [process.env.NEXT_PUBLIC_ONION_DOMAIN] : []),
+      ],
+    },
   },
   headers: async () => [
     {
-      source: "/pubkey.asc",
+      // matches any path
+      source: "/(.*)",
       headers: [
         {
-          key: "Content-Type",
-          value: "text/plain; charset=utf-8",
+          key: "strict-transport-security",
+          value: "max-age=63072000",
+        },
+        {
+          // 🥛 debugging
+          key: "x-got-milk",
+          value: "2%",
         },
       ],
     },
+    {
+      source: "/api/auth/(.*)",
+      headers: [
+        {
+          key: "cache-control",
+          value: "private, max-age=0",
+        },
+      ],
+    },
+    // https://community.torproject.org/onion-services/advanced/onion-location/
+    ...(process.env.NEXT_PUBLIC_ONION_DOMAIN
+      ? [
+          {
+            // only needed on actual pages, not static assets, so make a best effort by matching any path **without** a file
+            // extension (aka a period) and/or an underscore (e.g. /_next/image).
+            source: "/:path([^._]*)",
+            headers: [
+              {
+                key: "onion-location",
+                value: `http://${process.env.NEXT_PUBLIC_ONION_DOMAIN}/:path`,
+              },
+            ],
+          },
+        ]
+      : []),
   ],
+  rewrites: async () => [],
   redirects: async () => [
     { source: "/y2k", destination: "https://y2k.pages.dev", permanent: false },
-    // TODO :
-    // {
-    //   source: "/stats",
-    //   destination: "",
-    //   permanent: false,
-    // },
+    {
+      source: "/pubkey.asc",
+      destination:
+        "https://keys.openpgp.org/pks/lookup?op=get&options=mr&search=0x3bc6e5776bf379d36f6714802b0c9cf251e69a39",
+      permanent: false,
+    },
 
     // NOTE: don't remove this, it ensures de-AMPing the site hasn't offended our google overlords too badly!
     // https://developers.google.com/search/docs/advanced/experience/remove-amp#remove-only-amp
@@ -72,65 +111,60 @@ const nextConfig: NextConfig = {
     { source: "/rss", destination: "/feed.xml", permanent: true },
     { source: "/blog/(.*)", destination: "/notes", permanent: true },
     { source: "/archives/(.*)", destination: "/notes", permanent: true },
-    { source: "/resume", destination: "/static/resume.pdf", permanent: false },
-    { source: "/resume.pdf", destination: "/static/resume.pdf", permanent: false },
+
+    // WordPress permalinks:
+    {
+      source: "/2016/02/28/millenial-with-hillary-clinton",
+      destination: "/notes/millenial-with-hillary-clinton",
+      permanent: true,
+    },
+    {
+      source: "/2018/12/04/how-to-shrink-linux-virtual-disk-vmware",
+      destination: "/notes/how-to-shrink-linux-virtual-disk-vmware",
+      permanent: true,
+    },
+    {
+      source: "/2018/12/10/cool-bash-tricks-for-your-terminal-dotfiles",
+      destination: "/notes/cool-bash-tricks-for-your-terminal-dotfiles",
+      permanent: true,
+    },
   ],
-};
+} satisfies NextConfig;
 
 // my own macgyvered version of next-compose-plugins (RIP)
 const nextPlugins: Array<
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   (config: NextConfig) => NextConfig | [(config: NextConfig) => NextConfig, any]
 > = [
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
   require("@next/bundle-analyzer")({
     enabled: !!process.env.ANALYZE,
   }),
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
   require("@next/mdx")({
     options: {
       remarkPlugins: [
-        mdxPlugins.remarkFrontmatter,
-        mdxPlugins.remarkMdxFrontmatter,
-        mdxPlugins.remarkGfm,
-        mdxPlugins.remarkSmartypants,
-        // workaround for rehype-mdx-import-media not applying to `<video>` tags:
-        // https://github.com/Chailotl/remark-videos/blob/851c332993210e6f091453f7ed887be24492bcee/index.js
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        () => (tree: any) => {
-          visit(tree, "image", (node) => {
-            if (node.url.match(/\.(mp4|webm)$/i)) {
-              node.type = "element";
-              node.data = {
-                hName: "video",
-                hProperties: {
-                  src: node.url,
-                  // TODO: make this even hackier and pass an autoplay option in the alt text or something
-                },
-              };
-            }
-          });
-        },
+        remarkPlugins.remarkFrontmatter,
+        remarkPlugins.remarkMdxFrontmatter,
+        remarkPlugins.remarkGfm,
+        remarkPlugins.remarkSmartypants,
       ],
       rehypePlugins: [
-        mdxPlugins.rehypeUnwrapImages,
-        mdxPlugins.rehypeSlug,
+        rehypePlugins.rehypeUnwrapImages,
+        rehypePlugins.rehypeSlug,
         [
-          mdxPlugins.rehypePrettyCode,
+          rehypePlugins.rehypeWrapper,
           {
-            theme: {
-              light: "material-theme-lighter",
-              dark: "material-theme-darker",
-            },
-            bypassInlineCode: true,
-            defaultLang: "plaintext",
-            grid: false,
-            keepBackground: false,
+            className: "text-[0.925rem] leading-relaxed first:mt-0 last:mb-0 md:text-base [&_p]:my-5",
           },
         ],
-        mdxPlugins.rehypeMdxImportMedia,
+        rehypePlugins.rehypeMdxCodeProps,
+        rehypePlugins.rehypeMdxImportMedia,
       ],
     },
   }),
 ];
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default (): NextConfig =>
   nextPlugins.reduce((acc, plugin) => (Array.isArray(plugin) ? plugin[0](acc, plugin[1]) : plugin(acc)), nextConfig);
