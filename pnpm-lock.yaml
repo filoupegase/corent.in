@@ -329,7 +329,7 @@ importers:
         version: 5.8.3
     optionalDependencies:
       sharp:
-        specifier: ^0.34.2
+        specifier: ^0.34.3
         version: 0.34.3
 
 packages:
