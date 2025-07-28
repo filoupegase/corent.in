@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import Link from "../Link";
+import Link from "../../../components/link";
 import { GoHeartFill } from "react-icons/go";
 import { SiNextdotjs } from "react-icons/si";
 import config from "../../../lib/config/constants";

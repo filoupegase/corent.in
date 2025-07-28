@@ -1,4 +1,4 @@
-import Link from "../Link";
+import Link from "../../../components/link";
 
 export type GistProps = {
   id: string;

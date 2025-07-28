@@ -1,6 +1,6 @@
 import { graphql } from "@octokit/graphql";
 import PageTitle from "../../_common/components/PageTitle";
-import Link from "../../_common/components/Link";
+import Link from "../../components/link";
 import RelativeTime from "../../_common/components/RelativeTime";
 import commaNumber from "comma-number";
 import config from "../../lib/config/constants";

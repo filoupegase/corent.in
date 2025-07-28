@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import Link from "../Link";
+import Link from "../../../components/link";
 import type { ComponentPropsWithoutRef } from "react";
 import type { Route } from "next";
 

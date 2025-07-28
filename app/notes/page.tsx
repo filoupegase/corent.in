@@ -1,4 +1,4 @@
-import Link from "../../_common/components/Link";
+import Link from "../../components/link";
 import Time from "../../_common/components/Time";
 import { getAllPosts } from "../../lib/helpers/posts";
 import config from "../../lib/config/constants";

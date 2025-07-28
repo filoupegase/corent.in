@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import Link from "../Link";
+import Link from "../../../components/link";
 import Image from "../Image";
 import Menu from "../Menu";
 import config from "../../../lib/config/constants";

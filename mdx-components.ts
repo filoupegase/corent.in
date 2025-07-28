@@ -1,7 +1,7 @@
 import type { MDXComponents } from "mdx/types";
 
 import Image from "./_common/components/Image";
-import Link from "./_common/components//Link";
+import Link from "./components/link";
 import Code from "./_common/components/Code";
 import Blockquote from "./_common/components/Blockquote";
 import HorizontalRule from "./_common/components/HorizontalRule";

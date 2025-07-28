@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
-import Link from "../../../_common/components/Link";
+import Link from "../../../components/link";
 import Time from "../../../_common/components/Time";
 import Comments from "../../../_common/components/Comments";
 import Loading from "../../../_common/components/Loading";

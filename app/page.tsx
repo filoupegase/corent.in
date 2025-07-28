@@ -1,65 +1,36 @@
-import hash from "@emotion/hash";
-import { rgba } from "polished";
-import { GoLock } from "react-icons/go";
-import UnstyledLink from "../_common/components/Link";
-import type { ComponentPropsWithoutRef } from "react";
-import type { Route } from "next";
+import Link from "@/components/link";
+import { LockIcon } from "lucide-react";
 
-import styles from "./page.module.css";
-
-const Link = ({
-  lightColor,
-  darkColor,
-  children,
-  ...rest
-}: ComponentPropsWithoutRef<typeof UnstyledLink> & {
-  lightColor: string;
-  darkColor: string;
-}) => {
-  const uniqueId = hash(`${lightColor},${darkColor}`);
-
+const Page = () => {
   return (
-    <UnstyledLink className={`t_${uniqueId}`} {...rest}>
-      {children}
-
-      <style
-        // workaround to have react combine all of these inline styles into a single <style> tag up top, see:
-        // https://react.dev/reference/react-dom/components/style#rendering-an-inline-css-stylesheet
-        href={uniqueId}
-        precedence={styles.page}
-      >
-        {`.t_${uniqueId}{--colors-link:${lightColor};--colors-linkUnderline:${rgba(lightColor, 0.4)}}[data-theme="dark"] .t_${uniqueId}{--colors-link:${darkColor};--colors-linkUnderline:${rgba(darkColor, 0.4)}}`}
-      </style>
-    </UnstyledLink>
-  );
-};
-
-export default function Page() {
-  return (
-    <div className={styles.page}>
-      <h1>
-        Hi there! I'm Corentin. <span className={styles.wave}>👋</span>
+    <>
+      <h1 className="mt-0 mb-2 text-3xl leading-relaxed font-medium">
+        Hi there! I&rsquo;m Corentin.{" "}
+        <span className="motion-safe:animate-wave ml-0.5 inline-block origin-[65%_80%] text-3xl">👋</span>
       </h1>
 
-      <h2>
-        I'm a frontend web developer based in{" "}
+      <h2 className="my-2 text-xl leading-relaxed font-normal">
+        I&rsquo;m a frontend web developer based in{" "}
         <Link
           href="https://youtu.be/6J6eppvIIgI?t=1"
           title="Les Danceuses Du Moulin Rouge - French Cancan on YouTube"
-          lightColor="#fb4d42"
-          darkColor="#ff5146"
+          className="[--primary:#fb4d42] dark:[--primary:#ff5146]"
         >
           Paris
         </Link>
-        {""}.
+        .
       </h2>
 
-      <p>
-        I specialize in{" "}
-        <Link href="https://react.org/" title="React Official Website" lightColor="#087ea4" darkColor="#6fcbe3">
+      <p className="my-3 text-base leading-relaxed md:text-[0.975rem]">
+        I specialize in using{" "}
+        <Link href="https://www.typescriptlang.org/" className="[--primary:#235a97] dark:[--primary:#59a8ff]">
+          TypeScript
+        </Link>
+        ,{" "}
+        <Link href="https://reactjs.org/" className="[--primary:#1091b3] dark:[--primary:#6fcbe3]">
           React
-        </Link>{" "}
-        and{" "}
+        </Link>
+        , and{" "}
         <Link
           href="https://timkadlec.com/remembers/2020-04-21-the-cost-of-javascript-frameworks/"
           title='"The Cost of Javascript Frameworks" by Tim Kadlec'
@@ -173,42 +144,25 @@ export default function Page() {
         >
           LinkedIn
         </Link>
-        . I'm always available to connect over{" "}
-        <Link href="/contact" title="Send an email" lightColor="#de0c0c" darkColor="#ff5050">
+        . I&rsquo;m always available to connect over{" "}
+        <Link href="/contact" title="Send an email" className="[--primary:#de0c0c] dark:[--primary:#ff5050]">
           email
-        </Link>
-        , or{" "}
-        <sup>
+        </Link>{" "}
+        <sup className="mr-0.5 text-[0.6rem]">
           <Link
-            href={"/pubkey.asc" as Route}
-            rel="pgpkey authn"
-            title="My Public Key"
-            lightColor="#757575"
-            darkColor="#959595"
-            plain
-            openInNewTab
+            href="#"
+            rel="pgpkey"
+            title="6666 6666 6666 6666 6666 6666 6666 6666 6666 6666"
+            className="space-x-0.5 px-0.5 text-nowrap [--primary:var(--muted-foreground)] hover:no-underline"
           >
-            <GoLock
-              size="1.25em"
-              style={{
-                verticalAlign: "-0.25em",
-                strokeWidth: 0.5,
-              }}
-            />{" "}
-            <span
-              style={{
-                margin: "0 0.15em",
-                fontFamily: "var(--fonts-mono)",
-                letterSpacing: "0.075em",
-                wordSpacing: "-0.4em",
-              }}
-            >
-              2AB5 62FA CED0 D4F2
-            </span>
+            <LockIcon className="inline size-3 align-text-top" />{" "}
+            <code className="tracking-wider text-wrap [word-spacing:-3px]">2AB5 62FA CED0 D4F2</code>
           </Link>
         </sup>
         .{" "}
       </p>
-    </div>
+    </>
   );
-}
+};
+
+export default Page;

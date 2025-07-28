@@ -1,4 +1,4 @@
-import Link from "../_common/components/Link";
+import Link from "../components/link";
 import Video from "../_common/components/Video";
 import type { Metadata } from "next";
 
