@@ -1,9 +1,9 @@
-import Link from "../components/link";
-import Video from "../_common/components/Video";
+import Video from "@/components/video";
+import Link from "@/components/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "404 Not Found",
+  title: "Page Not Found",
   description: null,
   openGraph: {},
   alternates: {
@@ -11,21 +11,24 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function Page() {
+const Page = () => {
   return (
-    <div style={{ textAlign: "center" }}>
+    <>
       <Video
-        src={["/static/not-found/angry-panda.webm", "/static/not-found/angry-panda.mp4"]}
-        autoplay
-        responsive={false}
-        style={{
-          maxWidth: "400px",
-        }}
+        src="https://ijyxfbpcm3itvdly.public.blob.vercel-storage.com/not-found-SAtLyNyc7gVhveYxr6o1ITd9CSXo5X.mp4"
+        autoPlay
+        className="mt-6 aspect-[16/11] max-w-[480px] rounded-lg"
       />
 
-      <h1>404: Page Not Found 😢</h1>
+      <div className="mt-6 text-center">
+        <h1 className="my-2 text-2xl font-semibold md:text-3xl">Page Not Found</h1>
 
-      <Link href="/">Go home?</Link>
-    </div>
+        <p className="mt-4 mb-0 text-lg font-medium md:text-xl">
+          <Link href="/">Go home?</Link>
+        </p>
+      </div>
+    </>
   );
-}
+};
+
+export default Page;

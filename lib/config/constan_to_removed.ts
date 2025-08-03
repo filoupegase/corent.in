@@ -6,8 +6,8 @@ const constants = {
   baseUrl:
     process.env.NEXT_PUBLIC_VERCEL_ENV === "production" && process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL
       ? `https://${process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL}`
-      : process.env.NEXT_PUBLIC_VERCEL_ENV === "preview" && process.env.NEXT_PUBLIC_VERCEL_URL
-        ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
+      : process.env.NEXT_PUBLIC_BASE_URL === "preview" && process.env.NEXT_PUBLIC_BASE_URL
+        ? `https://${process.env.NEXT_PUBLIC_BASE_URL}`
         : `http://localhost:${process.env.PORT || 3000}`,
   timeZone: "America/New_York", // https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List
   onionDomain: "",
