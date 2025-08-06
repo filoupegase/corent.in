@@ -1,109 +1,85 @@
-import clsx from "clsx";
-import Analytics from "./analytics";
-import React, { PropsWithChildren } from "react";
-import { ThemeProvider } from "../contexts/ThemeContext";
-import Header from "../_common/components/Header";
-import Footer from "../_common/components/Footer";
-import { SkipToContentLink, SkipToContentTarget } from "../_common/components/SkipToContent";
-import config from "../lib/config/constants";
-import type { Metadata } from "next";
-import type { Person, WithContext } from "schema-dts";
+import { env } from "@/lib/env";
+import { JsonLd } from "react-schemaorg";
+import { ThemeProvider } from "@/components/theme/theme-context";
+import { ThemeScript } from "@/components/theme/theme-script";
+import Header from "@/components/layout/header";
+import Footer from "@/components/layout/footer";
+import Toaster from "@/components/ui/sonner";
+import Analytics from "@/app/analytics";
+import { defaultMetadata } from "@/lib/metadata";
+import { GeistSans, GeistMono } from "@/lib/fonts";
+import siteConfig from "@/lib/config/site";
+import authorConfig from "@/lib/config/author";
+import type { Person, WebSite } from "schema-dts";
 
-import { GeistMono, GeistSans } from "../lib/styles/fonts";
-import "modern-normalize/modern-normalize.css"; // https://github.com/sindresorhus/modern-normalize/blob/main/modern-normalize.css
-import "./themes.css";
-import "./global.css";
+import "./globals.css";
 
-import styles from "./layout.module.css";
+export const metadata = defaultMetadata;
 
-import meJpeg from "./me.jpeg";
-
-export const metadata: Metadata = {
-  metadataBase: new URL(config.baseUrl),
-  title: {
-    template: `%s – ${config.siteName}`,
-    default: `${config.siteName} – ${config.shortDescription}`,
-  },
-  description: config.longDescription,
-  openGraph: {
-    siteName: config.siteName,
-    title: {
-      template: "%s",
-      default: `${config.siteName} – ${config.shortDescription}`,
-    },
-    url: "/",
-    locale: config.siteLocale?.replace("-", "_"),
-    type: "website",
-    images: [
-      {
-        url: meJpeg.src,
-        alt: `${config.siteName} – ${config.shortDescription}`,
-      },
-    ],
-  },
-  alternates: {
-    canonical: "/",
-    types: {
-      "application/rss+xml": [
-        {
-          title: `${config.siteName} (RSS)`,
-          url: "/feed.xml",
-        },
-      ],
-      "application/atom+xml": [
-        {
-          title: `${config.siteName} (Atom)`,
-          url: "/feed.atom",
-        },
-      ],
-    },
-  },
-  other: {
-    humans: "/humans.txt",
-  },
-};
-
-// https://nextjs.org/docs/app/building-your-application/optimizing/metadata#json-ld
-const jsonLd: WithContext<Person> = {
-  "@context": "https://schema.org",
-  "@type": "Person",
-  name: config.authorName,
-  url: config.baseUrl,
-  image: `${config.baseUrl}${meJpeg.src}`,
-  sameAs: [
-    config.baseUrl,
-    `https://github.com/${config.authorSocial?.github}`,
-    `https://keybase.io/${config.authorSocial?.keybase}`,
-  ],
-};
-
-type Props = PropsWithChildren;
-
-export default function RootLayout({ children }: Props) {
+const RootLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
   return (
-    <html lang={config.siteLocale} suppressHydrationWarning>
+    <html
+      lang={env.NEXT_PUBLIC_SITE_LOCALE}
+      className={`${GeistSans.variable} ${GeistMono.variable}`}
+      suppressHydrationWarning
+    >
       <head>
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+        <ThemeScript />
+
+        <JsonLd<Person>
+          item={{
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "@id": `${env.NEXT_PUBLIC_BASE_URL}/#person`,
+            name: authorConfig.name,
+            url: env.NEXT_PUBLIC_BASE_URL,
+            image: [`${env.NEXT_PUBLIC_BASE_URL}/opengraph-image.jpg`],
+            sameAs: [
+              env.NEXT_PUBLIC_BASE_URL,
+              `https://${authorConfig.social?.mastodon}`,
+              `https://github.com/${authorConfig.social?.github}`,
+              `https://bsky.app/profile/${authorConfig.social?.bluesky}`,
+              `https://twitter.com/${authorConfig.social?.twitter}`,
+              `https://medium.com/@${authorConfig.social?.medium}`,
+              `https://www.linkedin.com/in/${authorConfig.social?.linkedin}/`,
+              `https://www.facebook.com/${authorConfig.social?.facebook}`,
+              `https://www.instagram.com/${authorConfig.social?.instagram}/`,
+            ],
+          }}
+        />
+
+        <JsonLd<WebSite>
+          item={{
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "@id": `${env.NEXT_PUBLIC_BASE_URL}/#website`,
+            name: siteConfig.name,
+            url: env.NEXT_PUBLIC_BASE_URL,
+            author: authorConfig.name,
+            description: siteConfig.description,
+            inLanguage: env.NEXT_PUBLIC_SITE_LOCALE,
+            license: `https://spdx.org/licenses/${siteConfig.license}.html`,
+          }}
+        />
       </head>
 
-      <body className={clsx(GeistMono.variable, GeistSans.variable)}>
+      <body className="bg-background text-foreground font-sans antialiased">
         <ThemeProvider>
-          <SkipToContentLink />
+          <div className="mx-auto w-full max-w-4xl px-5">
+            <Header className="mt-4 mb-6 w-full" />
 
-          <div className={styles.flex}>
-            <Header />
+            <main>{children}</main>
 
-            <main className={styles.default}>
-              <SkipToContentTarget />
-              <div className={styles.container}>{children}</div>
-            </main>
-
-            <Footer />
+            <Footer className="my-6 w-full" />
           </div>
+
+          <Toaster position="bottom-center" hotkey={[]} />
         </ThemeProvider>
 
         <Analytics />
       </body>
     </html>
   );
-}
+};
+
+export default RootLayout;
