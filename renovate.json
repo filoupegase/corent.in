@@ -1,21 +1,13 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "config:recommended"
-  ],
-  "labels": [
-    "📦 dependencies"
-  ],
+  "extends": ["config:recommended"],
+  "labels": ["📦 dependencies"],
   "prConcurrentLimit": 0,
   "prHourlyLimit": 0,
   "rangeStrategy": "bump",
   "packageRules": [
     {
-      "matchPackageNames": [
-        "next",
-        "@next/*",
-        "eslint-config-next"
-      ],
+      "matchPackageNames": ["next", "@next/*", "eslint-config-next"],
       "groupName": "next.js",
       "followTag": "canary",
       "rangeStrategy": "pin"
@@ -33,81 +25,40 @@
       "rangeStrategy": "pin"
     },
     {
-      "matchPackageNames": [
-        "tailwindcss",
-        "@tailwindcss/*",
-        "tailwind-merge",
-        "prettier-plugin-tailwindcss"
-      ],
+      "matchPackageNames": ["tailwindcss", "@tailwindcss/*", "tailwind-merge", "prettier-plugin-tailwindcss"],
       "groupName": "tailwindcss"
     },
     {
-      "matchPackageNames": [
-        "@radix-ui/*"
-      ],
+      "matchPackageNames": ["@radix-ui/*"],
       "groupName": "radix-ui"
     },
     {
-      "matchPackageNames": [
-        "@mdx-js/*",
-        "rehype-*",
-        "remark-*",
-        "unified",
-        "unist-*",
-        "@types/mdx",
-        "@types/unist"
-      ],
+      "matchPackageNames": ["@mdx-js/*", "rehype-*", "remark-*", "unified", "unist-*", "@types/mdx", "@types/unist"],
       "groupName": "mdx"
     },
     {
-      "matchPackageNames": [
-        "eslint",
-        "eslint-*",
-        "@eslint/*",
-        "!eslint-config-next",
-        "!eslint-plugin-react-compiler"
-      ],
+      "matchPackageNames": ["eslint", "eslint-*", "@eslint/*", "!eslint-config-next", "!eslint-plugin-react-compiler"],
       "groupName": "eslint"
     },
     {
-      "matchPackageNames": [
-        "prettier",
-        "prettier-*",
-        "!prettier-plugin-tailwindcss"
-      ],
+      "matchPackageNames": ["prettier", "prettier-*", "!prettier-plugin-tailwindcss"],
       "groupName": "prettier"
     },
     {
-      "matchPackageNames": [
-        "typescript"
-      ],
+      "matchPackageNames": ["typescript"],
       "rangeStrategy": "pin"
     },
     {
-      "matchPackageNames": [
-        "node"
-      ],
-      "matchDepTypes": [
-        "engines"
-      ],
+      "matchPackageNames": ["node"],
+      "matchDepTypes": ["engines"],
       "enabled": false
     },
     {
-      "matchPackageNames": [
-        "node"
-      ],
-      "matchManagers": [
-        "nvm"
-      ],
+      "matchPackageNames": ["node"],
+      "matchManagers": ["nvm"],
       "rangeStrategy": "pin"
     }
   ],
-  "postUpdateOptions": [
-    "pnpmDedupe"
-  ],
-  "ignoreDeps": [
-    "@jakejarvis/eslint-config",
-    "@types/node",
-    "lucide-react"
-  ]
+  "postUpdateOptions": ["pnpmDedupe"],
+  "ignoreDeps": ["@jakejarvis/eslint-config", "@types/node", "lucide-react"]
 }
