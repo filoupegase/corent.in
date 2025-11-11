@@ -2,9 +2,9 @@ This file provides guidance to GitHub Copilot when working with code in this rep
 
 ## Project Overview
 
-This is a personal website built with Next.js, TypeScript, and various modern web technologies. The site uses
-the Next.js App Router and is designed to be deployed on Vercel. It includes features like blog posts (notes), projects
-showcase, contact form, and hit counter API.
+This is a personal website (corent-in.vercel.app) built with Next.js, TypeScript, and various modern web technologies.
+The site uses the Next.js App Router and is designed to be deployed on Vercel. It includes features like blog posts (
+notes), projects showcase, contact form, and hit counter API.
 
 ## Development Commands
 
@@ -45,13 +45,11 @@ Required server environment variables:
 - `GITHUB_TOKEN`: GitHub API token for projects page
 - `RESEND_API_KEY`: Resend API key for contact form
 - `RESEND_TO_EMAIL`: Destination email for contact form
-- `TURNSTILE_SECRET_KEY`: Cloudflare Turnstile secret key
 
 Required client environment variables:
 
 - `NEXT_PUBLIC_GITHUB_REPO`: Repository in format "username/repo"
 - `NEXT_PUBLIC_GITHUB_USERNAME`: GitHub username
-- `NEXT_PUBLIC_TURNSTILE_SITE_KEY`: Cloudflare Turnstile site key
 
 ## Architecture
 
