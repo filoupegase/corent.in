@@ -54,7 +54,7 @@
     "date-fns": "^4.1.0",
     "drizzle-orm": "^0.44.5",
     "fast-glob": "^3.3.3",
-    "feed": "^5.1.0",
+    "feed": "^5.2.1",
     "geist": "^1.5.1",
     "html-entities": "^2.6.0",
     "lucide-react": "0.542.0",
